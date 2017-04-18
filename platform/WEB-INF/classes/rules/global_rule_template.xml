@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 全局规则配置模板 -->
+<Global>
+	<!-- 医院公众号/服务窗ID -->
+	<appId></appId>
+	<!-- 医院编码 -->
+	<code></code>
+	<!-- 医院名称 -->
+	<name></name>
+	<!-- 是否存在分院,true/false -->
+	<isBranch>false</isBranch>
+	<!-- web service或者接口请求地址,如果不是web service则不存在自定义命名空间 -->
+	<url></url>
+	<!-- 自定义命名空间名称 -->
+	<customNamespaceName></customNamespaceName>
+	<!-- 自定义命名空间地址 -->
+	<customNamespaceUrl></customNamespaceUrl>
+	<!-- 接口是否拥有响应状态码 -->
+	<isResponseStatusCode>false</isResponseStatusCode>
+	<!-- 接口响应状态类型 -->
+	<responseStatusMap>
+		<!-- 响应成功状态 -->
+		<ResponseStatus>
+			<!-- 名称 -->
+			<name>成功</name>
+			<!-- 编码 -->
+			<code>OK</code>
+			<!-- 接口响应状态码 -->
+			<responseStatusCode></responseStatusCode>
+			<!-- 接口响应状态描述 -->
+			<responseStatusMsg></responseStatusMsg>
+		</ResponseStatus>
+		<!-- 响应失败状态 -->
+		<ResponseStatus>
+			<!-- 名称 -->
+			<name>失败</name>
+			<!-- 编码 -->
+			<code>error</code>
+			<!-- 接口响应状态码 -->
+			<responseStatusCode></responseStatusCode>
+			<!-- 接口响应状态描述 -->
+			<responseStatusMsg></responseStatusMsg>
+		</ResponseStatus>
+	</responseStatusMap>
+	<statusCode></statusCode>
+	<!-- 数据字典 -->
+	<DataDictionaries>
+		<!-- 就诊卡类型 -->
+		<DataDictionary>
+			<name>患者证件类型</name>
+			<code>cardTypes</code>
+			<options>
+				<option>
+					<name>患者身份证件号码</name>
+					<code>0</code>
+				</option>
+				<option>
+					<name>患者诊疗卡号码</name>
+					<code>1</code>
+					<selected>true</selected>
+				</option>
+				<option>
+					<name>患者市民卡号码</name>
+					<code>2</code>
+				</option>
+				<option>
+					<name>患者医保卡号码</name>
+					<code>3</code>
+				</option>
+				<option>
+					<code>4</code>
+					<name>患者监护人身份证件号码</name>
+				</option>
+				<option>
+					<name>患者电话</name>
+					<code>5</code>
+				</option>
+			</options>
+		</DataDictionary>
+		<!-- 支付方式 -->
+		<DataDictionary>
+			<name>支付方式</name>
+			<code>payTypes</code>
+			<options>
+				<option>
+					<name>财付通支付</name>
+					<code>1</code>
+				</option>
+				<option>
+					<name>支付宝支付</name>
+					<code>2</code>
+				</option>
+			</options>
+		</DataDictionary>
+		<!-- 证件类型 -->
+		<DataDictionary>
+			<name>证件类型</name>
+			<code>idTypes</code>
+			<options>
+				<option>
+					<code>1</code>
+					<name>二代身份证</name>
+				</option>
+				<option>
+					<code>2</code>
+					<name>港澳居民身份证</name>
+				</option>
+				<option>
+					<code>3</code>
+					<name>台湾居民身份证</name>
+				</option>
+				<option>
+					<code>4</code>
+					<name>护照</name>
+				</option>
+			</options>
+		</DataDictionary>
+	</DataDictionaries>
+</Global>

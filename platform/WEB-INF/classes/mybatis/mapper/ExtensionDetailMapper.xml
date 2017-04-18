@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.platform.hospital.entity.ExtensionDetail">
+	<resultMap id="extensionDetailResultMap" type="com.yy.platform.hospital.entity.ExtensionDetail">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="EXTENSION_ID" property="extensionId" jdbcType="VARCHAR" />
+		<result column="CONCERN_TIME" property="createTime" jdbcType="BIGINT" />
+		<result column="OPEN_ID" property="openId" jdbcType="INTEGER" />
+		<result column="IS_FIRST" property="isFirst" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="findListByPage" resultMap="extensionDetailResultMap">
+		select * from SYS_EXTENSION_DETAIL e where e.EXTENSION_ID = #{extensionId}
+	</select>
+	
+	<select id="findExtensionDetailByExtensionId" resultMap="extensionDetailResultMap">
+		select * from SYS_EXTENSION_DETAIL e where e.EXTENSION_ID = #{extensionId}
+	</select>
+	
+	<select id="findExtensionDetailByExtensionIdAndOpenId" resultMap="extensionDetailResultMap">
+		select * from SYS_EXTENSION_DETAIL e where e.EXTENSION_ID = #{extensionId} and e.OPEN_ID = #{openId}
+	</select>
+	
+	<insert id="add" parameterType="com.yy.platform.hospital.entity.ExtensionDetail">
+		insert into
+		SYS_EXTENSION_DETAIL(ID,EXTENSION_ID,CONCERN_TIME,OPEN_ID,IS_FIRST)
+		values
+		(#{id},#{extensionId},#{createTime},#{openId},#{isFirst})
+	</insert>
+	
+	<select id="findExtensionAccountsByExtensionId" parameterType="String" resultType="String">
+		SELECT OPEN_ID FROM SYS_EXTENSION_DETAIL WHERE EXTENSION_ID = #{extensionId} AND IS_FIRST = '1'
+	</select>
+	
+	<select id="findExtensionDetailsByOpenId" parameterType="String" resultMap="extensionDetailResultMap">
+		select * from SYS_EXTENSION_DETAIL e where e.OPEN_ID = #{openId}
+	</select>
+</mapper>

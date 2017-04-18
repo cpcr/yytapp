@@ -1,0 +1,118 @@
+<html>
+<head>
+	<meta name="mobile-agent" content="format=html5;url=http://m.www.yunyichina.cn/mobile/">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>新增客服消息</title>
+    <script type="text/javascript" src="../lib/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap_v2/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <link rel="stylesheet" href="../lib/bootstrap_v2/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/yx-style.css"/>
+    <link rel="stylesheet" href="../css/yx-media.css"/>
+</head>
+<body>
+<!--Header str-->
+<div id="header">
+    <h1>
+        <a href="javascript:void(0);">掌上医院全流程管理后台 </a>
+    </h1>
+</div>
+<!--Header end-->
+<!--sidebar-menu str-->
+<div id="sidebar">
+    <ul>
+        <li><a href="#"><i class="icons-siderbar icons-account"></i><i class="caret"></i><span>账户管理</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-behavior"></i><i class="caret"></i><span>行为管理</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-role"></i><i class="caret"></i><span>角色管理</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-access"></i><i class="caret"></i><span>权限管理</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-hopital"></i><i class="caret"></i><span>医院管理</span></a> </li>
+        <li><a href="#"><i class="icons-siderbar icons-nes"></i><i class="caret"></i><span>消息管理</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-journal"></i><i class="caret"></i><span>行为日志</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-function"></i><i class="caret"></i><span>功能管理</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-rule"></i><i class="caret"></i><span>规则配置</span></a></li>
+        <li class="active"><a href="#"><i class="icons-siderbar icons-temp"></i><i class="caret"></i><span>消息模版</span></a></li>
+    </ul>
+</div>
+<!--sidebar-menu end-->
+<!--content str-->
+<div id="content">
+    <div id="content-top">
+        <div class="container-fluid">
+            <div class="box">
+                <!--top-Header-menu str -->
+                <div id="user-nav" class="navbar">
+                    <div id="select-msg" class="dropdown"  >
+                        <a class="dropdown-toggle" href="javascript:void(0);" data-toggle="dropdown" >
+                            <span class="text">广东省第二人民医院</span>
+                            <i class="caret"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">中山大学孙逸仙纪念医院</a></li>
+                            <li><a href="#">广州中医药大学第一附属医院</a></li>
+                            <li><a href="#">广东省第二人民医院</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--top-Header-menu end -->
+                <!--settings str-->
+                <div id="settings">
+                    <div class="set-msg dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0);" data-toggle="dropdown" >
+                            <span class="text">系统设置</span>
+                            <i class="icons_settings icons-set"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><span class="text">修改密码</span><i class="icons_settings icons-password"></i></a></li>
+                            <li><a href="#"><span class="text">退出登录</span><i class="icons_settings icons-loginout"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--settings end-->
+            </div>
+        </div>
+    </div>
+    <div id="content-header">
+        <div class="widget-title"><h3 class="title"><span class="msg-t"><i class="line"></i>新增模板消息</span><span class="msg-t select"><i class="line"></i>新增客服消息</span></h3></div>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="space20"></div>
+            <div class="widget-box">
+                <div class="widget-content msg-outer">
+                    <div class="row-fluid">
+                        <div class="control-group"><label class="control-label" >标题/Title</label><div class="controls"><input type="text" class="span5"/></div></div>
+                        <div class="control-group"><label class="control-label" >模板编码/Code</label><div class="controls"><input type="text" class="span5"/></div></div>
+                        <div class="control-group"><label class="control-label" >正文</label>
+                            <div class="controls" style="margin-right: 200px;">
+                                <textarea rows="5" style=" width:380px;height:350px" id="editor_wx" name="content"></textarea>
+                            </div>
+                        </div>
+                        <div class="space20"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space20"></div>
+        <button type="button" class="btn btn-save w130">保存</button>
+    </div>
+</div>
+<!--content end-->
+</body>
+</html>
+<script type="text/javascript" charset="utf-8" src="../js/kindeditor/kindeditor.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/kindeditor/lang/zh_CN.js"></script>
+<script language="javascript">
+    var editor;
+    KindEditor.ready(function(K) {
+        editor = K.create('#editor_wx', {
+            width : '100%',
+            items: ['source', '|', 'undo', 'redo', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertunorderedlist', 'indent', 'outdent', 'selectall', 'title', 'fontname', 'fontsize', 'bold', '|',
+                'italic', 'underline', 'strikethrough', 'removeformat', '|', 'image',
+                'advtable', 'hr', 'emoticons', 'link', 'unlink','vote']
+        });
+    });
+</script>

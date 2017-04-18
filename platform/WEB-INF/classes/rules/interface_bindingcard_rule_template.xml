@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--医院接口描述模板-->
+<hisInterfaces>
+	<!-- 查询患者信息接口 -->
+	<HisInterface>
+		<!-- 接口中文描述名称 -->
+		<name>查询患者信息</name>
+		<!-- 接口编码,以便于在程序中通过代码来唯一标识并获取接口,而不是通过接口名称来标识获取接口,因为每个医院的接口名称都不一样 -->
+		<code>queryPatientInfo</code>
+		<!-- 接口所使用的协议,如http/SOAP -->
+		<interfaceProtocol>SOAP</interfaceProtocol>
+		<!-- 医院接口名称 -->
+		<interfaceName></interfaceName>
+		<!-- 是否依赖另一接口 ,true/false,和dependencyInterfaceName属性联合使用 -->
+		<isDependencyInterface>false</isDependencyInterface>
+		<!-- 所依赖的接口编码 -->
+		<dependencyInterfaceName></dependencyInterfaceName>
+		<!-- 请求报文前置节点 -->
+		<requestPreDataNode></requestPreDataNode>
+		<!-- 响应报文前置节点 -->
+		<responsePreDataNode></responsePreDataNode>
+		<!-- 请求参数是否需要加密 ,true/false -->
+		<isRequestEncryption>false</isRequestEncryption>
+		<!-- 是否需要将xml格式的请求参数转换为字符串,true/false,和toRequestParameter属性联合使用 -->
+		<isRequestXmlToStr>false</isRequestXmlToStr>
+		<!-- xml格式请求参数字符串被包含在哪个请求参数里面 -->
+		<toRequestParameter></toRequestParameter>
+		<!-- 响应报文是否需要解密 ,true/false -->
+		<isResponseDecryption>false</isResponseDecryption>
+		<!-- 请求参数编码字符集 -->
+		<requestEncode>utf-8</requestEncode>
+		<!-- 响应参数编码字符集 -->
+		<responseEncode>utf-8</responseEncode>
+		<!-- 请求报文 -->
+		<requestParameters>
+			<!-- 证件类型 -->
+			<RequestParameter>
+				<!-- 参数中文名称 -->
+				<name></name>
+				<!-- 源名称 -->
+				<sourceName></sourceName>
+				<!-- 目标名称 -->
+				<targetName></targetName>
+				<!-- 是否必填,true/false -->
+				<required></required>
+				<!-- 默认值 -->
+				<defaultValue></defaultValue>
+				<!-- 数据来源,1:业务传递,2:接口传递 -->
+				<dataSource>1</dataSource>
+				<!-- 是否需要转换,true/false -->
+				<isConvert>false</isConvert>
+				<!-- 是否需要工具辅助转换 ,true/false -->
+				<isAssist>false</isAssist>
+				<!-- 辅助工具 -->
+				<Assist>
+					<!-- 类路径 -->
+					<className></className>
+					<!-- 方法名称 -->
+					<methodName></methodName>
+					<!-- 方法所需参数集合 -->
+					<params>
+						<Parameter>
+							<!-- 参数名称 -->
+							<paramName></paramName>
+							<!-- 参数数据类型 -->
+							<paramDataType></paramDataType>
+						</Parameter>
+					</params>
+				</Assist>
+				<!-- 数据转换 -->
+				<converts>
+					<Convert>
+						<!-- 源数据 -->
+						<sourceData></sourceData>
+						<!-- 目标数据 -->
+						<targetData></targetData>
+					</Convert>
+				</converts>
+			</RequestParameter>
+		</requestParameters>
+		<!-- 响应报文 -->
+		<Response>
+			<!-- 数据节点名称,根据医院返回的数据格式 -->
+			<dataNode>
+				<name>Pin_getUserInfoResult</name>
+				<dataNode>
+					<name>res</name>
+					<!-- 用户信息 -->
+					<dataNode>
+						<name>userInfo</name>
+						<parameters>
+							<!-- 用户对应HIS系统患者ID -->
+							<parameter>
+								<name>userHISPatientID</name>
+								<required>true</required>
+							</parameter>
+							<!-- 患者身份证件号码 -->
+							<parameter>
+								<name>userIdCard</name>
+								<required>true</required>
+								<targetName>idNo</targetName>
+							</parameter>
+							<!-- 患者诊疗卡号码 -->
+							<parameter>
+								<name>userJKK</name>
+								<required>true</required>
+								<targetName>cardNo</targetName>
+							</parameter>
+							<!-- 患者市民卡号码 -->
+							<parameter>
+								<name>userSMK</name>
+								<targetName>cardNo</targetName>
+							</parameter>
+							<!-- 患者医保卡号码 -->
+							<parameter>
+								<name>userYBK</name>
+								<targetName>cardNo</targetName>
+							</parameter>
+							<!-- 患者监护人身份证件号码 -->
+							<parameter>
+								<name>userParentIdCard</name>
+							</parameter>
+							<!-- 患者姓名 -->
+							<parameter>
+								<name>userName</name>
+								<required>true</required>
+								<targetName>name</targetName>
+							</parameter>
+							<!-- 患者性别：M-男,F-女 -->
+							<parameter>
+								<name>gender</name>
+								<required>true</required>
+								<targetName>sex</targetName>
+								<converts>
+									<!-- 数据转换,M-男转换为1,M-女转换为2 -->
+									<convert>
+										<sourceData>M-男</sourceData>
+										<targetData>1</targetData>
+									</convert>
+									<convert>
+										<sourceData>M-女</sourceData>
+										<targetData>2</targetData>
+									</convert>
+								</converts>
+							</parameter>
+							<!-- 患者电话 -->
+							<parameter>
+								<name>userMobile</name>
+								<required>true</required>
+								<targetName>mobileNo</targetName>
+							</parameter>
+							<!-- 患者出生日期：YYYY-MM-DD -->
+							<parameter>
+								<name>userBirthday</name>
+								<required>true</required>
+								<targetName>birth</targetName>
+							</parameter>
+							<!-- 用户地址 -->
+							<parameter>
+								<name>userAddress</name>
+								<targetName>address</targetName>
+								<converts>
+									<!-- 0转换为空字符串 -->
+									<convert>
+										<sourceData>0</sourceData>
+										<targetData></targetData>
+									</convert>
+								</converts>
+							</parameter>
+							<!-- 用户的患者类型名称 -->
+							<parameter>
+								<name>userPatienTypeListName</name>
+							</parameter>
+						</parameters>
+					</dataNode>
+				</dataNode>
+			</dataNode>
+		</Response>
+	</HisInterface>
+</hisInterfaces>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- modify by  Yuce  不要使用多个ResultMap   一个文件里面最好就只用一个-->
+<mapper namespace="com.yy.easyhealth.biz.sms.entity.SmsUser">
+
+	<resultMap id="smsUserResultMap" type="com.yy.easyhealth.biz.sms.entity.SmsUser">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="PAT_NAME" property="patName" jdbcType="VARCHAR" />
+		<result column="PAT_SEX" property="patSex" jdbcType="SMALLINT" />
+		<result column="PAT_AGE" property="patAge" jdbcType="INTEGER" />
+		<result column="PAT_BIRTH" property="patBirth" jdbcType="VARCHAR" />
+		<result column="PAT_ADDRESS" property="patAddress" jdbcType="VARCHAR" />
+		<result column="PAT_MOBILE" property="patMobile" jdbcType="VARCHAR" />
+		<result column="PAT_CARD_TYPE" property="patCardType" jdbcType="INTEGER" />
+		<result column="PAT_CARD_NO" property="patCardNo" jdbcType="VARCHAR" />
+		<result column="PAT_ID_TYPE" property="patIdType" jdbcType="INTEGER" />
+		<result column="PAT_ID_NO" property="patIdNo" jdbcType="VARCHAR" />
+		<result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+		<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+		<result column="DOCTOR_CODE" property="doctorCode" jdbcType="VARCHAR" />
+		<result column="DOCTOR_NAME" property="doctorName" jdbcType="VARCHAR" />
+		<result column="SEND_FLAG" property="sendFlag" jdbcType="INTEGER" />
+		<result column="SEND_COUNT" property="sendCount" jdbcType="INTEGER" />
+		<result column="SEND_TIME" property="sendTime" jdbcType="BIGINT" />
+		<result column="CREATED_TIME" property="createdTime" jdbcType="BIGINT" />
+		<result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_NAME" property="hospitalName" jdbcType="VARCHAR" />
+		<result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+		<result column="BRANCH_CODE" property="branchCode" jdbcType="VARCHAR" />
+		<result column="BUSINESS_TYPE" property="businessType" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="All_Column">
+		ID,PAT_NAME,PAT_SEX,PAT_AGE,PAT_BIRTH,PAT_ADDRESS,PAT_MOBILE,PAT_CARD_TYPE,PAT_CARD_NO,
+		PAT_ID_TYPE,PAT_ID_NO,DEPT_CODE,DEPT_NAME,DOCTOR_CODE,DOCTOR_NAME,SEND_FLAG,SEND_COUNT,
+		SEND_TIME,CREATED_TIME,HOSPITAL_ID,HOSPITAL_CODE,HOSPITAL_NAME,BRANCH_ID,BRANCH_CODE,BUSINESS_TYPE
+	</sql>
+
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.yy.easyhealth.biz.sms.entity.SmsUser">
+		INSERT INTO
+		BIZ_SMS_USER
+		(
+		<include refid="All_Column"></include>
+		)
+		VALUES
+		(#{id},#{patName},#{patSex},#{patAge},#{patBirth},#{patAddress},#{patMobile},#{patCardType},
+		#{patCardNo},#{patIdType},#{patIdNo},#{deptCode},#{deptName},#{doctorCode},#{doctorName},#{sendFlag},
+		#{sendCount},#{sendTime},#{createdTime},#{hospitalId},#{hospitalCode},#{hospitalName},#{branchId},#{branchCode},#{businessType})
+	</insert>
+
+	<!-- 实体更新 -->
+	<update id="update" parameterType="com.yy.easyhealth.biz.sms.entity.SmsUser">
+		update
+		BIZ_SMS_USER
+		<set>
+			<if test="patName != null">
+				PAT_NAME = #{patName}
+			</if>
+			<if test="patSex != null">
+				,PAT_SEX = #{patSex}
+			</if>
+			<if test="patAge != null">
+				,PAT_AGE = #{patAge}
+			</if>
+			<if test="patBirth != null">
+				,PAT_BIRTH = #{patBirth}
+			</if>
+			<if test="patAddress != null">
+				,PAT_ADDRESS = #{patAddress}
+			</if>
+			<if test="patMobile != null">
+				,PAT_MOBILE = #{patMobile}
+			</if>
+			<if test="patCardType != null">
+				,PAT_CARD_TYPE = #{patCardType}
+			</if>
+			<if test="patIdType != null">
+				,PAT_ID_TYPE = #{patIdType}
+			</if>
+			<if test="patIdNo != null">
+				,PAT_ID_NO = #{patIdNo}
+			</if>
+			<if test="deptCode != null">
+				,DEPT_CODE = #{deptCode}
+			</if>
+			<if test="deptName != null">
+				,DEPT_NAME = #{deptName}
+			</if>
+			<if test="doctorCode != null">
+				,DOCTOR_CODE = #{doctorCode}
+			</if>
+			<if test="doctorName != null">
+				,DOCTOR_NAME = #{doctorName}
+			</if>
+			<if test="sendFlag != null">
+				,SEND_FLAG = #{sendFlag}
+			</if>
+			<if test="sendCount != null">
+				,SEND_COUNT = #{sendCount}
+			</if>
+			<if test="sendTime != null">
+				,SEND_TIME = #{sendTime}
+			</if>
+
+			<if test="hospitalId != null">
+				,HOSPITAL_ID = #{hospitalId}
+			</if>
+			<if test="hospitalCode != null">
+				,HOSPITAL_CODE = #{hospitalCode}
+			</if>
+			<if test="hospitalName != null">
+				,HOSPITAL_NAME = #{hospitalName}
+			</if>
+			<if test="branchId != null">
+				,BRANCH_ID = #{branchId}
+			</if>
+			<if test="branchCode != null">
+				,BRANCH_CODE = #{branchCode}
+			</if>
+			<if test="businessType != null">
+				,BUSINESS_TYPE = #{businessType}
+			</if>
+		</set>
+		where
+		ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 根据用户名、身份证、手机号查询患者是否存在 -->
+	<select id="findSmsUserByUserNameCardNoMobile" resultMap="smsUserResultMap" parameterType="java.util.Map">
+		select  <include refid="All_Column"></include>
+		FROM
+		BIZ_SMS_USER
+		where PAT_ID_NO = #{patIdNo}
+		AND PAT_MOBILE = #{patMobile}
+		AND PAT_NAME = #{patName}
+		
+	</select>
+
+	<!-- 查询所有记录 -->
+	<select id="findAll" resultMap="smsUserResultMap">
+		select  <include refid="All_Column"></include>
+		FROM
+		BIZ_SMS_USER
+	</select>
+
+	<!-- 查询appId来自 HOSPITAL_ID-->
+	<select id="findAppIdByHospitalId" resultType="java.lang.String" parameterType="java.util.Map">
+	SELECT sps.APP_ID
+	FROM
+		SYS_PLATFORM_SETTINGS sps
+	INNER JOIN SYS_HOSPITAL_PLATFORM_SETTINGS shps ON sps.ID = shps.PLATFORM_SETTINGS_ID
+	INNER JOIN sys_platform spf on spf.id = sps.platform_Id
+	WHERE
+	shps.HOSPITAL_ID = #{hospitalId} and spf.code = #{type}
+	</select>
+
+
+	<!-- 根据 HOSPITAL_ID 查询推送用户-->
+	<select id="findSmsUserdByHospitalId" resultMap="smsUserResultMap" parameterType="java.util.Map">
+		select  <include refid="All_Column"></include>
+		FROM
+		BIZ_SMS_USER
+		where HOSPITAL_ID = #{hospitalId}
+		AND DATE_FORMAT(created_time,'%Y-%m-%d') = #{today}
+	</select>
+
+
+	<!-- 批量插入 -->
+	<insert id="insertSmsUsers" parameterType="java.util.List">
+		INSERT INTO
+		BIZ_SMS_USER(<include refid="All_Column"></include>)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator="," >
+			(#{item.id},#{item.patName},#{item.patSex},#{item.patAge},#{item.patBirth},#{item.patAddress},#{item.patMobile},#{item.patCardType},
+			#{item.patCardNo},#{item.patIdType},#{item.patIdNo},#{item.deptCode},#{item.deptName},#{item.doctorCode},#{item.doctorName},#{item.sendFlag},
+			#{item.sendCount},#{item.sendTime},#{item.createdTime},#{item.hospitalId},#{item.hospitalCode},#{item.hospitalName},#{item.branchId},#{item.branchCode},#{item.businessType})
+		</foreach>
+	</insert>
+
+</mapper>

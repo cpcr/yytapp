@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.easyhealth.biz.usercenter.entity.Family">
+	<resultMap id="familyResultMap" type="com.yy.easyhealth.biz.usercenter.entity.Family">
+		<id column="ID" property="id" jdbcType="VARCHAR"/>
+		<result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
+		<result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+		<result column="AREA_NAME" property="areaName" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+		<result column="OWNERSHIP" property="ownership" jdbcType="SMALLINT" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="SEX" property="sex" jdbcType="SMALLINT" />
+		<result column="BIRTH" property="birth" jdbcType="VARCHAR" />
+		<result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+		<result column="ID_TYPE" property="idType" jdbcType="SMALLINT" />
+		<result column="ID_NO" property="idNo" jdbcType="VARCHAR" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="GUARD_NAME" property="guardName" jdbcType="VARCHAR" />
+		<result column="GUARD_ID_TYPE" property="guardIdType" jdbcType="SMALLINT" />
+		<result column="GUARD_ID_NO" property="guardIdNo" jdbcType="VARCHAR" />
+		<result column="GUARD_MOBILE" property="guardMobile" jdbcType="VARCHAR" />
+		<result column="MARK" property="mark" jdbcType="VARCHAR" />
+		<result column="STATE" property="state" jdbcType="SMALLINT" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="BIGINT" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="BIGINT" />
+	</resultMap>
+	
+	<sql id="All_Column">
+		ID, APP_CODE, AREA_CODE, AREA_NAME, USER_ID ,OPEN_ID, OWNERSHIP,
+		NAME, SEX, BIRTH, MOBILE, ID_TYPE, ID_NO, ADDRESS, GUARD_NAME,
+		GUARD_ID_TYPE, GUARD_ID_NO, GUARD_MOBILE, MARK, STATE, CREATE_TIME, UPDATE_TIME
+	</sql>
+	
+	<sql id="Choose_Hash_Table_Name">
+		<choose>
+			<when test="hashTableName == 'BIZ_FAMILY_1'">
+	             BIZ_FAMILY_1 
+	        </when>
+	        <when test="hashTableName == 'BIZ_FAMILY_2'">
+	             BIZ_FAMILY_2 
+	        </when>
+	        <when test="hashTableName == 'BIZ_FAMILY_3'">
+	             BIZ_FAMILY_3 
+	        </when>
+	        <when test="hashTableName == 'BIZ_FAMILY_4'">
+	             BIZ_FAMILY_4 
+	        </when>
+	        <when test="hashTableName == 'BIZ_FAMILY_5'">
+	             BIZ_FAMILY_5 
+	        </when>
+	        <when test="hashTableName == 'BIZ_FAMILY_6'">
+	             BIZ_FAMILY_6 
+	        </when>
+	        <when test="hashTableName == 'BIZ_FAMILY_7'">
+	             BIZ_FAMILY_7 
+	        </when>
+	        <when test="hashTableName == 'BIZ_FAMILY_8'">
+	             BIZ_FAMILY_8 
+	        </when>
+	        <when test="hashTableName == 'BIZ_FAMILY_9'">
+	             BIZ_FAMILY_9 
+	        </when>
+	        <when test="hashTableName == 'BIZ_FAMILY_10'">
+	             BIZ_FAMILY_10 
+	        </when>
+    	</choose>
+  	</sql>
+  
+	<insert id="add" parameterType="com.yy.easyhealth.biz.usercenter.entity.Family"> 
+		insert into
+    		<include refid="Choose_Hash_Table_Name" />
+    	(<include refid="All_Column" />)
+ 		values 
+ 		(
+	 		#{id, jdbcType=VARCHAR}, #{appCode, jdbcType=VARCHAR}, #{areaCode, jdbcType=VARCHAR}, #{areaName, jdbcType=VARCHAR},
+	 		#{userId, jdbcType=VARCHAR},#{openId, jdbcType=VARCHAR}, #{ownership, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, #{sex, jdbcType=INTEGER},
+	 		#{birth, jdbcType=VARCHAR}, #{mobile, jdbcType=VARCHAR}, #{idType, jdbcType=INTEGER}, #{idNo, jdbcType=VARCHAR},
+	 		#{address, jdbcType=VARCHAR}, #{guardName, jdbcType=VARCHAR}, #{guardIdType, jdbcType=INTEGER}, #{guardIdNo, jdbcType=VARCHAR}, #{guardMobile, jdbcType=VARCHAR},
+	 		#{mark, jdbcType=VARCHAR}, #{state, jdbcType=INTEGER}, #{createTime, jdbcType=BIGINT}, #{updateTime, jdbcType=BIGINT}
+    	)
+  	</insert>
+  	
+  	<update id="update" parameterType="com.yy.easyhealth.biz.usercenter.entity.Family">
+  		update   
+			<include refid="Choose_Hash_Table_Name" />
+		<set>
+			<if test="ownership != null">
+				OWNERSHIP = #{ownership, jdbcType=SMALLINT},
+			</if>
+			<if test="address != null">
+				ADDRESS = #{address, jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile, jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				SEX = #{sex, jdbcType=VARCHAR},
+			</if>
+			<if test="mark != null">
+				MARK = #{mark, jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				STATE = #{state, jdbcType=SMALLINT},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime, jdbcType=SMALLINT},
+			</if>
+
+			<if test="userId != null">
+				USER_ID = #{userId, jdbcType=SMALLINT},
+			</if>
+			<if test="openId != null">
+				OPEN_ID = #{openId, jdbcType=SMALLINT},
+			</if>
+			<if test="name != null">
+				NAME = #{name, jdbcType=SMALLINT},
+			</if>
+			<if test="idType != null">
+				ID_TYPE = #{idType, jdbcType=SMALLINT},
+			</if>
+			<if test="idNo != null">
+				ID_NO = #{idNo, jdbcType=SMALLINT},
+			</if>
+			<if test="appCode != null">
+				APP_CODE = #{appCode, jdbcType=SMALLINT},
+			</if>
+			<if test="birth != null">
+				BIRTH = #{birth, jdbcType=SMALLINT},
+			</if>
+		</set>
+		where ID=#{id}
+  	</update>
+  	
+  	<update id="updateSelfInfo" parameterType="com.yy.easyhealth.biz.usercenter.entity.Family">
+  		update   
+			<include refid="Choose_Hash_Table_Name" />
+		<set>
+			<if test="birth != null">
+				BIRTH = #{birth, jdbcType=VARCHAR},
+			</if>
+			
+			<if test="address != null">
+				ADDRESS = #{address, jdbcType=VARCHAR},
+			</if>
+			
+			<if test="mobile != null">
+				MOBILE = #{mobile, jdbcType=VARCHAR},
+			</if>
+			
+			<if test="sex != null">
+				SEX = #{sex, jdbcType=VARCHAR},
+			</if>
+			
+			<if test="name != null">
+				NAME = #{name, jdbcType=VARCHAR},
+			</if>
+			
+			<if test="idType != null">
+				ID_TYPE = #{idType, jdbcType=VARCHAR},
+			</if>
+			
+			<if test="idNo != null">
+				ID_NO = #{idNo, jdbcType=VARCHAR},
+			</if>
+			
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime, jdbcType=SMALLINT},
+			</if>
+		</set>
+		where ID=#{id}
+  	</update>
+  	
+  	<update id="unbindFamily" parameterType="java.util.Map" >
+  		update   
+			<include refid="Choose_Hash_Table_Name" />
+		<set>
+			STATE = 0
+		</set>
+		where ID=#{id}
+  	</update>
+  	
+  	<!-- 通过openId找人 -->
+	<select id="findById" parameterType="java.util.Map" resultMap="familyResultMap"> 
+		select <include refid="All_Column" /> from BIZ_FAMILY_1 where ID = #{id, jdbcType=VARCHAR}
+		union all
+		select <include refid="All_Column" /> from BIZ_FAMILY_2 where ID = #{id, jdbcType=VARCHAR}
+		union all
+        select <include refid="All_Column" /> from BIZ_FAMILY_3 where ID = #{id, jdbcType=VARCHAR}
+        union all
+        select <include refid="All_Column" /> from BIZ_FAMILY_4 where ID = #{id, jdbcType=VARCHAR}
+        union all
+        select <include refid="All_Column" /> from BIZ_FAMILY_5 where ID = #{id, jdbcType=VARCHAR}
+        union all
+        select <include refid="All_Column" /> from BIZ_FAMILY_6 where ID = #{id, jdbcType=VARCHAR}
+        union all
+        select <include refid="All_Column" /> from BIZ_FAMILY_7 where ID = #{id, jdbcType=VARCHAR}
+        union all
+        select <include refid="All_Column" /> from BIZ_FAMILY_8 where ID = #{id, jdbcType=VARCHAR}
+        union all
+        select <include refid="All_Column" /> from BIZ_FAMILY_9 where ID = #{id, jdbcType=VARCHAR}
+        union all
+        select <include refid="All_Column" /> from BIZ_FAMILY_10 where ID = #{id, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 通过userId找人，把自己也要列出来 edit by dengsw -->
+	<select id="findFamiliesByUserId" parameterType="java.util.Map" resultMap="familyResultMap"> 
+		select  
+			<include refid="All_Column" />
+		from 
+   			<include refid="Choose_Hash_Table_Name" />
+       	where 
+       		USER_ID = #{userId, jdbcType=VARCHAR}
+       	and STATE = #{state, jdbcType=INTEGER}
+	</select>
+	
+	<!-- 通过openId找人 -->
+	<select id="findAllFamilies" parameterType="java.util.Map" resultMap="familyResultMap"> 
+		select  
+			<include refid="All_Column" />
+		from 
+   			<include refid="Choose_Hash_Table_Name" />
+       	where 
+       		USER_ID = #{userId, jdbcType=VARCHAR}
+       	and STATE = #{state, jdbcType=INTEGER}
+       	order by ownership ASC;
+	</select>
+	
+	<!-- 通过idType和IdNo找人 -->
+	<select id="findFamiliesByUserIdAndIdNo" parameterType="java.util.Map" resultMap="familyResultMap"> 
+		select  
+			<include refid="All_Column" />
+		from 
+   			<include refid="Choose_Hash_Table_Name" />
+       	where 
+       		USER_ID = #{userId, jdbcType=VARCHAR}
+       	and ID_NO = #{idNo, jdbcType=VARCHAR}
+       	and ID_TYPE = #{idType, jdbcType=INTEGER}
+       	and STATE = #{state, jdbcType=INTEGER}
+	</select>  
+	
+	<!-- 通过idType和IdNo找人 -->
+	<select id="findFamiliesByUserIDAndNameAndGuardIdNo" parameterType="java.util.Map" resultMap="familyResultMap"> 
+		select  
+			<include refid="All_Column" />
+		from 
+   			<include refid="Choose_Hash_Table_Name" />
+       	where 
+       		USER_ID = #{userId, jdbcType=VARCHAR}
+       	and NAME = #{name, jdbcType=VARCHAR}
+       	and GUARD_ID_NO = #{guardIdNo, jdbcType=VARCHAR}
+       	and GUARD_ID_TYPE = #{guardIdType, jdbcType=INTEGER}
+       	<if test="state != -1">
+       	and STATE = #{state, jdbcType=INTEGER}
+       	</if>
+	</select>  
+	
+	<!-- 通过idType和IdNo找人 -->
+	<select id="findSelfInfo" parameterType="java.util.Map" resultMap="familyResultMap"> 
+		select  
+			<include refid="All_Column" />
+		from 
+   			<include refid="Choose_Hash_Table_Name" />
+       	where 
+       		USER_ID = #{userId, jdbcType=VARCHAR}
+       	and OWNERSHIP = 1
+       	and STATE = 1
+	</select>
+
+	<!-- 通过openId和 OWNERSHIP=1 找人 -->
+	<select id="findFamilyByOpenId_old" parameterType="java.util.Map" resultMap="familyResultMap">
+		select
+		<include refid="All_Column" />
+		from
+		v_all_family
+		where
+		OPEN_ID = #{openId, jdbcType=VARCHAR}
+		and OWNERSHIP = 1
+		and STATE = 1
+	</select>
+	
+	<!-- 通过openId和 OWNERSHIP=1 找人 -->
+	<select id="findFamilyByOpenId" parameterType="java.util.Map" resultMap="familyResultMap">
+		select
+		<include refid="All_Column" />
+		from
+		(
+			select '1' AS tid,t1.ID AS ID,t1.APP_CODE AS APP_CODE,t1.AREA_CODE AS AREA_CODE,t1.AREA_NAME AS AREA_NAME,t1.name AS NAME,t1.SEX AS SEX,t1.BIRTH AS BIRTH,t1.MOBILE AS MOBILE,t1.ID_TYPE AS ID_TYPE,t1.ID_NO AS ID_NO,t1.ADDRESS AS ADDRESS,t1.OPEN_ID AS OPEN_ID,t1.USER_ID AS USER_ID,t1.OWNERSHIP AS OWNERSHIP,t1.GUARD_NAME AS GUARD_NAME,t1.GUARD_ID_TYPE AS GUARD_ID_TYPE,t1.GUARD_ID_NO AS GUARD_ID_NO,t1.GUARD_MOBILE AS GUARD_MOBILE,t1.MARK AS MARK,t1.STATE AS STATE,t1.CREATE_TIME AS CREATE_TIME,t1.UPDATE_TIME AS UPDATE_TIME from biz_family_1 t1 
+			where OPEN_ID = #{openId, jdbcType=VARCHAR} and OWNERSHIP = 1 and STATE = 1 
+			
+			union all select '2' AS tid,t2.ID AS ID,t2.APP_CODE AS APP_CODE,t2.AREA_CODE AS AREA_CODE,t2.AREA_NAME AS AREA_NAME,t2.name AS NAME,t2.SEX AS SEX,t2.BIRTH AS BIRTH,t2.MOBILE AS MOBILE,t2.ID_TYPE AS ID_TYPE,t2.ID_NO AS ID_NO,t2.ADDRESS AS ADDRESS,t2.OPEN_ID AS OPEN_ID,t2.USER_ID AS USER_ID,t2.OWNERSHIP AS OWNERSHIP,t2.GUARD_NAME AS GUARD_NAME,t2.GUARD_ID_TYPE AS GUARD_ID_TYPE,t2.GUARD_ID_NO AS GUARD_ID_NO,t2.GUARD_MOBILE AS GUARD_MOBILE,t2.MARK AS MARK,t2.STATE AS STATE,t2.CREATE_TIME AS CREATE_TIME,t2.UPDATE_TIME AS UPDATE_TIME from biz_family_2 t2 
+			where OPEN_ID = #{openId, jdbcType=VARCHAR} and OWNERSHIP = 1 and STATE = 1 
+			
+			union all select '3' AS tid,t3.ID AS ID,t3.APP_CODE AS APP_CODE,t3.AREA_CODE AS AREA_CODE,t3.AREA_NAME AS AREA_NAME,t3.name AS NAME,t3.SEX AS SEX,t3.BIRTH AS BIRTH,t3.MOBILE AS MOBILE,t3.ID_TYPE AS ID_TYPE,t3.ID_NO AS ID_NO,t3.ADDRESS AS ADDRESS,t3.OPEN_ID AS OPEN_ID,t3.USER_ID AS USER_ID,t3.OWNERSHIP AS OWNERSHIP,t3.GUARD_NAME AS GUARD_NAME,t3.GUARD_ID_TYPE AS GUARD_ID_TYPE,t3.GUARD_ID_NO AS GUARD_ID_NO,t3.GUARD_MOBILE AS GUARD_MOBILE,t3.MARK AS MARK,t3.STATE AS STATE,t3.CREATE_TIME AS CREATE_TIME,t3.UPDATE_TIME AS UPDATE_TIME from biz_family_3 t3 
+			where OPEN_ID = #{openId, jdbcType=VARCHAR} and OWNERSHIP = 1 and STATE = 1 
+			
+			union all select '4' AS tid,t4.ID AS ID,t4.APP_CODE AS APP_CODE,t4.AREA_CODE AS AREA_CODE,t4.AREA_NAME AS AREA_NAME,t4.name AS NAME,t4.SEX AS SEX,t4.BIRTH AS BIRTH,t4.MOBILE AS MOBILE,t4.ID_TYPE AS ID_TYPE,t4.ID_NO AS ID_NO,t4.ADDRESS AS ADDRESS,t4.OPEN_ID AS OPEN_ID,t4.USER_ID AS USER_ID,t4.OWNERSHIP AS OWNERSHIP,t4.GUARD_NAME AS GUARD_NAME,t4.GUARD_ID_TYPE AS GUARD_ID_TYPE,t4.GUARD_ID_NO AS GUARD_ID_NO,t4.GUARD_MOBILE AS GUARD_MOBILE,t4.MARK AS MARK,t4.STATE AS STATE,t4.CREATE_TIME AS CREATE_TIME,t4.UPDATE_TIME AS UPDATE_TIME from biz_family_4 t4 
+			where OPEN_ID = #{openId, jdbcType=VARCHAR} and OWNERSHIP = 1 and STATE = 1 
+			
+			union all select '5' AS tid,t5.ID AS ID,t5.APP_CODE AS APP_CODE,t5.AREA_CODE AS AREA_CODE,t5.AREA_NAME AS AREA_NAME,t5.name AS NAME,t5.SEX AS SEX,t5.BIRTH AS BIRTH,t5.MOBILE AS MOBILE,t5.ID_TYPE AS ID_TYPE,t5.ID_NO AS ID_NO,t5.ADDRESS AS ADDRESS,t5.OPEN_ID AS OPEN_ID,t5.USER_ID AS USER_ID,t5.OWNERSHIP AS OWNERSHIP,t5.GUARD_NAME AS GUARD_NAME,t5.GUARD_ID_TYPE AS GUARD_ID_TYPE,t5.GUARD_ID_NO AS GUARD_ID_NO,t5.GUARD_MOBILE AS GUARD_MOBILE,t5.MARK AS MARK,t5.STATE AS STATE,t5.CREATE_TIME AS CREATE_TIME,t5.UPDATE_TIME AS UPDATE_TIME from biz_family_5 t5 
+			where OPEN_ID = #{openId, jdbcType=VARCHAR} and OWNERSHIP = 1 and STATE = 1 
+			
+			union all select '6' AS tid,t6.ID AS ID,t6.APP_CODE AS APP_CODE,t6.AREA_CODE AS AREA_CODE,t6.AREA_NAME AS AREA_NAME,t6.name AS NAME,t6.SEX AS SEX,t6.BIRTH AS BIRTH,t6.MOBILE AS MOBILE,t6.ID_TYPE AS ID_TYPE,t6.ID_NO AS ID_NO,t6.ADDRESS AS ADDRESS,t6.OPEN_ID AS OPEN_ID,t6.USER_ID AS USER_ID,t6.OWNERSHIP AS OWNERSHIP,t6.GUARD_NAME AS GUARD_NAME,t6.GUARD_ID_TYPE AS GUARD_ID_TYPE,t6.GUARD_ID_NO AS GUARD_ID_NO,t6.GUARD_MOBILE AS GUARD_MOBILE,t6.MARK AS MARK,t6.STATE AS STATE,t6.CREATE_TIME AS CREATE_TIME,t6.UPDATE_TIME AS UPDATE_TIME from biz_family_6 t6 
+			where OPEN_ID = #{openId, jdbcType=VARCHAR} and OWNERSHIP = 1 and STATE = 1 
+			
+			union all select '7' AS tid,t7.ID AS ID,t7.APP_CODE AS APP_CODE,t7.AREA_CODE AS AREA_CODE,t7.AREA_NAME AS AREA_NAME,t7.name AS NAME,t7.SEX AS SEX,t7.BIRTH AS BIRTH,t7.MOBILE AS MOBILE,t7.ID_TYPE AS ID_TYPE,t7.ID_NO AS ID_NO,t7.ADDRESS AS ADDRESS,t7.OPEN_ID AS OPEN_ID,t7.USER_ID AS USER_ID,t7.OWNERSHIP AS OWNERSHIP,t7.GUARD_NAME AS GUARD_NAME,t7.GUARD_ID_TYPE AS GUARD_ID_TYPE,t7.GUARD_ID_NO AS GUARD_ID_NO,t7.GUARD_MOBILE AS GUARD_MOBILE,t7.MARK AS MARK,t7.STATE AS STATE,t7.CREATE_TIME AS CREATE_TIME,t7.UPDATE_TIME AS UPDATE_TIME from biz_family_7 t7 
+			where OPEN_ID = #{openId, jdbcType=VARCHAR} and OWNERSHIP = 1 and STATE = 1 
+			
+			union all select '8' AS tid,t8.ID AS ID,t8.APP_CODE AS APP_CODE,t8.AREA_CODE AS AREA_CODE,t8.AREA_NAME AS AREA_NAME,t8.name AS NAME,t8.SEX AS SEX,t8.BIRTH AS BIRTH,t8.MOBILE AS MOBILE,t8.ID_TYPE AS ID_TYPE,t8.ID_NO AS ID_NO,t8.ADDRESS AS ADDRESS,t8.OPEN_ID AS OPEN_ID,t8.USER_ID AS USER_ID,t8.OWNERSHIP AS OWNERSHIP,t8.GUARD_NAME AS GUARD_NAME,t8.GUARD_ID_TYPE AS GUARD_ID_TYPE,t8.GUARD_ID_NO AS GUARD_ID_NO,t8.GUARD_MOBILE AS GUARD_MOBILE,t8.MARK AS MARK,t8.STATE AS STATE,t8.CREATE_TIME AS CREATE_TIME,t8.UPDATE_TIME AS UPDATE_TIME from biz_family_8 t8 
+			where OPEN_ID = #{openId, jdbcType=VARCHAR} and OWNERSHIP = 1 and STATE = 1 
+			
+			union all select '9' AS tid,t9.ID AS ID,t9.APP_CODE AS APP_CODE,t9.AREA_CODE AS AREA_CODE,t9.AREA_NAME AS AREA_NAME,t9.name AS NAME,t9.SEX AS SEX,t9.BIRTH AS BIRTH,t9.MOBILE AS MOBILE,t9.ID_TYPE AS ID_TYPE,t9.ID_NO AS ID_NO,t9.ADDRESS AS ADDRESS,t9.OPEN_ID AS OPEN_ID,t9.USER_ID AS USER_ID,t9.OWNERSHIP AS OWNERSHIP,t9.GUARD_NAME AS GUARD_NAME,t9.GUARD_ID_TYPE AS GUARD_ID_TYPE,t9.GUARD_ID_NO AS GUARD_ID_NO,t9.GUARD_MOBILE AS GUARD_MOBILE,t9.MARK AS MARK,t9.STATE AS STATE,t9.CREATE_TIME AS CREATE_TIME,t9.UPDATE_TIME AS UPDATE_TIME from biz_family_9 t9 
+			where OPEN_ID = #{openId, jdbcType=VARCHAR} and OWNERSHIP = 1 and STATE = 1 
+			
+			union all select '10' AS tid,t10.ID AS ID,t10.APP_CODE AS APP_CODE,t10.AREA_CODE AS AREA_CODE,t10.AREA_NAME AS AREA_NAME,t10.name AS NAME,t10.SEX AS SEX,t10.BIRTH AS BIRTH,t10.MOBILE AS MOBILE,t10.ID_TYPE AS ID_TYPE,t10.ID_NO AS ID_NO,t10.ADDRESS AS ADDRESS,t10.OPEN_ID AS OPEN_ID,t10.USER_ID AS USER_ID,t10.OWNERSHIP AS OWNERSHIP,t10.GUARD_NAME AS GUARD_NAME,t10.GUARD_ID_TYPE AS GUARD_ID_TYPE,t10.GUARD_ID_NO AS GUARD_ID_NO,t10.GUARD_MOBILE AS GUARD_MOBILE,t10.MARK AS MARK,t10.STATE AS STATE,t10.CREATE_TIME AS CREATE_TIME,t10.UPDATE_TIME AS UPDATE_TIME from biz_family_10 t10 
+			where OPEN_ID = #{openId, jdbcType=VARCHAR} and OWNERSHIP = 1 and STATE = 1 
+					
+		) t
+	</select>
+
+	<!-- 通过idType和IdNo找人 -->
+	<select id="findFamilyInfo" parameterType="java.util.Map" resultMap="familyResultMap"> 
+		select  
+			<include refid="All_Column" />
+		from 
+   			<include refid="Choose_Hash_Table_Name" />
+       	where 
+       		USER_ID = #{userId, jdbcType=VARCHAR}
+       	and ID = #{familyId, jdbcType=VARCHAR}
+       	and STATE = 1
+	</select>  
+</mapper>

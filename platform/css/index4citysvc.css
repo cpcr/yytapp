@@ -1,0 +1,156 @@
+/*this is var css*/
+/*0.5像素 横向*/
+/*透明度*/
+/*圆角*/
+/*圆角*/
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1460617922_3594332.eot');
+  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  /* chrome、firefox */
+  /* IE6-IE8 */
+  /* IE9*/
+  src: url('//at.alicdn.com/t/font_1460617922_3594332.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_1460617922_3594332.woff') format('woff'), url('//at.alicdn.com/t/font_1460617922_3594332.ttf') format('truetype'), url('//at.alicdn.com/t/font_1460617922_3594332.svg#iconfont') format('svg');
+  /* iOS 4.1- */
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  html {
+    font-size: 62.5%;
+  }
+}
+.index-top {
+  position: relative;
+  padding: 20px 0;
+  text-align: center;
+  color: #fff;
+  background-color: #2297f7;
+}
+.index-top > .index-topImg {
+  width: 62px;
+  height: 62px;
+  margin: 0 auto;
+  background: url("../image/doctor_thumb_100.png") no-repeat center center;
+  background-size: cover;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -o-border-radius: 50%;
+  box-shadow: 0 1px 5px 0px #666;
+  -moz-box-shadow: 0 1px 5px 0px #666;
+  -webkit-box-shadow: 0 1px 5px 0px #666;
+  -o-box-shadow: 0 1px 5px 0px #666;
+}
+.index-top .index-topName {
+  margin: 8px 0 10px;
+  font-size: 16px;
+}
+.index-top .index-topNum {
+  font-size: 13px;
+}
+.index-top .index-topTips {
+  display: block;
+  position: absolute;
+  top: 14px;
+  right: 15px;
+  width: 18px;
+  height: 18px;
+  background: url("../image/icon_edit_n.png") no-repeat center center;
+  background-size: cover;
+}
+.index-top .index-topTips:active {
+  background: url("../image/icon_edit_p.png") no-repeat center center;
+  background-size: cover;
+}
+.index-wrapper {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+}
+.index-wrapper strong {
+  display: block;
+}
+.index-wrapper > .index-wrapperTitle {
+  height: 44px;
+  padding: 0 15px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 44px;
+  color: #666;
+}
+.index-wrapper .index-wrapperList1 {
+  display: -webkit-flex;
+}
+.index-wrapper .index-wrapperList1 > li {
+  -webkit-flex-grow: 1;
+  padding: 14px 0;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+}
+.index-wrapper .index-wrapperList1 > li > i.iconfont {
+  margin: 14px 0 10px;
+  font-size: 28px;
+  color: #999;
+}
+.index-wrapper .index-wrapperList2 {
+  display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+}
+.index-wrapper .index-wrapperList2 > li {
+  position: relative;
+  width: 25%;
+  padding: 14px 0;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+}
+.index-wrapper .index-wrapperList2 > li:nth-child(1) i {
+  color: #2297f7;
+}
+.index-wrapper .index-wrapperList2 > li:nth-child(2) i {
+  color: #26bc7e;
+}
+.index-wrapper .index-wrapperList2 > li:nth-child(3) i {
+  color: #fd990b;
+}
+.index-wrapper .index-wrapperList2 > li:nth-child(4) i {
+  color: #2297f7;
+}
+.index-wrapper .index-wrapperList2 > li:nth-child(5) i {
+  color: #26bc7e;
+}
+.index-wrapper .index-wrapperList2 > li:nth-child(6) i {
+  color: #fd990b;
+}
+.index-wrapper .index-wrapperList2 > li:nth-child(7) i {
+  color: #fd755f;
+}
+.index-wrapper .index-wrapperList2 > li > i {
+  font-size: 38px;
+}
+.index-wrapper .index-wrapperList2 > li > .index-wrapperList2-tap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  height: 25px;
+}
+.index-wrapper .index-wrapperList2 > li > .index-wrapperList2-tap.weikaitong {
+  background: url("../image/img_tips_weikaitong.png") no-repeat center center;
+  background-size: cover;
+}
+.index-wrapper .index-wrapperList2 > li > .index-wrapperList2-tap.yibao {
+  background: url("../image/img_tips_yibao.png") no-repeat center center;
+  background-size: cover;
+}
+.index-footer {
+  height: 48px;
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 48px;
+  text-align: center;
+  color: #2297f7;
+  background-color: #fff;
+}
+.index-footer > i {
+  margin-right: 6px;
+}

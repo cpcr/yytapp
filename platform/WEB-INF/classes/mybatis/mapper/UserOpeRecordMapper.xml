@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.easyhealth.biz.user.entity.UserOpeRecord">
+
+	<resultMap id="userOpeRecordResultMap" type="UserOpeRecord">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="PAT_NAME" property="patName" jdbcType="VARCHAR" />
+		<result column="PAT_ID_NO" property="patIdNo" jdbcType="VARCHAR" />
+		<result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_NAME" property="hospitalName" jdbcType="VARCHAR" />
+		<result column="OPE_TYPE" property="opeType" jdbcType="INTEGER" />
+		<result column="OPE_STATE" property="opeState" jdbcType="VARCHAR" />
+		<result column="OPE_TIME" property="opeTime" jdbcType="VARCHAR" />
+		<result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+		<result column="OWNER_SHIP_FLAG" property="ownerShipFlag" jdbcType="INTEGER" />
+	</resultMap>
+	
+	
+	<select id="getCountBytIdNoAndOrderNo" parameterType="UserOpeRecord" resultType="long">
+		select count(*) from REPORT_USER_OPE_RECORD where PAT_ID_NO=#{patIdNo} and ORDER_NO=#{orderNo}
+	</select>
+
+	<insert id="add" parameterType="UserOpeRecord">
+		insert into 
+		 REPORT_USER_OPE_RECORD(ID,PAT_NAME,PAT_ID_NO,ORDER_NO,HOSPITAL_ID,HOSPITAL_CODE,HOSPITAL_NAME,OPE_TYPE,OPE_STATE,OPE_TIME,OPEN_ID,OWNER_SHIP_FLAG)
+		values 
+		(#{id},#{patName},#{patIdNo},#{orderNo},#{hospitalId},#{hospitalCode},#{hospitalName},#{opeType},#{opeState},#{opeTime},#{openId},#{ownerShipFlag})
+	</insert>
+	
+	
+</mapper>

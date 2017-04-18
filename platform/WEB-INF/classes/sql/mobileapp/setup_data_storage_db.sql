@@ -1,0 +1,194 @@
+-- ----------------------------
+-- Table structure for DATA_EXAMINE
+-- ----------------------------
+DROP TABLE IF EXISTS `DATA_EXAMINE`;
+CREATE TABLE `DATA_EXAMINE` (
+  `ID` varchar(32) NOT NULL,
+  `HOSPITAL_ID` varchar(32) DEFAULT NULL,
+  `HOSPITAL_CODE` varchar(50) DEFAULT NULL,
+  `HOSPITAL_NAME` varchar(50) DEFAULT NULL,
+  `BRANCH_ID` varchar(32) DEFAULT NULL,
+  `BRANCH_CODE` varchar(50) DEFAULT NULL,
+  `BRANCH_NAME` varchar(50) DEFAULT NULL,
+  `STORAGE_TIME` bigint(20) DEFAULT NULL COMMENT '入库时间',
+  `PATIENT_NAME` varchar(32) NOT NULL COMMENT '就诊人姓名',
+  `CARD_TYPE` int(11) NOT NULL COMMENT '就诊卡类型',
+  `CARD_NO` varchar(32) NOT NULL COMMENT '就诊卡号',
+  `ID_NO` varchar(32) NOT NULL COMMENT '身份证号码',
+  `CHECK_ID` varchar(200) DEFAULT NULL,
+  `CHECK_NAME` varchar(200) DEFAULT NULL,
+  `CHECK_TYPE` varchar(200) DEFAULT NULL,
+  `CHECK_TYPE_NAME` varchar(200) DEFAULT NULL,
+  `DEPT_NAME` varchar(200) DEFAULT NULL,
+  `DOCTOR_NAME` varchar(100) DEFAULT NULL,
+  `CHECK_TIME` varchar(20) DEFAULT NULL,
+  `ORDER_DOCTOR` varchar(100) DEFAULT NULL,
+  `ORDER_DOCTOR_CODE` varchar(100) DEFAULT NULL,
+  `ORDER_DEPT` varchar(200) DEFAULT NULL,
+  `REPORT_TIME` varchar(20) DEFAULT NULL,
+  `FILE_ADDRESS` varchar(500) DEFAULT NULL,
+  `CHECK_PART` varchar(1000) DEFAULT NULL,
+  `CHECK_METHOD` varchar(200) DEFAULT NULL,
+  `CHECK_SITUATION` varchar(1000) DEFAULT NULL,
+  `OPINION` varchar(1000) DEFAULT NULL,
+  `ADVICE` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `DATA_EXAMINE_IDX_CHECK_ID` (`BRANCH_CODE`,`CHECK_ID`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='检查入库表';
+
+
+-- ----------------------------
+-- Table structure for DATA_INSPECT
+-- ----------------------------
+DROP TABLE IF EXISTS `DATA_INSPECT`;
+CREATE TABLE `DATA_INSPECT` (
+  `ID` char(32) NOT NULL,
+  `HOSPITAL_ID` char(32) DEFAULT NULL,
+  `HOSPITAL_CODE` varchar(50) DEFAULT NULL,
+  `HOSPITAL_NAME` varchar(50) DEFAULT NULL,
+  `BRANCH_ID` char(32) DEFAULT NULL,
+  `BRANCH_CODE` varchar(50) DEFAULT NULL,
+  `BRANCH_NAME` varchar(50) DEFAULT NULL,
+  `STORAGE_TIME` bigint(20) DEFAULT NULL COMMENT '入库时间',
+  `PATIENT_NAME` varchar(32) NOT NULL COMMENT '病人姓名',
+  `CARD_TYPE` int(11) NOT NULL COMMENT '就诊卡类型',
+  `CARD_NO` varchar(32) NOT NULL,
+  `ID_NO` varchar(32) NOT NULL COMMENT '身份证号码',
+  `INSPECT_ID` varchar(200) DEFAULT NULL,
+  `INSPECT_NAME` varchar(200) DEFAULT NULL,
+  `DEPT_NAME` varchar(200) DEFAULT NULL,
+  `DOCTOR_NAME` varchar(50) DEFAULT NULL,
+  `DOCTOR_CODE` varchar(200) DEFAULT NULL,
+  `INSPECT_TIME` varchar(20) DEFAULT NULL,
+  `VERIFY_DOCTOR` varchar(50) DEFAULT NULL,
+  `VERIFY_TIME` varchar(20) DEFAULT NULL,
+  `INSPECT_DOCTOR` varchar(50) DEFAULT NULL,
+  `PROVING_TIME` varchar(20) DEFAULT NULL,
+  `REPORT_TIME` varchar(20) DEFAULT NULL,
+  `FILE_ADDRESS` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `DATA_INSPECT_IDX_INSPECT_ID` (`BRANCH_CODE`,`INSPECT_ID`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
+-- Table structure for DATA_INSPECT_DETAIL
+-- ----------------------------
+DROP TABLE IF EXISTS `DATA_INSPECT_DETAIL`;
+CREATE TABLE `DATA_INSPECT_DETAIL` (
+  `ID` char(32) NOT NULL,
+  `INSPECT_ID` char(32) DEFAULT NULL,
+  `ITEM_NAME` varchar(200) DEFAULT NULL,
+  `RESULT` varchar(500) DEFAULT NULL,
+  `UNIT` varchar(100) DEFAULT NULL,
+  `REF_RANGE` varchar(200) DEFAULT NULL,
+  `ABNORMAL` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
+-- Table structure for DATA_MZ_FEE
+-- ----------------------------
+DROP TABLE IF EXISTS `DATA_MZ_FEE`;
+CREATE TABLE `DATA_MZ_FEE` (
+  `ID` varchar(32) NOT NULL DEFAULT '' COMMENT '编号',
+  `HOSPITAL_ID` varchar(32) DEFAULT NULL COMMENT '医院编号',
+  `HOSPITAL_CODE` varchar(50) DEFAULT NULL COMMENT '医院代码',
+  `HOSPITAL_NAME` varchar(50) DEFAULT NULL COMMENT '医院名称',
+  `BRANCH_ID` varchar(32) DEFAULT NULL COMMENT '分院编号',
+  `BRANCH_CODE` varchar(50) DEFAULT NULL COMMENT '分院代码',
+  `BRANCH_NAME` varchar(50) DEFAULT NULL COMMENT '分院名称',
+  `STORAGE_TIME` bigint(20) DEFAULT NULL COMMENT '入库时间',
+  `PATIENT_NAME` varchar(32) NOT NULL COMMENT '病人名称',
+  `CARD_TYPE` int(11) NOT NULL COMMENT '就诊卡类型',
+  `CARD_NO` varchar(32) NOT NULL COMMENT '就诊卡号',
+  `MZ_FEE_ID` varchar(4000) DEFAULT NULL COMMENT '门诊待缴费编号',
+  `CLINIC_TIME` varchar(32) DEFAULT NULL COMMENT '门诊时间',
+  `DEPT_NAME` varchar(50) DEFAULT NULL COMMENT '科室名称',
+  `DOCTOR_NAME` varchar(50) DEFAULT NULL COMMENT '医生名称',
+  `PAY_TYPE` varchar(30) NOT NULL DEFAULT '1' COMMENT '医保类型 1、自费，2医保，3其他以后增加',
+  `PAY_AMOUT` varchar(20) NOT NULL COMMENT '应付金额',
+  `MEDICARE_AMOUT` varchar(20) NOT NULL COMMENT '医保金额',
+  `TOTAL_AMOUT` varchar(20) NOT NULL COMMENT '总金额',
+  PRIMARY KEY (`ID`),
+  KEY `DATA_MZ_FEE_IDX_FEE_ID` (`BRANCH_CODE`,`MZ_FEE_ID`) USING HASH
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='门诊待缴费列表';
+
+
+-- ----------------------------
+-- Table structure for DATA_MZ_FEE_DETAIL
+-- ----------------------------
+DROP TABLE IF EXISTS `DATA_MZ_FEE_DETAIL`;
+CREATE TABLE `DATA_MZ_FEE_DETAIL` (
+  `ID` varchar(32) NOT NULL COMMENT '编号',
+  `MZ_FEE_ID` varchar(4000) DEFAULT NULL COMMENT '门诊待缴费编号',
+  `ITEM_TIME` varchar(32) DEFAULT NULL COMMENT '项目时间',
+  `ITEM_ID` varchar(50) DEFAULT NULL COMMENT '项目编号',
+  `ITEM_NAME` varchar(50) DEFAULT NULL COMMENT '项目名称',
+  `ITEM_TYPE` varchar(10) DEFAULT NULL COMMENT '项目费别',
+  `ITEM_UNIT` varchar(32) DEFAULT NULL COMMENT '项目单位',
+  `ITEM_PRICE` varchar(32) DEFAULT NULL COMMENT '项目单价',
+  `ITEM_SPEC` varchar(32) DEFAULT NULL COMMENT '项目规格',
+  `ITEM_NUMBER` varchar(10) DEFAULT NULL COMMENT '项目数量',
+  `ITEM_TOTAL_FEE` varchar(32) DEFAULT NULL COMMENT '项目总价',
+  `DEPT_NAME` varchar(32) DEFAULT NULL COMMENT '科室名称',
+  `DOCTOR_NAME` varchar(32) DEFAULT NULL COMMENT '医生名称',
+  `DOCTOR_CODE` varchar(32) DEFAULT NULL COMMENT '医生代码',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='门诊待缴费详情';
+
+
+
+-- ----------------------------
+-- Table structure for DATA_PAY_FEE
+-- ----------------------------
+DROP TABLE IF EXISTS `DATA_PAY_FEE`;
+CREATE TABLE `DATA_PAY_FEE` (
+  `ID` varchar(32) NOT NULL DEFAULT '' COMMENT '编号',
+  `HOSPITAL_ID` varchar(32) DEFAULT NULL COMMENT '医院编号',
+  `HOSPITAL_CODE` varchar(50) DEFAULT NULL COMMENT '医院代码',
+  `HOSPITAL_NAME` varchar(50) DEFAULT NULL COMMENT '医院名称',
+  `BRANCH_ID` varchar(32) DEFAULT NULL COMMENT '分院编号',
+  `BRANCH_CODE` varchar(50) DEFAULT NULL COMMENT '分院代码',
+  `BRANCH_NAME` varchar(50) DEFAULT NULL COMMENT '分院名称',
+  `STORAGE_TIME` bigint(20) DEFAULT NULL COMMENT '入库时间',
+  `PATIENT_NAME` varchar(32) NULL COMMENT '病人名称',
+  `CARD_TYPE` int(11) NULL COMMENT '就诊卡类型',
+  `CARD_NO` varchar(32) NULL COMMENT '就诊卡号',
+  `MZ_FEE_ID` varchar(4000) DEFAULT NULL COMMENT '门诊待缴费编号',
+  `HIS_ORD_NUM` varchar(50) DEFAULT NULL COMMENT '医院交易流水号',
+  `DEPT_NAME` varchar(50) DEFAULT NULL COMMENT '科室名称',
+  `DOCTOR_NAME` varchar(50) DEFAULT NULL COMMENT '医生名称',
+  `PAY_AMOUT` varchar(20) NULL COMMENT '支付金额',
+  `PAY_TIME` varchar(20) NULL COMMENT '支付时间',
+  `PAY_MODE` varchar(10) NULL COMMENT '支付关系',
+  `RECEIPT_NUM` varchar(50) NULL COMMENT '支付关系',
+  `BARCODE` varchar(32) NULL COMMENT '条形码',
+  `HIS_MESSAGE` varchar(255) NULL COMMENT '取药信息',
+  PRIMARY KEY (`ID`),
+  KEY `DATA_MZ_FEE_IDX_FEE_ID` (`BRANCH_CODE`,`MZ_FEE_ID`) USING HASH
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='门诊已缴费列表';
+
+
+-- ----------------------------
+-- Table structure for DATA_MZ_FEE_DETAIL
+-- ----------------------------
+DROP TABLE IF EXISTS `DATA_PAY_FEE_DETAIL`;
+CREATE TABLE `DATA_PAY_FEE_DETAIL` (
+  `ID` varchar(32) NOT NULL COMMENT '编号',
+  `MZ_FEE_ID` varchar(4000) DEFAULT NULL COMMENT '门诊待缴费编号',
+  `ITEM_TIME` varchar(32) DEFAULT NULL COMMENT '项目时间',
+  `ITEM_ID` varchar(50) DEFAULT NULL COMMENT '项目编号',
+  `ITEM_NAME` varchar(50) DEFAULT NULL COMMENT '项目名称',
+  `ITEM_TYPE` varchar(10) DEFAULT NULL COMMENT '项目费别',
+  `ITEM_UNIT` varchar(32) DEFAULT NULL COMMENT '项目单位',
+  `ITEM_PRICE` varchar(32) DEFAULT NULL COMMENT '项目单价',
+  `ITEM_SPEC` varchar(32) DEFAULT NULL COMMENT '项目规格',
+  `ITEM_NUMBER` varchar(10) DEFAULT NULL COMMENT '项目数量',
+  `ITEM_TOTAL_FEE` varchar(32) DEFAULT NULL COMMENT '项目总价',
+  `DEPT_NAME` varchar(32) DEFAULT NULL COMMENT '科室名称',
+  `DOCTOR_NAME` varchar(32) DEFAULT NULL COMMENT '医生名称',
+  `DOCTOR_CODE` varchar(32) DEFAULT NULL COMMENT '医生代码',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='门诊已缴费详情';

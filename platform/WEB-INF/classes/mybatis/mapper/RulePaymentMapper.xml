@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yy.platform.rule.entity.RulePayment" >
+  <resultMap id="RulePaymentResultMap" type="com.yy.platform.rule.entity.RulePayment" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+    <result column="IS_SUPPORT_COMBINED_PAYMENTS" property="isSupportCombinedPayments" jdbcType="INTEGER" />
+    <result column="IS_SUPPORT_HEALTH_PAYMENTS" property="isSupportHealthPayments" jdbcType="INTEGER" />
+    <result column="HOSPITAL_DEPOSIT_MIN_MONEY" property="hospitalDepositMinMoney" jdbcType="DOUBLE" />
+    <result column="NOT_SUPPORT_HEALTH_PAYMENTS_TIP" property="notSupportHealthPaymentsTip" jdbcType="VARCHAR" />
+    <result column="SUPPORT_HEALTH_PAYMENTS_TIP" property="supportHealthPaymentsTip" jdbcType="VARCHAR" />
+    <result column="OUTPATIENT_PAYMENT_FAILED_TIP" property="outpatientPaymentFailedTip" jdbcType="VARCHAR" />
+    <result column="DEPOSIT_PAYMENT_FAILED_TIP" property="depositPaymentFailedTip" jdbcType="VARCHAR" />
+    <result column="CLINIC_PRE_PAY_WARM_TIP" property="clinicPrePayWarmTip" jdbcType="VARCHAR" />
+    
+    <result column="IS_VIEW_WEIXIN" property="isViewWeiXin" jdbcType="INTEGER" />
+    <result column="IS_USE_WEIXIN_TRADE" property="isUseWeiXinTrade" jdbcType="INTEGER" />
+    <result column="IS_VIEW_ALIPAY" property="isViewAlipay" jdbcType="INTEGER" />
+    <result column="IS_USE_ALIPAY_TRADE" property="isUseAlipayTrade" jdbcType="INTEGER" />
+    <result column="IS_VIEW_HEALTHCARD" property="isViewHealthCard" jdbcType="INTEGER" />
+    <result column="IS_USE_HEALTHCARD_TRADE" property="isUseHealthCardTrade" jdbcType="INTEGER" />
+    <result column="IS_VIEW_INSURANCE_HEALTHCARD" property="isViewInsuranceHealthCard" jdbcType="INTEGER" />
+    <result column="IS_USE_INSURANCE_HEALTHCARD_TRADE" property="isUseInsuranceHealthCardTrade" jdbcType="INTEGER" />
+    <result column="IS_VIEW_UNIONPAY" property="isViewUnionpay" jdbcType="INTEGER" />
+    <result column="IS_USE_UNIONPAY_TRADE" property="isUseUnionpayTrade" jdbcType="INTEGER" />
+    <result column="IS_VIEW_CITIC_BANK" property="isViewCITICBank" jdbcType="INTEGER" />
+    <result column="IS_USE_CITIC_BANK_TRADE" property="isUseCITICBankTrade" jdbcType="INTEGER" />
+    <result column="DEFAULT_TRADE_TYPE" property="defaultTradeType" jdbcType="INTEGER" />
+    
+    
+    
+    <result column="CP" property="cp" jdbcType="VARCHAR" />
+    <result column="CT" property="ct" jdbcType="TIMESTAMP" />
+    <result column="EP" property="ep" jdbcType="VARCHAR" />
+    <result column="ET" property="et" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, HOSPITAL_ID, IS_SUPPORT_COMBINED_PAYMENTS, IS_SUPPORT_HEALTH_PAYMENTS, HOSPITAL_DEPOSIT_MIN_MONEY, 
+    NOT_SUPPORT_HEALTH_PAYMENTS_TIP, SUPPORT_HEALTH_PAYMENTS_TIP, OUTPATIENT_PAYMENT_FAILED_TIP, 
+    DEPOSIT_PAYMENT_FAILED_TIP, CLINIC_PRE_PAY_WARM_TIP, CP, CT, EP, ET,IS_VIEW_WEIXIN,IS_USE_WEIXIN_TRADE,IS_VIEW_ALIPAY,IS_USE_ALIPAY_TRADE,
+    IS_VIEW_HEALTHCARD,IS_USE_HEALTHCARD_TRADE,IS_VIEW_INSURANCE_HEALTHCARD,IS_USE_INSURANCE_HEALTHCARD_TRADE,
+    IS_VIEW_UNIONPAY,IS_USE_UNIONPAY_TRADE,IS_VIEW_CITIC_BANK,IS_USE_CITIC_BANK_TRADE,DEFAULT_TRADE_TYPE
+  </sql>
+  <select id="findById" resultMap="RulePaymentResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_RULE_PAYMENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findAll" resultMap="RulePaymentResultMap">
+   select * from SYS_RULE_PAYMENT
+  </select>
+  
+  <select id="findByHospitalId" resultMap="RulePaymentResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_RULE_PAYMENT
+    where HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR}
+  </select>
+  
+  <insert id="add" parameterType="com.yy.platform.rule.entity.RulePayment" >
+    insert into SYS_RULE_PAYMENT (ID, HOSPITAL_ID, IS_SUPPORT_COMBINED_PAYMENTS, 
+      IS_SUPPORT_HEALTH_PAYMENTS, HOSPITAL_DEPOSIT_MIN_MONEY, 
+      NOT_SUPPORT_HEALTH_PAYMENTS_TIP, SUPPORT_HEALTH_PAYMENTS_TIP, 
+      OUTPATIENT_PAYMENT_FAILED_TIP, DEPOSIT_PAYMENT_FAILED_TIP, CLINIC_PRE_PAY_WARM_TIP,
+      CP, CT, EP, ET,IS_VIEW_WEIXIN,IS_USE_WEIXIN_TRADE,IS_VIEW_ALIPAY,IS_USE_ALIPAY_TRADE,
+      IS_VIEW_HEALTHCARD,IS_USE_HEALTHCARD_TRADE,IS_VIEW_INSURANCE_HEALTHCARD,IS_USE_INSURANCE_HEALTHCARD_TRADE,
+      IS_VIEW_UNIONPAY,IS_USE_UNIONPAY_TRADE,IS_VIEW_CITIC_BANK,IS_USE_CITIC_BANK_TRADE,DEFAULT_TRADE_TYPE
+    )
+    values (#{id,jdbcType=VARCHAR}, #{hospitalId,jdbcType=VARCHAR}, #{isSupportCombinedPayments,jdbcType=INTEGER}, 
+      #{isSupportHealthPayments,jdbcType=INTEGER}, #{hospitalDepositMinMoney,jdbcType=DOUBLE}, 
+      #{notSupportHealthPaymentsTip,jdbcType=VARCHAR}, #{supportHealthPaymentsTip,jdbcType=VARCHAR}, 
+      #{outpatientPaymentFailedTip,jdbcType=VARCHAR}, #{depositPaymentFailedTip,jdbcType=VARCHAR}, #{clinicPrePayWarmTip,jdbcType=VARCHAR},
+      #{cp,jdbcType=VARCHAR}, #{ct,jdbcType=TIMESTAMP}, #{ep,jdbcType=VARCHAR}, #{et,jdbcType=TIMESTAMP},
+      #{isViewWeiXin,jdbcType=INTEGER},#{isUseWeiXinTrade,jdbcType=INTEGER},
+      #{isViewAlipay,jdbcType=INTEGER},#{isUseAlipayTrade,jdbcType=INTEGER},
+      #{isViewHealthCard,jdbcType=INTEGER},#{isUseHealthCardTrade,jdbcType=INTEGER},
+      #{isViewInsuranceHealthCard,jdbcType=INTEGER},#{isUseInsuranceHealthCardTrade,jdbcType=INTEGER},
+      #{isViewUnionpay,jdbcType=INTEGER},#{isUseUnionpayTrade,jdbcType=INTEGER},
+      #{isViewCITICBank,jdbcType=INTEGER},#{isUseCITICBankTrade,jdbcType=INTEGER},
+      #{defaultTradeType,jdbcType=INTEGER}
+    )
+  </insert>
+  
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from SYS_RULE_PAYMENT where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <update id="update" parameterType="com.yy.platform.rule.entity.RulePayment" >
+    update SYS_RULE_PAYMENT
+    <set >
+      <if test="hospitalId != null" >
+        HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSupportCombinedPayments != null" >
+        IS_SUPPORT_COMBINED_PAYMENTS = #{isSupportCombinedPayments,jdbcType=INTEGER},
+      </if>
+      <if test="isSupportHealthPayments != null" >
+        IS_SUPPORT_HEALTH_PAYMENTS = #{isSupportHealthPayments,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalDepositMinMoney != null" >
+        HOSPITAL_DEPOSIT_MIN_MONEY = #{hospitalDepositMinMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="notSupportHealthPaymentsTip != null" >
+        NOT_SUPPORT_HEALTH_PAYMENTS_TIP = #{notSupportHealthPaymentsTip,jdbcType=VARCHAR},
+      </if>
+      <if test="supportHealthPaymentsTip != null" >
+        SUPPORT_HEALTH_PAYMENTS_TIP = #{supportHealthPaymentsTip,jdbcType=VARCHAR},
+      </if>
+      <if test="outpatientPaymentFailedTip != null" >
+        OUTPATIENT_PAYMENT_FAILED_TIP = #{outpatientPaymentFailedTip,jdbcType=VARCHAR},
+      </if>
+      <if test="depositPaymentFailedTip != null" >
+        DEPOSIT_PAYMENT_FAILED_TIP = #{depositPaymentFailedTip,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicPrePayWarmTip != null" >
+        CLINIC_PRE_PAY_WARM_TIP = #{clinicPrePayWarmTip,jdbcType=VARCHAR},
+      </if>
+      <if test="cp != null" >
+        CP = #{cp,jdbcType=VARCHAR},
+      </if>
+      <if test="ct != null" >
+        CT = #{ct,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ep != null" >
+        EP = #{ep,jdbcType=VARCHAR},
+      </if>
+      <if test="et != null" >
+        ET = #{et,jdbcType=TIMESTAMP},
+      </if>
+      
+      <if test="isViewWeiXin != null" >
+        IS_VIEW_WEIXIN = #{isViewWeiXin,jdbcType=INTEGER},
+      </if>
+      <if test="isUseWeiXinTrade != null" >
+        IS_USE_WEIXIN_TRADE = #{isUseWeiXinTrade,jdbcType=INTEGER},
+      </if>
+      <if test="isViewAlipay != null" >
+        IS_VIEW_ALIPAY = #{isViewAlipay,jdbcType=INTEGER},
+      </if>
+      <if test="isUseAlipayTrade != null" >
+        IS_USE_ALIPAY_TRADE = #{isUseAlipayTrade,jdbcType=INTEGER},
+      </if>
+      <if test="isViewHealthCard != null" >
+        IS_VIEW_HEALTHCARD = #{isViewHealthCard,jdbcType=INTEGER},
+      </if>
+      <if test="isUseHealthCardTrade != null" >
+        IS_USE_HEALTHCARD_TRADE = #{isUseHealthCardTrade,jdbcType=INTEGER},
+      </if>
+      <if test="isViewInsuranceHealthCard != null" >
+        IS_VIEW_INSURANCE_HEALTHCARD = #{isViewInsuranceHealthCard,jdbcType=INTEGER},
+      </if>
+      <if test="isUseInsuranceHealthCardTrade != null" >
+        IS_USE_INSURANCE_HEALTHCARD_TRADE = #{isUseInsuranceHealthCardTrade,jdbcType=INTEGER},
+      </if>
+      <if test="isViewUnionpay != null" >
+        IS_VIEW_UNIONPAY = #{isViewUnionpay,jdbcType=INTEGER},
+      </if>
+      <if test="isUseUnionpayTrade != null" >
+        IS_USE_UNIONPAY_TRADE = #{isUseUnionpayTrade,jdbcType=INTEGER},
+      </if>
+      <if test="isViewCITICBank != null" >
+        IS_VIEW_CITIC_BANK = #{isViewCITICBank,jdbcType=INTEGER},
+      </if>
+      <if test="isUseCITICBankTrade != null" >
+        IS_USE_CITIC_BANK_TRADE = #{isUseCITICBankTrade,jdbcType=INTEGER},
+      </if>
+      <if test="defaultTradeType != null" >
+        DEFAULT_TRADE_TYPE = #{defaultTradeType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateById" parameterType="com.yy.platform.rule.entity.RulePayment" >
+    update SYS_RULE_PAYMENT
+    set HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR},
+      IS_SUPPORT_COMBINED_PAYMENTS = #{isSupportCombinedPayments,jdbcType=INTEGER},
+      IS_SUPPORT_HEALTH_PAYMENTS = #{isSupportHealthPayments,jdbcType=INTEGER},
+      HOSPITAL_DEPOSIT_MIN_MONEY = #{hospitalDepositMinMoney,jdbcType=DOUBLE},
+      NOT_SUPPORT_HEALTH_PAYMENTS_TIP = #{notSupportHealthPaymentsTip,jdbcType=VARCHAR},
+      SUPPORT_HEALTH_PAYMENTS_TIP = #{supportHealthPaymentsTip,jdbcType=VARCHAR},
+      OUTPATIENT_PAYMENT_FAILED_TIP = #{outpatientPaymentFailedTip,jdbcType=VARCHAR},
+      DEPOSIT_PAYMENT_FAILED_TIP = #{depositPaymentFailedTip,jdbcType=VARCHAR},
+      IS_VIEW_WEIXIN = #{isViewWeiXin,jdbcType=INTEGER},IS_USE_WEIXIN_TRADE = #{isUseWeiXinTrade,jdbcType=INTEGER},
+      IS_VIEW_ALIPAY = #{isViewAlipay,jdbcType=INTEGER},IS_USE_ALIPAY_TRADE = #{isUseAlipayTrade,jdbcType=INTEGER},
+      IS_VIEW_HEALTHCARD =  #{isViewHealthCard,jdbcType=INTEGER},IS_USE_HEALTHCARD_TRADE = #{isUseHealthCardTrade,jdbcType=INTEGER},
+      IS_VIEW_INSURANCE_HEALTHCARD = #{isViewInsuranceHealthCard,jdbcType=INTEGER},IS_USE_INSURANCE_HEALTHCARD_TRADE = #{isUseInsuranceHealthCardTrade,jdbcType=INTEGER},
+      IS_VIEW_UNIONPAY = #{isViewUnionpay,jdbcType=INTEGER},IS_USE_UNIONPAY_TRADE = #{isUseUnionpayTrade,jdbcType=INTEGER},
+      IS_VIEW_CITIC_BANK = #{isViewCITICBank,jdbcType=INTEGER},IS_USE_CITIC_BANK_TRADE = #{isUseCITICBankTrade,jdbcType=INTEGER},
+      DEFAULT_TRADE_TYPE = #{defaultTradeType,jdbcType=INTEGER}
+
+      CP = #{cp,jdbcType=VARCHAR},
+      CT = #{ct,jdbcType=TIMESTAMP},
+      EP = #{ep,jdbcType=VARCHAR},
+      ET = #{et,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.easyhealth.biz.clinic.entity.FriedExpress">
+	<resultMap type="com.yy.easyhealth.biz.clinic.entity.FriedExpress" id="FriedExpressResultMap">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+		
+		<result column="PLATFORM" property="platform" jdbcType="INTEGER" />
+		<result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+		<result column="CITY" property="city" jdbcType="VARCHAR" />
+		<result column="AREA" property="area" jdbcType="VARCHAR" />
+		<result column="DETAIL_ADDR" property="detailAddr" jdbcType="VARCHAR" />
+		<result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+		<result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+		<result column="IS_DEFAULT" property="isDefault" jdbcType="VARCHAR" />
+		
+		<result column="CP" property="cp" jdbcType="VARCHAR" />
+		<result column="CT" property="ct" jdbcType="TIMESTAMP" />
+		<result column="EP" property="ep" jdbcType="VARCHAR" />
+		<result column="ET" property="et" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<select id="findByOpenId" parameterType="String" resultMap="FriedExpressResultMap">
+		select ID,HOSPITAL_ID,PLATFORM,OPEN_ID,NAME
+			,(SELECT `NAME` FROM BIZ_ADDR_DICTIONARY t0 WHERE t0.id=t1.PROVINCE) PROVINCE
+			,(SELECT `NAME` FROM BIZ_ADDR_DICTIONARY t0 WHERE t0.id=t1.CITY) CITY
+			,(SELECT `NAME` FROM BIZ_ADDR_DICTIONARY t0 WHERE t0.id=t1.AREA) AREA
+			,DETAIL_ADDR,MOBILE,ZIP_CODE,IS_DEFAULT,CP,CT,EP,ET
+		from 
+		BIZ_ADDR_FRIED_EXPRESS t1
+		where t1.OPEN_ID = #{openId} or t1.OPEN_ID ='-1' or t1.OPEN_ID ='-2' or t1.OPEN_ID ='-3' order by open_id asc
+	</select> 
+	
+	<!-- 返回的  PROVINCE CITY AREA 为地址ID-->
+	<select id="findById" parameterType="String" resultMap="FriedExpressResultMap">
+		select * from BIZ_ADDR_FRIED_EXPRESS where ID=#{id} 
+	</select>
+	
+	<insert id="add" parameterType="com.yy.easyhealth.biz.clinic.entity.FriedExpress">
+		insert into BIZ_ADDR_FRIED_EXPRESS(
+				ID,HOSPITAL_ID,PLATFORM,OPEN_ID,NAME,PROVINCE,CITY,AREA,DETAIL_ADDR,MOBILE,ZIP_CODE,IS_DEFAULT
+				, CP, CT, EP, ET
+			)
+		values(
+				#{id},#{hospitalId},#{platform},#{openId},#{name},#{province},#{city},#{area},#{detailAddr},#{mobile},#{zipCode},#{isDefault}
+				,#{cp},#{ct},#{ep},#{et}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.yy.easyhealth.biz.clinic.entity.FriedExpress">
+		update BIZ_ADDR_FRIED_EXPRESS
+		<set>
+			<if test="hospitalId != null">
+				HOSPITAL_ID = #{hospitalId},
+			</if>
+			<if test="platform != null">
+				PLATFORM = #{platform},
+			</if>
+			<if test="openId != null">
+				OPEN_ID = #{openId},
+			</if>
+			<if test="name != null">
+				NAME = #{name},
+			</if>
+			<if test="province != null">
+				PROVINCE = #{province},
+			</if>
+			<if test="city != null">
+				CITY = #{city},
+			</if>
+			<if test="area != null">
+				AREA = #{area},
+			</if>
+			<if test="detailAddr != null">
+				DETAIL_ADDR = #{detailAddr},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile},
+			</if>
+			<if test="zipCode != null">
+				ZIP_CODE = #{zipCode},
+			</if>
+			<if test="isDefault != null">
+				IS_DEFAULT = #{isDefault},
+			</if>
+			
+			<if test="cp != null">
+				CP = #{cp,jdbcType=INTEGER},
+			</if>
+			<if test="ct != null">
+				CT = #{ct,jdbcType=TIMESTAMP},
+			</if>
+			<if test="ep != null">
+				EP = #{ep,jdbcType=INTEGER},
+			</if>
+			<if test="et != null">
+				ET = #{et,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR} 
+	</update>
+	
+	<delete id="deleteById" parameterType="String">
+		delete from BIZ_ADDR_FRIED_EXPRESS
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	
+	<!-- 取消用户当前设置的默认地址 -->
+	<update id="cancelDefault" parameterType="String">
+		update BIZ_ADDR_FRIED_EXPRESS
+		set IS_DEFAULT = 0
+		where OPEN_ID=#{openId}
+	</update>
+</mapper>

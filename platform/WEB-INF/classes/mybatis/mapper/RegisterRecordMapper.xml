@@ -1,0 +1,1523 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yy.easyhealth.biz.register.entity.RegisterRecord">
+    <resultMap id="RegisterRecordResultMap" type="com.yy.easyhealth.biz.register.entity.RegisterRecord">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+
+        <result column="APP_ID" property="appId" jdbcType="VARCHAR"/>
+        <result column="APP_CODE" property="appCode" jdbcType="VARCHAR"/>
+
+
+        <result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR"/>
+        <result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR"/>
+        <result column="HOSPITAL_NAME" property="hospitalName" jdbcType="VARCHAR"/>
+
+        <result column="BRANCH_ID" property="branchHospitalId" jdbcType="VARCHAR"/>
+        <result column="BRANCH_CODE" property="branchHospitalCode" jdbcType="VARCHAR"/>
+        <result column="REG_STATUS" property="regStatus" jdbcType="INTEGER"/>
+        <result column="PAY_STATUS" property="payStatus" jdbcType="INTEGER"/>
+        <result column="CARD_TYPE" property="cardType" jdbcType="INTEGER"/>
+        <result column="CARD_NO" property="cardNo" jdbcType="VARCHAR"/>
+        <result column="OPEN_ID" property="openId" jdbcType="VARCHAR"/>
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR"/>
+        <result column="IS_EXCEPTION" property="isException" jdbcType="INTEGER"/>
+        <result column="IS_HANDLE_SUCCESS" property="isHandleSuccess" jdbcType="INTEGER"/>
+        <result column="HANDLE_COUNT" property="handleCount" jdbcType="INTEGER"/>
+        <result column="HANDLE_LOG" property="handleLog" jdbcType="VARCHAR"/>
+        <result column="REG_TYPE" property="regType" jdbcType="INTEGER"/>
+        <result column="PATIENT_NAME" property="patientName" jdbcType="VARCHAR"/>
+        <result column="PATIENT_MOBILE" property="patientMobile" jdbcType="VARCHAR"/>
+        <result column="RECORD_TITLE" property="recordTitle" jdbcType="VARCHAR"/>
+
+        <result column="TRADE_MODE" property="tradeMode" jdbcType="INTEGER"/>
+        <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR"/>
+        <result column="ORDER_NO_HASH_VAL" property="orderNoHashVal" jdbcType="INTEGER"/>
+        <result column="REFUND_ORDER_NO" property="refundOrderNo" jdbcType="VARCHAR"/>
+        <result column="HIS_ORD_NO" property="hisOrdNo" jdbcType="VARCHAR"/>
+        <result column="REFUND_HISORD_NO" property="refundHisOrdNo" jdbcType="VARCHAR"/>
+        <result column="AGT_ORD_NUM" property="agtOrdNum" jdbcType="VARCHAR"/>
+        <result column="AGT_REFUND_ORD_NUM" property="agtRefundOrdNum" jdbcType="VARCHAR"/>
+        <result column="PAY_TIME" property="payTime" jdbcType="BIGINT"/>
+        <result column="REFUND_TIME" property="refundTime" jdbcType="BIGINT"/>
+        <result column="RECEIPT_NUM" property="receiptNum" jdbcType="VARCHAR"/>
+
+
+        <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR"/>
+        <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR"/>
+        <result column="CATEGORY" property="category" jdbcType="INTEGER"/>
+        <result column="DOCTOR_CODE" property="doctorCode" jdbcType="VARCHAR"/>
+        <result column="DOCTOR_NAME" property="doctorName" jdbcType="VARCHAR"/>
+        <result column="DOCTOR_TITLE" property="doctorTitle" jdbcType="VARCHAR"/>
+        <result column="REGISTER_TIME" property="registerTime" jdbcType="BIGINT"/>
+        <result column="PAY_TIMEOUT_TIME" property="payTimeoutTime" jdbcType="BIGINT"/>
+        <result column="SCHEDULE_DATE" property="scheduleDate" jdbcType="DATE"/>
+        <result column="BEGIN_TIME" property="beginTime" jdbcType="TIME"/>
+        <result column="END_TIME" property="endTime" jdbcType="TIME"/>
+        <result column="REG_MODE" property="regMode" jdbcType="INTEGER"/>
+        <result column="REG_FEE" property="regFee" jdbcType="INTEGER"/>
+        <result column="REAL_REG_FEE" property="realRegFee" jdbcType="INTEGER"/>
+        <result column="TREAT_FEE" property="treatFee" jdbcType="INTEGER"/>
+        <result column="REAL_TREAT_FEE" property="realTreatFee" jdbcType="INTEGER"/>
+        <result column="FEE_DESC" property="feeDesc" jdbcType="VARCHAR"/>
+        <result column="SERIAL_NUM" property="serialNum" jdbcType="VARCHAR"/>
+        <result column="VISIT_LOCATION" property="visitLocation" jdbcType="VARCHAR"/>
+        <result column="BARCODE" property="barcode" jdbcType="VARCHAR"/>
+        <result column="VISIT_DESC" property="visitDesc" jdbcType="VARCHAR"/>
+        <result column="REG_PERSON_TYPE" property="regPersonType" jdbcType="INTEGER"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="BIGINT"/>
+        <result column="TIME_FLAG" property="timeFlag" jdbcType="INTEGER"/>
+        <result column="ONLINE_PAYMENT_TYPE" property="onlinePaymentType" jdbcType="INTEGER"/>
+        <result column="IS_VALID" property="isValid" jdbcType="INTEGER"/>
+        <result column="IS_HAD_CALL_BACK" property="isHadCallBack" jdbcType="INTEGER"/>
+        <result column="FAILURE_MSG" property="failureMsg" jdbcType="VARCHAR"/>
+        <!-- 用于订单下载，对账 只读不写 -->
+        <result column="TRADE_TYPE" property="tradeType" jdbcType="VARCHAR"/>
+        <!-- 用于订单下载，对账 只读不写 -->
+        <result column="TRADE_TIME" property="tradeTime" jdbcType="VARCHAR"/>
+        <result column="INSURANCE" property="insurance" jdbcType="INTEGER"/>
+        <result column="TRADE_NO" property="tradeNo" jdbcType="VARCHAR"/>
+        <result column="TOTAL_FEE" property="totalFee" jdbcType="INTEGER"/>
+        <result column="SERIALYB" property="serialyb" jdbcType="VARCHAR"/>
+        <result column="BILL" property="bill" jdbcType="VARCHAR"/>
+        <!-- 订单入库补全信息-->
+        <result column="IS_INSURANCE" property="isInsurance" jdbcType="VARCHAR"/>
+        <result column="ACCOUNT_AMOUNT" property="accountAmount" jdbcType="VARCHAR"/>
+        <result column="MEDICARE_AMOUNT" property="medicareAmount" jdbcType="VARCHAR"/>
+        <result column="INSURANCE_AMOUNT" property="insuranceAmount" jdbcType="VARCHAR"/>
+        <result column="INSURED_TYPE" property="insuredType" jdbcType="VARCHAR"/>
+        <result column="PATIENT_TYPE" property="patientType" jdbcType="VARCHAR"/>
+        <result column="PAYMENT_ID" property="paymentId" jdbcType="VARCHAR"/>
+        <result column="PAYMENT_FEE" property="paymentFee" jdbcType="VARCHAR"/>
+        
+        <!-- 退款流水号和退款单据号 -->
+        <result column="CANCEL_SERIAL_NO" property="cancelSerialNo" jdbcType="VARCHAR"/>
+        <result column="CANCEL_BILL_NO" property="cancelBillNo" jdbcType="VARCHAR"/>
+
+
+        <result column="MEDICAL_HOSPITAL_CODE" property="yljgbm" jdbcType="VARCHAR" />
+        <result column="MEDICAL_OPERATOR_CODE" property="czybm" jdbcType="VARCHAR" />
+        <result column="MEDICAL_OPERATOR_NAME" property="czyxm" jdbcType="VARCHAR" />
+
+        <result column="SSTREAT_FEE" property="sStreatFee" jdbcType="INTEGER" />
+        <result column="CHECK_FEE" property="checkFee" jdbcType="INTEGER" />
+        <result column="RECEIPT_ID" property="recipeId" jdbcType="VARCHAR" />
+        <result column="CONVERSION_ORDER_NO" property="conversionOrderNo" jdbcType="VARCHAR" />
+        <result column="BQYZM" property="bqyzm" jdbcType="VARCHAR" />
+        <result column="DNH" property="dnh" jdbcType="VARCHAR" />
+         <result column="RESERVE_FLAG" property="reserveFlag" jdbcType="INTEGER" />
+          <result column="RESERVE_ORDER_NO" property="reserveOrderNo" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, APP_ID , APP_CODE ,HOSPITAL_ID, HOSPITAL_CODE, HOSPITAL_NAME ,BRANCH_ID, BRANCH_CODE, UPDATE_TIME, RECORD_TITLE,
+    REG_STATUS, PAY_STATUS, CARD_TYPE, CARD_NO, USER_ID ,OPEN_ID, IS_EXCEPTION, IS_HANDLE_SUCCESS, 
+    HANDLE_COUNT, HANDLE_LOG, REG_TYPE, PATIENT_NAME, PATIENT_MOBILE,  DEPT_CODE, DEPT_NAME,
+    ORDER_NO,ORDER_NO_HASH_VAL,AGT_ORD_NUM , AGT_REFUND_ORD_NUM ,REFUND_ORDER_NO,REFUND_HISORD_NO,HIS_ORD_NO,
+    CATEGORY, DOCTOR_CODE, DOCTOR_NAME, DOCTOR_TITLE, REGISTER_TIME, PAY_TIMEOUT_TIME, 
+    SCHEDULE_DATE,  BEGIN_TIME, END_TIME, REG_MODE, REG_FEE, REAL_REG_FEE, TREAT_FEE ,REAL_TREAT_FEE,
+    FEE_DESC,SERIAL_NUM, VISIT_LOCATION, BARCODE, VISIT_DESC, REG_PERSON_TYPE , TIME_FLAG,ONLINE_PAYMENT_TYPE,IS_VALID,
+    PAY_TIME ,REFUND_TIME,RECEIPT_NUM,TRADE_MODE,INSURANCE,TRADE_NO,TOTAL_FEE,SERIALYB,BILL,
+    IS_INSURANCE, ACCOUNT_AMOUNT, MEDICARE_AMOUNT, INSURANCE_AMOUNT, INSURED_TYPE, PATIENT_TYPE, PAYMENT_ID, PAYMENT_FEE,
+    CANCEL_SERIAL_NO,CANCEL_BILL_NO,
+    MEDICAL_HOSPITAL_CODE, MEDICAL_OPERATOR_CODE, MEDICAL_OPERATOR_NAME,SSTREAT_FEE,CHECK_FEE,RECEIPT_ID,CONVERSION_ORDER_NO,BQYZM,
+    DNH,RESERVE_FLAG,RESERVE_ORDER_NO
+  </sql>
+
+    <sql id="Choose_Hash_Table_Name">
+        <choose>
+            <when test="hashTableName == 'BIZ_REGISTER_RECORD_1'">
+                BIZ_REGISTER_RECORD_1
+            </when>
+            <when test="hashTableName == 'BIZ_REGISTER_RECORD_2'">
+                BIZ_REGISTER_RECORD_2
+            </when>
+            <when test="hashTableName == 'BIZ_REGISTER_RECORD_3'">
+                BIZ_REGISTER_RECORD_3
+            </when>
+            <when test="hashTableName == 'BIZ_REGISTER_RECORD_4'">
+                BIZ_REGISTER_RECORD_4
+            </when>
+            <when test="hashTableName == 'BIZ_REGISTER_RECORD_5'">
+                BIZ_REGISTER_RECORD_5
+            </when>
+            <when test="hashTableName == 'BIZ_REGISTER_RECORD_6'">
+                BIZ_REGISTER_RECORD_6
+            </when>
+            <when test="hashTableName == 'BIZ_REGISTER_RECORD_7'">
+                BIZ_REGISTER_RECORD_7
+            </when>
+            <when test="hashTableName == 'BIZ_REGISTER_RECORD_8'">
+                BIZ_REGISTER_RECORD_8
+            </when>
+            <when test="hashTableName == 'BIZ_REGISTER_RECORD_9'">
+                BIZ_REGISTER_RECORD_9
+            </when>
+            <when test="hashTableName == 'BIZ_REGISTER_RECORD_10'">
+                BIZ_REGISTER_RECORD_10
+            </when>
+        </choose>
+    </sql>
+
+    <sql id="Choose_Medicalcard_Table_Name">
+        <choose>
+            <when test="medicalcardTableName == 'BIZ_MEDICAL_CARD_1'">
+                BIZ_MEDICAL_CARD_1
+            </when>
+            <when test="medicalcardTableName == 'BIZ_MEDICAL_CARD_2'">
+                BIZ_MEDICAL_CARD_2
+            </when>
+            <when test="medicalcardTableName == 'BIZ_MEDICAL_CARD_3'">
+                BIZ_MEDICAL_CARD_3
+            </when>
+            <when test="medicalcardTableName == 'BIZ_MEDICAL_CARD_4'">
+                BIZ_MEDICAL_CARD_4
+            </when>
+            <when test="medicalcardTableName == 'BIZ_MEDICAL_CARD_5'">
+                BIZ_MEDICAL_CARD_5
+            </when>
+            <when test="medicalcardTableName == 'BIZ_MEDICAL_CARD_6'">
+                BIZ_MEDICAL_CARD_6
+            </when>
+            <when test="medicalcardTableName == 'BIZ_MEDICAL_CARD_7'">
+                BIZ_MEDICAL_CARD_7
+            </when>
+            <when test="medicalcardTableName == 'BIZ_MEDICAL_CARD_8'">
+                BIZ_MEDICAL_CARD_8
+            </when>
+            <when test="medicalcardTableName == 'BIZ_MEDICAL_CARD_9'">
+                BIZ_MEDICAL_CARD_9
+            </when>
+            <when test="medicalcardTableName == 'BIZ_MEDICAL_CARD_10'">
+                BIZ_MEDICAL_CARD_10
+            </when>
+        </choose>
+    </sql>
+
+
+    <select id="findById" resultMap="RegisterRecordResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where ID = #{id ,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findByMedicalCard" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where CARD_NO = #{cardNo ,jdbcType=VARCHAR} and USER_ID = #{userId ,jdbcType=VARCHAR}
+        and HOSPITAL_ID = #{hospitalId ,jdbcType=VARCHAR}
+        <if test="branchHospitalId != null and branchHospitalId != ''">
+            and BRANCH_ID = #{branchHospitalId ,jdbcType=VARCHAR}
+        </if>
+        ORDER BY REGISTER_TIME desc
+    </select>
+
+    <select id="findOverTimeRecords" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where REGISTER_TIME > #{overTime} and HOSPITAL_ID = #{hospitalId}
+        and BRANCH_ID = #{branchHospitalId} and USER_ID = #{userId}
+        and CARD_NO = #{cardNo}
+        and REG_STATUS in
+        <foreach item="regStatus" index="index" collection="regStatuses" open="(" separator="," close=")">
+            #{regStatus}
+        </foreach>
+        ORDER BY REGISTER_TIME DESC
+    </select>
+
+    <select id="findLatestUserOrder" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where USER_ID = #{userId}
+        and REG_STATUS in
+        <foreach item="regStatus" index="index" collection="regStatuses" open="(" separator="," close=")">
+            #{regStatus}
+        </foreach>
+        ORDER BY REGISTER_TIME DESC
+        LIMIT 1
+    </select>
+
+    <select id="findByOrderNo" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where ORDER_NO = #{orderNo,jdbcType=VARCHAR} AND ORDER_NO_HASH_VAL = #{orderNoHashVal ,jdbcType=INTEGER}
+    </select>
+
+    <select id="findAllByOrderNo" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+    </select>
+
+
+    <delete id="deleteByOrderNo" parameterType="java.util.Map">
+        delete from
+        <include refid="Choose_Hash_Table_Name"/>
+        where ID = #{recordId}
+        AND ORDER_NO = #{orderNo} AND ORDER_NO_HASH_VAL = #{orderNoHashVal}
+    </delete>
+
+    <delete id="deleteById" parameterType="java.util.Map">
+        delete from
+        <include refid="Choose_Hash_Table_Name"/>
+        where ID = #{recordId}
+    </delete>
+    <insert id="add" parameterType="com.yy.easyhealth.biz.register.entity.RegisterRecord">
+        insert into
+        <include refid="Choose_Hash_Table_Name"/>
+        (
+        ID,APP_ID , APP_CODE , HOSPITAL_ID, HOSPITAL_CODE, HOSPITAL_NAME,
+        BRANCH_ID, BRANCH_CODE, RECORD_TITLE,
+        UPDATE_TIME, REG_STATUS, PAY_STATUS,
+        CARD_TYPE, CARD_NO,USER_ID, OPEN_ID,
+        IS_EXCEPTION, IS_HANDLE_SUCCESS, HANDLE_COUNT,
+        HANDLE_LOG, REG_TYPE, PATIENT_NAME,
+        PATIENT_MOBILE, ORDER_NO,ORDER_NO_HASH_VAL, DEPT_CODE,
+        DEPT_NAME, CATEGORY, DOCTOR_CODE,
+        DOCTOR_NAME, DOCTOR_TITLE, REGISTER_TIME,
+        PAY_TIMEOUT_TIME, SCHEDULE_DATE, ONLINE_PAYMENT_TYPE,
+        BEGIN_TIME, END_TIME, REG_MODE,
+        REG_FEE, REAL_REG_FEE, TREAT_FEE ,REAL_TREAT_FEE, FEE_DESC,
+        HIS_ORD_NO, SERIAL_NUM, VISIT_LOCATION,
+        BARCODE, VISIT_DESC, REG_PERSON_TYPE , TIME_FLAG,IS_VALID, PAY_TIME ,REFUND_TIME , RECEIPT_NUM ,TRADE_MODE,
+        IS_INSURANCE, ACCOUNT_AMOUNT, MEDICARE_AMOUNT, INSURANCE_AMOUNT, INSURED_TYPE, PATIENT_TYPE, PAYMENT_ID,
+        PAYMENT_FEE,CANCEL_SERIAL_NO,CANCEL_BILL_NO,MEDICAL_REGISTER_SERIAL_NUM,MEDICAL_HOSPITAL_CODE,MEDICAL_OPERATOR_CODE,MEDICAL_OPERATOR_NAME,
+        WORK_ID,CHECK_FEE,RECEIPT_ID,RECEIPT_TYPE,SSTREAT_FEE,CONVERSION_ORDER_NO,BQYZM,
+        DNH,RESERVE_FLAG,RESERVE_ORDER_NO
+        )
+        values (#{id,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR} , #{appCode,jdbcType=VARCHAR}
+        ,#{hospitalId,jdbcType=VARCHAR}, #{hospitalCode,jdbcType=VARCHAR}, #{hospitalName,jdbcType=VARCHAR},
+        #{branchHospitalId,jdbcType=VARCHAR}, #{branchHospitalCode,jdbcType=VARCHAR}, #{recordTitle , jdbcType=VARCHAR},
+        #{updateTime,jdbcType=BIGINT}, #{regStatus,jdbcType=INTEGER}, #{payStatus,jdbcType=INTEGER},
+        #{cardType,jdbcType=INTEGER}, #{cardNo,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+        #{openId,jdbcType=VARCHAR},
+        #{isException,jdbcType=INTEGER}, #{isHandleSuccess,jdbcType=INTEGER}, #{handleCount,jdbcType=INTEGER},
+        #{handleLog,jdbcType=VARCHAR}, #{regType,jdbcType=INTEGER}, #{patientName,jdbcType=VARCHAR},
+        #{patientMobile,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{orderNoHashVal,jdbcType=INTEGER}
+        ,#{deptCode,jdbcType=VARCHAR},
+        #{deptName,jdbcType=VARCHAR}, #{category,jdbcType=INTEGER}, #{doctorCode,jdbcType=VARCHAR},
+        #{doctorName,jdbcType=VARCHAR}, #{doctorTitle,jdbcType=VARCHAR}, #{registerTime,jdbcType=BIGINT},
+        #{payTimeoutTime,jdbcType=BIGINT}, #{scheduleDate,jdbcType=DATE}, #{onlinePaymentType,jdbcType=INTEGER},
+        #{beginTime,jdbcType=TIME}, #{endTime,jdbcType=TIME}, #{regMode,jdbcType=INTEGER},
+        #{regFee,jdbcType=INTEGER}, #{realRegFee,jdbcType=INTEGER}, #{treatFee,jdbcType=INTEGER},
+        #{realTreatFee,jdbcType=INTEGER},
+        #{feeDesc,jdbcType=VARCHAR}, #{hisOrdNo,jdbcType=VARCHAR}, #{serialNum,jdbcType=VARCHAR},
+        #{visitLocation,jdbcType=VARCHAR},
+        #{barcode,jdbcType=VARCHAR}, #{visitDesc,jdbcType=VARCHAR},
+        #{regPersonType,jdbcType=INTEGER},#{timeFlag,jdbcType=INTEGER},
+        #{isValid,jdbcType=INTEGER}, #{payTime,jdbcType=BIGINT}, #{refundTime,jdbcType=BIGINT},
+        #{receiptNum,jdbcType=VARCHAR},
+        #{tradeMode,jdbcType=INTEGER},
+        #{isInsurance,jdbcType=VARCHAR},#{accountAmount,jdbcType=VARCHAR},#{medicareAmount,jdbcType=VARCHAR},#{insuranceAmount,jdbcType=VARCHAR},
+        #{insuredType,jdbcType=VARCHAR},#{patientType,jdbcType=VARCHAR},#{paymentId,jdbcType=VARCHAR},#{paymentFee,jdbcType=VARCHAR},
+        #{cancelSerialNo,jdbcType=VARCHAR},#{cancelBillNo,jdbcType=VARCHAR},
+        #{medicalRegisterSerialNum,jdbcType=VARCHAR},#{yljgbm,jdbcType=VARCHAR},#{czybm,jdbcType=VARCHAR},#{czyxm,jdbcType=VARCHAR},
+        #{workId,jdbcType=VARCHAR},#{checkFee,jdbcType=INTEGER},#{recipeId,jdbcType=VARCHAR},#{recipeType,jdbcType=VARCHAR},
+        #{sStreatFee,jdbcType=INTEGER},#{conversionOrderNo,jdbcType=VARCHAR},#{bqyzm,jdbcType=VARCHAR},
+        #{dnh,jdbcType=VARCHAR},
+        #{reserveFlag,jdbcType=INTEGER},
+        #{reserveOrderNo,jdbcType=VARCHAR}
+        )
+    </insert>
+    
+    <insert id="addToTradePayTemp" parameterType="com.yy.easyhealth.biz.register.entity.RegisterRecord">
+        insert into BIZ_REGISTER_RECORD_TRADEPAY_TEMP 
+        (
+        ID,APP_ID , APP_CODE , HOSPITAL_ID, HOSPITAL_CODE, HOSPITAL_NAME,
+        BRANCH_ID, BRANCH_CODE, RECORD_TITLE,
+        UPDATE_TIME, REG_STATUS, PAY_STATUS,
+        CARD_TYPE, CARD_NO,USER_ID, OPEN_ID,
+        IS_EXCEPTION, IS_HANDLE_SUCCESS, HANDLE_COUNT,
+        HANDLE_LOG, REG_TYPE, PATIENT_NAME,
+        PATIENT_MOBILE, ORDER_NO,ORDER_NO_HASH_VAL, DEPT_CODE,
+        DEPT_NAME, CATEGORY, DOCTOR_CODE,
+        DOCTOR_NAME, DOCTOR_TITLE, REGISTER_TIME,
+        PAY_TIMEOUT_TIME, SCHEDULE_DATE, ONLINE_PAYMENT_TYPE,
+        BEGIN_TIME, END_TIME, REG_MODE,
+        REG_FEE, REAL_REG_FEE, TREAT_FEE ,REAL_TREAT_FEE, FEE_DESC,
+        HIS_ORD_NO, SERIAL_NUM, VISIT_LOCATION,
+        BARCODE, VISIT_DESC, REG_PERSON_TYPE , TIME_FLAG,IS_VALID, PAY_TIME ,REFUND_TIME , RECEIPT_NUM ,TRADE_MODE,
+        IS_INSURANCE, ACCOUNT_AMOUNT, MEDICARE_AMOUNT, INSURANCE_AMOUNT, INSURED_TYPE, PATIENT_TYPE, PAYMENT_ID,
+        PAYMENT_FEE,CANCEL_SERIAL_NO,CANCEL_BILL_NO
+        )
+        values (#{id,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR} , #{appCode,jdbcType=VARCHAR}
+        ,#{hospitalId,jdbcType=VARCHAR}, #{hospitalCode,jdbcType=VARCHAR}, #{hospitalName,jdbcType=VARCHAR},
+        #{branchHospitalId,jdbcType=VARCHAR}, #{branchHospitalCode,jdbcType=VARCHAR}, #{recordTitle , jdbcType=VARCHAR},
+        #{updateTime,jdbcType=BIGINT}, #{regStatus,jdbcType=INTEGER}, #{payStatus,jdbcType=INTEGER},
+        #{cardType,jdbcType=INTEGER}, #{cardNo,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+        #{openId,jdbcType=VARCHAR},
+        #{isException,jdbcType=INTEGER}, #{isHandleSuccess,jdbcType=INTEGER}, #{handleCount,jdbcType=INTEGER},
+        #{handleLog,jdbcType=VARCHAR}, #{regType,jdbcType=INTEGER}, #{patientName,jdbcType=VARCHAR},
+        #{patientMobile,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{orderNoHashVal,jdbcType=INTEGER}
+        ,#{deptCode,jdbcType=VARCHAR},
+        #{deptName,jdbcType=VARCHAR}, #{category,jdbcType=INTEGER}, #{doctorCode,jdbcType=VARCHAR},
+        #{doctorName,jdbcType=VARCHAR}, #{doctorTitle,jdbcType=VARCHAR}, #{registerTime,jdbcType=BIGINT},
+        #{payTimeoutTime,jdbcType=BIGINT}, #{scheduleDate,jdbcType=DATE}, #{onlinePaymentType,jdbcType=INTEGER},
+        #{beginTime,jdbcType=TIME}, #{endTime,jdbcType=TIME}, #{regMode,jdbcType=INTEGER},
+        #{regFee,jdbcType=INTEGER}, #{realRegFee,jdbcType=INTEGER}, #{treatFee,jdbcType=INTEGER},
+        #{realTreatFee,jdbcType=INTEGER},
+        #{feeDesc,jdbcType=VARCHAR}, #{hisOrdNo,jdbcType=VARCHAR}, #{serialNum,jdbcType=VARCHAR},
+        #{visitLocation,jdbcType=VARCHAR},
+        #{barcode,jdbcType=VARCHAR}, #{visitDesc,jdbcType=VARCHAR},
+        #{regPersonType,jdbcType=INTEGER},#{timeFlag,jdbcType=INTEGER},
+        #{isValid,jdbcType=INTEGER}, #{payTime,jdbcType=BIGINT}, #{refundTime,jdbcType=BIGINT},
+        #{receiptNum,jdbcType=VARCHAR},
+        #{tradeMode,jdbcType=INTEGER},
+        #{isInsurance,jdbcType=VARCHAR},#{accountAmount,jdbcType=VARCHAR},#{medicareAmount,jdbcType=VARCHAR},#{insuranceAmount,jdbcType=VARCHAR},
+        #{insuredType,jdbcType=VARCHAR},#{patientType,jdbcType=VARCHAR},#{paymentId,jdbcType=VARCHAR},#{paymentFee,jdbcType=VARCHAR}
+        ,#{cancelSerialNo,jdbcType=VARCHAR},#{cancelBillNo,jdbcType=VARCHAR}
+        )
+    </insert>
+    
+    <update id="updateRefundOrderNo" parameterType="java.util.Map">
+        update
+        <include refid="Choose_Hash_Table_Name"/>
+        r
+        SET r.REFUND_ORDER_NO = #{refundOrderNo ,jdbcType=VARCHAR}
+        WHERE ORDER_NO = #{orderNo,jdbcType=VARCHAR} AND ORDER_NO_HASH_VAL = #{orderNoHashVal ,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询给定的挂号记录id中未支付的记录 -->
+    <select id="findNotPayMentByIds" parameterType="java.util.Map" resultType="java.lang.String">
+        select ID from
+        <include refid="Choose_Hash_Table_Name"/>
+        where PAY_STATUS = 1
+        and ID in
+        <foreach item="item" index="index" collection="recordIds" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!-- 查询给定的挂号记录id中未支付的记录 -->
+    <select id="findRecordsByOpenIdAndIdNo" parameterType="java.util.Map" resultMap="RegisterRecordResultMap">
+        select
+        a.ID, a.APP_ID, a.APP_CODE, a.HOSPITAL_ID, a.HOSPITAL_CODE, a.HOSPITAL_NAME, a.BRANCH_ID,
+        a.BRANCH_CODE, a.UPDATE_TIME, a.RECORD_TITLE, a.REG_STATUS, a.PAY_STATUS, a.CARD_TYPE,
+        a.CARD_NO,a.USER_ID, a.OPEN_ID, a.IS_EXCEPTION, a.IS_HANDLE_SUCCESS, a.HANDLE_COUNT, a.HANDLE_LOG,
+        a.REG_TYPE, a.PATIENT_NAME, a.PATIENT_MOBILE, a.DEPT_CODE, a.DEPT_NAME, a.ORDER_NO,
+        a.ORDER_NO_HASH_VAL, a.AGT_ORD_NUM, a.AGT_REFUND_ORD_NUM , a.REFUND_ORDER_NO, a.REFUND_HISORD_NO,
+        a.HIS_ORD_NO, a.CATEGORY, a.DOCTOR_CODE, a.DOCTOR_NAME, a.DOCTOR_TITLE, a.REGISTER_TIME, a.PAY_TIMEOUT_TIME,
+        a.SCHEDULE_DATE, a.BEGIN_TIME, a.END_TIME, a.REG_MODE, a.REG_FEE, a.REAL_REG_FEE, a.TREAT_FEE, a.REAL_TREAT_FEE,
+        a.FEE_DESC, a.SERIAL_NUM, a.VISIT_LOCATION, a.BARCODE, a.VISIT_DESC, a.REG_PERSON_TYPE, a.TIME_FLAG,
+        a.ONLINE_PAYMENT_TYPE, a.IS_VALID, a.PAY_TIME, a.REFUND_TIME, a.RECEIPT_NUM, a.TRADE_MODE,
+
+        a.IS_INSURANCE, a.ACCOUNT_AMOUNT, a.MEDICARE_AMOUNT, a.INSURANCE_AMOUNT, a.INSURED_TYPE, a.PATIENT_TYPE,
+        a.PAYMENT_ID, a.PAYMENT_FEE,a.dnh
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        a,
+        <include refid="Choose_Medicalcard_Table_Name"/>
+        b
+        where
+        b.USER_ID = #{userId}
+        and b.ID_NO = #{idNo}
+        and b.STATE = 1
+        and b.PLATFORM = 3
+        and a.CARD_NO = b.CARD_NO
+        order by REGISTER_TIME desc
+    </select>
+
+    <!-- 通过IdType和IdNo找挂号记录 -->
+    <select id="findRecordsByIdTypeAndIdNo" parameterType="java.util.Map" resultMap="RegisterRecordResultMap">
+        select
+        a.ID, a.APP_ID, a.APP_CODE, a.HOSPITAL_ID, a.HOSPITAL_CODE, a.HOSPITAL_NAME, a.BRANCH_ID,
+        a.BRANCH_CODE, a.UPDATE_TIME, a.RECORD_TITLE, a.REG_STATUS, a.PAY_STATUS, a.CARD_TYPE,
+        a.CARD_NO, a.USER_ID,a.OPEN_ID, a.IS_EXCEPTION, a.IS_HANDLE_SUCCESS, a.HANDLE_COUNT, a.HANDLE_LOG,
+        a.REG_TYPE, a.PATIENT_NAME, a.PATIENT_MOBILE, a.DEPT_CODE, a.DEPT_NAME, a.ORDER_NO,
+        a.ORDER_NO_HASH_VAL, a.AGT_ORD_NUM, a.AGT_REFUND_ORD_NUM , a.REFUND_ORDER_NO, a.REFUND_HISORD_NO,
+        a.HIS_ORD_NO, a.CATEGORY, a.DOCTOR_CODE, a.DOCTOR_NAME, a.DOCTOR_TITLE, a.REGISTER_TIME, a.PAY_TIMEOUT_TIME,
+        a.SCHEDULE_DATE, a.BEGIN_TIME, a.END_TIME, a.REG_MODE, a.REG_FEE, a.REAL_REG_FEE, a.TREAT_FEE, a.REAL_TREAT_FEE,
+        a.FEE_DESC, a.SERIAL_NUM, a.VISIT_LOCATION, a.BARCODE, a.VISIT_DESC, a.REG_PERSON_TYPE, a.TIME_FLAG,
+        a.ONLINE_PAYMENT_TYPE, a.IS_VALID, a.PAY_TIME, a.REFUND_TIME, a.RECEIPT_NUM, a.TRADE_MODE,
+
+        a.IS_INSURANCE, a.ACCOUNT_AMOUNT, a.MEDICARE_AMOUNT, a.INSURANCE_AMOUNT, a.INSURED_TYPE, a.PATIENT_TYPE,
+        a.PAYMENT_ID, a.PAYMENT_FEE,a.dnh
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        a,
+        <include refid="Choose_Medicalcard_Table_Name"/>
+        b
+        where
+        b.ID_TYPE = #{idType}
+        and b.ID_NO = #{idNo}
+        and b.STATE = 1
+        and b.PLATFORM = 3
+        and a.CARD_NO = b.CARD_NO
+        and a.USER_ID = b.USER_ID
+        order by REGISTER_TIME desc
+    </select>
+
+    <update id="updateRecordPayTimeOutStatus" parameterType="java.util.Map">
+        update
+        <include refid="Choose_Hash_Table_Name"/>
+        set REG_STATUS = #{regStatus,jdbcType=INTEGER},UPDATE_TIME = #{updateTime,jdbcType=BIGINT}
+        where ID in
+        <foreach item="item" index="index" collection="recordIds" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and PAY_STATUS = 1
+    </update>
+
+
+    <update id="updateRegisterRecordSatuts" parameterType="java.util.Map">
+        update
+        <include refid="Choose_Hash_Table_Name"/>
+        set REG_STATUS = #{regStatus,jdbcType=INTEGER},UPDATE_TIME = #{updateTime,jdbcType=BIGINT}
+        where ID in
+        <foreach item="item" index="index" collection="recordIds" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+
+    <update id="updateRecordForAgtPayment" parameterType="com.yy.easyhealth.biz.register.entity.RegisterRecord">
+        update
+        <include refid="Choose_Hash_Table_Name"/>
+        <set>
+            <if test="regStatus != null">
+                REG_STATUS = #{regStatus,jdbcType=INTEGER},
+            </if>
+            <if test="payStatus != null">
+                PAY_STATUS = #{payStatus,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="agtOrdNum != null">
+                AGT_ORD_NUM = #{agtOrdNum,jdbcType=VARCHAR},
+            </if>
+            <if test="isException != null">
+                IS_EXCEPTION = #{isException,jdbcType=INTEGER},
+            </if>
+            <if test="isHadCallBack != null">
+                IS_HAD_CALL_BACK = #{isHadCallBack,jdbcType=INTEGER},
+            </if>
+            <if test="refundTime != null">
+                REFUND_TIME = #{refundTime,jdbcType=BIGINT},
+            </if>
+            <if test="payTime != null">
+                PAY_TIME = #{payTime,jdbcType=BIGINT},
+            </if>
+            <if test="receiptNum != null">
+                RECEIPT_NUM = #{receiptNum,jdbcType=VARCHAR},
+            </if>
+            <if test="dnh != null">
+                DNH = #{dnh,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ORDER_NO = #{orderNo,jdbcType=VARCHAR} AND ORDER_NO_HASH_VAL = #{orderNoHashVal ,jdbcType=INTEGER}
+        AND PAY_STATUS = 1
+    </update>
+
+
+    <update id="updateRecordForAgtRefund" parameterType="com.yy.easyhealth.biz.register.entity.RegisterRecord">
+        update
+        <include refid="Choose_Hash_Table_Name"/>
+        <set>
+            <if test="regStatus != null">
+                REG_STATUS = #{regStatus,jdbcType=INTEGER},
+            </if>
+            <if test="payStatus != null">
+                PAY_STATUS = #{payStatus,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="refundOrderNo != null">
+                REFUND_ORDER_NO = #{refundOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="agtRefundOrdNum != null">
+                AGT_REFUND_ORD_NUM = #{agtRefundOrdNum,jdbcType=VARCHAR},
+            </if>
+            <if test="failureMsg != null">
+                FAILURE_MSG = #{failureMsg,jdbcType=VARCHAR},
+            </if>
+            <if test="isException != null">
+                IS_EXCEPTION = #{isException,jdbcType=INTEGER},
+            </if>
+            <if test="isHandleSuccess != null">
+                IS_HANDLE_SUCCESS = #{isHandleSuccess,jdbcType=INTEGER},
+            </if>
+            <if test="refundTime != null">
+                REFUND_TIME = #{refundTime,jdbcType=BIGINT},
+            </if>
+            <if test="payTime != null">
+                PAY_TIME = #{payTime,jdbcType=BIGINT},
+            </if>
+            <if test="receiptNum != null">
+                RECEIPT_NUM = #{receiptNum,jdbcType=VARCHAR},
+            </if>
+            <if test="dnh != null">
+                DNH = #{dnh,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ORDER_NO = #{orderNo,jdbcType=VARCHAR} AND ORDER_NO_HASH_VAL = #{orderNoHashVal ,jdbcType=INTEGER}
+    </update>
+
+    <resultMap id="simpleRecordResultMap" type="com.yy.platform.register.vo.SimpleRecord">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR"/>
+        <result column="OPEN_ID" property="openId" jdbcType="VARCHAR"/>
+        <result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR"/>
+        <result column="BRANCH_CODE" property="branchHospitalCode" jdbcType="VARCHAR"/>
+        <result column="REG_STATUS" property="regStatus" jdbcType="INTEGER"/>
+        <result column="REG_MODE" property="regMode" jdbcType="INTEGER"/>
+        <result column="REG_TYPE" property="regType" jdbcType="INTEGER"/>
+        <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR"/>
+        <result column="HIS_ORD_NO" property="hisOrdNo" jdbcType="VARCHAR"/>
+        <result column="REG_STATUS" property="regStatus" jdbcType="INTEGER"/>
+        <result column="PAY_STATUS" property="payStatus" jdbcType="INTEGER"/>
+        <result column="PAY_TIMEOUT_TIME" property="payTimeoutTime" jdbcType="BIGINT"/>
+        <result column="ONLINE_PAYMENT_TYPE" property="onlinePaymentType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="SIMPLE_BASE_COLUMN_LIST">
+    ID, USER_ID,OPEN_ID,HOSPITAL_CODE, BRANCH_CODE, REG_STATUS,REG_MODE,REG_TYPE,
+    ORDER_NO, HIS_ORD_NO,REG_STATUS , PAY_STATUS ,PAY_TIMEOUT_TIME,IS_VALID
+  </sql>
+
+    <select id="findRegisterRecord" resultMap="simpleRecordResultMap" parameterType="java.util.Map">
+        select
+        <include refid="SIMPLE_BASE_COLUMN_LIST"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        <if test="regStatus != null and payStatus == null">
+            where REG_STATUS = #{regStatus}
+        </if>
+        <if test="regStatus == null and payStatus != null">
+            where PAY_STATUS = #{payStatus}
+        </if>
+        <if test="regStatus != null and payStatus != null">
+            where REG_STATUS = #{regStatus} AND PAY_STATUS = #{payStatus}
+        </if>
+    </select>
+
+    <select id="findPayStatusRecord" resultMap="simpleRecordResultMap" parameterType="java.util.Map">
+        select
+        <include refid="SIMPLE_BASE_COLUMN_LIST"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where PAY_STATUS = #{payStatus} AND (REG_STATUS = 0 OR REG_STATUS = 1) AND PAY_TIMEOUT_TIME > 0
+    </select>
+
+    <select id="findAllNeedHandleExceptionRecord" parameterType="java.util.Map" resultMap="RegisterRecordResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where IS_EXCEPTION = 1 and IS_HANDLE_SUCCESS = 0 and HANDLE_COUNT &lt;= 3
+    </select>
+
+    <update id="updateExceptionRecord" parameterType="com.yy.platform.register.vo.ExceptionRecord">
+        update
+        <include refid="Choose_Hash_Table_Name"/>
+        <set>
+            <if test="isValid != null">
+                IS_VALID = #{isValid,jdbcType=INTEGER},
+            </if>
+            <if test="regStatus != null">
+                REG_STATUS = #{regStatus,jdbcType=INTEGER},
+            </if>
+            <if test="payStatus != null">
+                PAY_STATUS = #{payStatus,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="isException != null">
+                IS_EXCEPTION = #{isException,jdbcType=INTEGER},
+            </if>
+            <if test="isHandleSuccess != null">
+                IS_HANDLE_SUCCESS = #{isHandleSuccess,jdbcType=INTEGER},
+            </if>
+            <if test="handleCount != null">
+                HANDLE_COUNT = #{handleCount,jdbcType=INTEGER},
+            </if>
+            <if test="handleLog != null">
+                HANDLE_LOG = #{handleLog,jdbcType=VARCHAR},
+            </if>
+            <if test="refundOrderNo != null">
+                REFUND_ORDER_NO = #{refundOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="agtOrdNum != null">
+                AGT_ORD_NUM = #{agtOrdNum,jdbcType=VARCHAR},
+            </if>
+            <if test="agtRefundOrdNum != null">
+                AGT_REFUND_ORD_NUM = #{agtRefundOrdNum,jdbcType=VARCHAR},
+            </if>
+            <if test="refundHisOrdNo != null">
+                REFUND_HIS_ORD_NO = #{refundHisOrdNo,jdbcType=VARCHAR},
+            </if>
+            <if test="refundTime != null">
+                REFUND_TIME = #{refundTime,jdbcType=BIGINT},
+            </if>
+            <if test="payTime != null">
+                PAY_TIME = #{payTime,jdbcType=BIGINT},
+            </if>
+            <if test="receiptNum != null">
+                RECEIPT_NUM = #{receiptNum,jdbcType=VARCHAR},
+            </if>
+
+
+        </set>
+        where ORDER_NO = #{orderNo,jdbcType=VARCHAR} AND ORDER_NO_HASH_VAL = #{orderNoHashVal ,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateRecordStatus" parameterType="com.yy.easyhealth.biz.register.entity.RegisterRecord">
+        update
+        <include refid="Choose_Hash_Table_Name"/>
+        <set>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="regStatus != null">
+                REG_STATUS = #{regStatus,jdbcType=INTEGER},
+            </if>
+            <if test="payStatus != null">
+                PAY_STATUS = #{payStatus,jdbcType=INTEGER},
+            </if>
+
+            <if test="hisOrdNo != null">
+                HIS_ORD_NO = #{hisOrdNo,jdbcType=VARCHAR},
+            </if>
+            <if test="serialNum != null">
+                SERIAL_NUM = #{serialNum,jdbcType=VARCHAR},
+            </if>
+            <if test="visitLocation != null">
+                VISIT_LOCATION = #{visitLocation,jdbcType=VARCHAR},
+            </if>
+
+            <if test="agtOrdNum != null">
+                AGT_ORD_NUM = #{agtOrdNum,jdbcType=VARCHAR},
+            </if>
+
+            <if test="refundOrderNo != null">
+                REFUND_ORDER_NO = #{refundOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="agtRefundOrdNum != null">
+                AGT_REFUND_ORD_NUM = #{agtRefundOrdNum,jdbcType=VARCHAR},
+            </if>
+            <if test="refundHisOrdNo != null">
+                REFUND_HISORD_NO = #{refundHisOrdNo,jdbcType=VARCHAR},
+            </if>
+            <if test="isHadCallBack != null">
+                IS_HAD_CALL_BACK = #{isHadCallBack,jdbcType=VARCHAR},
+            </if>
+            <if test="refundTime != null">
+                REFUND_TIME = #{refundTime,jdbcType=BIGINT},
+            </if>
+            <if test="payTime != null">
+                PAY_TIME = #{payTime,jdbcType=BIGINT},
+            </if>
+            <if test="receiptNum != null">
+                RECEIPT_NUM = #{receiptNum,jdbcType=VARCHAR},
+            </if>
+            <if test="barcode != null">
+                BARCODE = #{barcode,jdbcType=VARCHAR},
+            </if>
+            <if test="recipeId != null">
+                RECEIPT_ID = #{recipeId,jdbcType=VARCHAR},
+            </if>
+            <if test="recipeType != null">
+                RECEIPT_TYPE = #{recipeType,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ORDER_NO = #{orderNo,jdbcType=VARCHAR} AND ORDER_NO_HASH_VAL = #{orderNoHashVal ,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateTradeMode" parameterType="com.yy.easyhealth.biz.register.entity.RegisterRecord">
+        update
+        <include refid="Choose_Hash_Table_Name"/>
+        set TRADE_MODE = #{tradeMode,jdbcType=INTEGER} , REG_MODE = #{regMode,jdbcType=INTEGER}
+        where ORDER_NO = #{orderNo,jdbcType=VARCHAR} AND ORDER_NO_HASH_VAL = #{orderNoHashVal ,jdbcType=INTEGER}
+    </update>
+
+    <update id="update" parameterType="com.yy.easyhealth.biz.register.entity.RegisterRecord">
+        update
+        <include refid="Choose_Hash_Table_Name"/>
+        <set>
+            <if test="hospitalId != null">
+                HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR},
+            </if>
+            <if test="hospitalCode != null">
+                HOSPITAL_CODE = #{hospitalCode,jdbcType=VARCHAR},
+            </if>
+            <if test="branchHospitalId != null">
+                BRANCH_ID = #{branchHospitalId,jdbcType=VARCHAR},
+            </if>
+            <if test="branchHospitalCode != null">
+                BRANCH_CODE = #{branchHospitalCode,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="regStatus != null">
+                REG_STATUS = #{regStatus,jdbcType=INTEGER},
+            </if>
+            <if test="payStatus != null">
+                PAY_STATUS = #{payStatus,jdbcType=INTEGER},
+            </if>
+            <if test="cardType != null">
+                CARD_TYPE = #{cardType,jdbcType=INTEGER},
+            </if>
+            <if test="cardNo != null">
+                CARD_NO = #{cardNo,jdbcType=VARCHAR},
+            </if>
+            <if test="openId != null">
+                OPEN_ID = #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                USER_ID = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="isException != null">
+                IS_EXCEPTION = #{isException,jdbcType=INTEGER},
+            </if>
+            <if test="isHandleSuccess != null">
+                IS_HANDLE_SUCCESS = #{isHandleSuccess,jdbcType=INTEGER},
+            </if>
+            <if test="handleCount != null">
+                HANDLE_COUNT = #{handleCount,jdbcType=INTEGER},
+            </if>
+            <if test="handleLog != null">
+                HANDLE_LOG = #{handleLog,jdbcType=VARCHAR},
+            </if>
+            <if test="regType != null">
+                REG_TYPE = #{regType,jdbcType=INTEGER},
+            </if>
+            <if test="patientName != null">
+                PATIENT_NAME = #{patientName,jdbcType=VARCHAR},
+            </if>
+            <if test="patientMobile != null">
+                PATIENT_MOBILE = #{patientMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="orderNo != null">
+                ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderNoHashVal != null">
+                ORDER_NO_HASH_VAL = #{orderNoHashVal,jdbcType=INTEGER},
+            </if>
+            <if test="refundOrderNo != null">
+                REFUND_ORDER_NO = #{refundOrderNo,jdbcType=INTEGER},
+            </if>
+            <if test="hisOrdNo != null">
+                HIS_ORD_NO = #{hisOrdNo,jdbcType=VARCHAR},
+            </if>
+            <if test="refundHisOrdNo != null">
+                REFUND_HISORD_NO = #{refundHisOrdNo,jdbcType=INTEGER},
+            </if>
+            <if test="agtOrdNum != null">
+                AGT_ORD_NUM = #{agtOrdNum,jdbcType=INTEGER},
+            </if>
+            <if test="agtRefundOrdNum != null">
+                AGT_REFUND_ORD_NUM = #{agtRefundOrdNum,jdbcType=INTEGER},
+            </if>
+            <if test="onlinePaymentType != null">
+                ONLINE_PAYMENT_TYPE = #{onlinePaymentType,jdbcType=INTEGER},
+            </if>
+            <if test="deptCode != null">
+                DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+            </if>
+            <if test="deptName != null">
+                DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                CATEGORY = #{category,jdbcType=INTEGER},
+            </if>
+            <if test="doctorCode != null">
+                DOCTOR_CODE = #{doctorCode,jdbcType=VARCHAR},
+            </if>
+            <if test="doctorName != null">
+                DOCTOR_NAME = #{doctorName,jdbcType=VARCHAR},
+            </if>
+            <if test="doctorTitle != null">
+                DOCTOR_TITLE = #{doctorTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="registerTime != null">
+                REGISTER_TIME = #{registerTime,jdbcType=BIGINT},
+            </if>
+            <if test="payTimeoutTime != null">
+                PAY_TIMEOUT_TIME = #{payTimeoutTime,jdbcType=BIGINT},
+            </if>
+            <if test="scheduleDate != null">
+                SCHEDULE_DATE = #{scheduleDate,jdbcType=DATE},
+            </if>
+            <if test="beginTime != null">
+                BEGIN_TIME = #{beginTime,jdbcType=TIME},
+            </if>
+            <if test="endTime != null">
+                END_TIME = #{endTime,jdbcType=TIME},
+            </if>
+            <if test="regMode != null">
+                REG_MODE = #{regMode,jdbcType=INTEGER},
+            </if>
+            <if test="regFee != null">
+                REG_FEE = #{regFee,jdbcType=INTEGER},
+            </if>
+            <if test="realRegFee != null">
+                REAL_REG_FEE = #{realRegFee,jdbcType=INTEGER},
+            </if>
+            <if test="treatFee != null">
+                TREAT_FEE = #{treatFee,jdbcType=INTEGER},
+            </if>
+            <if test="realTreatFee != null">
+                REAL_TREAT_FEE = #{realTreatFee,jdbcType=INTEGER},
+            </if>
+            <if test="feeDesc != null">
+                FEE_DESC = #{feeDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="serialNum != null">
+                SERIAL_NUM = #{serialNum,jdbcType=VARCHAR},
+            </if>
+            <if test="visitLocation != null">
+                VISIT_LOCATION = #{visitLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="barcode != null">
+                BARCODE = #{barcode,jdbcType=VARCHAR},
+            </if>
+            <if test="visitDesc != null">
+                VISIT_DESC = #{visitDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="regPersonType != null">
+                REG_PERSON_TYPE = #{regPersonType,jdbcType=INTEGER},
+            </if>
+            <if test="timeFlag != null">
+                TIME_FLAG = #{timeFlag,jdbcType=INTEGER},
+            </if>
+            <if test="isValid != null">
+                IS_VALID = #{isValid,jdbcType=INTEGER},
+            </if>
+            <if test="isHadCallBack != null">
+                IS_HAD_CALL_BACK = #{isHadCallBack,jdbcType=INTEGER},
+            </if>
+            <if test="refundTime != null">
+                REFUND_TIME = #{refundTime,jdbcType=BIGINT},
+            </if>
+            <if test="payTime != null">
+                PAY_TIME = #{payTime,jdbcType=BIGINT},
+            </if>
+            <if test="receiptNum != null">
+                RECEIPT_NUM = #{receiptNum,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeMode != null">
+                TRADE_MODE = #{tradeMode,jdbcType=VARCHAR},
+            </if>
+            <if test="appId != null">
+                APP_ID = #{appId,jdbcType=VARCHAR},
+            </if>
+            <if test="cancelSerialNo != null">
+                cancel_Serial_No = #{cancelSerialNo,jdbcType=VARCHAR},
+            </if>
+            <if test="cancelBillNo != null">
+                cancel_Bill_No = #{cancelBillNo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateById" parameterType="com.yy.easyhealth.biz.register.entity.RegisterRecord">
+        update
+        <include refid="Choose_Hash_Table_Name"/>
+        set HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR},
+        HOSPITAL_CODE = #{hospitalCode,jdbcType=VARCHAR},
+        BRANCH_ID = #{branchHospitalId,jdbcType=VARCHAR},
+        BRANCH_CODE = #{branchHospitalCode,jdbcType=VARCHAR},
+        UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+        REG_STATUS = #{regStatus,jdbcType=INTEGER},
+        PAY_STATUS = #{payStatus,jdbcType=INTEGER},
+        CARD_TYPE = #{cardType,jdbcType=INTEGER},
+        CARD_NO = #{cardNo,jdbcType=VARCHAR},
+        USER_ID = #{userId,jdbcType=VARCHAR},
+        OPEN_ID = #{openId,jdbcType=VARCHAR},
+        IS_EXCEPTION = #{isException,jdbcType=INTEGER},
+        IS_HANDLE_SUCCESS = #{isHandleSuccess,jdbcType=INTEGER},
+        HANDLE_COUNT = #{handleCount,jdbcType=INTEGER},
+        HANDLE_LOG = #{handleLog,jdbcType=VARCHAR},
+        REG_TYPE = #{regType,jdbcType=INTEGER},
+        PATIENT_NAME = #{patientName,jdbcType=VARCHAR},
+        PATIENT_MOBILE = #{patientMobile,jdbcType=VARCHAR},
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+        ORDER_NO_HASH_VAL = #{orderNoHashVal,jdbcType=INTEGER},
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+        CATEGORY = #{category,jdbcType=INTEGER},
+        DOCTOR_CODE = #{doctorCode,jdbcType=VARCHAR},
+        DOCTOR_NAME = #{doctorName,jdbcType=VARCHAR},
+        DOCTOR_TITLE = #{doctorTitle,jdbcType=VARCHAR},
+        REGISTER_TIME = #{registerTime,jdbcType=BIGINT},
+        PAY_TIMEOUT_TIME = #{payTimeoutTime,jdbcType=BIGINT},
+        SCHEDULE_DATE = #{scheduleDate,jdbcType=DATE},
+        BEGIN_TIME = #{beginTime,jdbcType=TIME},
+        END_TIME = #{endTime,jdbcType=TIME},
+        REG_MODE = #{regMode,jdbcType=INTEGER},
+        REG_FEE = #{regFee,jdbcType=INTEGER},
+        REAL_REG_FEE = #{realRegFee,jdbcType=INTEGER},
+        FEE_DESC = #{feeDesc,jdbcType=VARCHAR},
+        HIS_ORD_NO = #{hisOrdNo,jdbcType=VARCHAR},
+        SERIAL_NUM = #{serialNum,jdbcType=VARCHAR},
+        VISIT_LOCATION = #{visitLocation,jdbcType=VARCHAR},
+        BARCODE = #{barcode,jdbcType=VARCHAR},
+        VISIT_DESC = #{visitDesc,jdbcType=VARCHAR},
+        REG_SOURCE = #{regSource,jdbcType=INTEGER},
+        REG_PERSON_TYPE = #{regPersonType,jdbcType=INTEGER},
+        TIME_FLAG = #{timeFlag,jdbcType=INTEGER},
+        TREAT_FEE = #{treatFee,jdbcType=INTEGER},
+        REAL_TREAT_FEE = #{realTreatFee,jdbcType=INTEGER},
+        ONLINE_PAYMENT_TYPE = #{onlinePaymentType,jdbcType=INTEGER},
+        IS_VALID = #{isValid,jdbcType=INTEGER},
+        IS_HAD_CALL_BACK = #{isHadCallBack,jdbcType=INTEGER},
+        REFUND_TIME = #{refundTime,jdbcType=BIGINT},
+        PAY_TIME = #{payTime,jdbcType=BIGINT},
+        RECEIPT_NUM = #{receiptNum,jdbcType=VARCHAR},
+        TRADE_MODE = #{tradeMode,jdbcType=VARCHAR},
+        DNH = #{dnh,jdbcType=VARCHAR},
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <!-- <resultMap id="stopRegisterRecordResultMap" type="com.yy.easyhealth.biz.register.entity.StopRegisterRecord">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR" />
+        <result column="BRANCH_CODE" property="branchCode" jdbcType="VARCHAR" />
+        <result column="REG_STATUS" property="regStatus" jdbcType="INTEGER" />
+        <result column="PAY_STATUS" property="payStatus" jdbcType="INTEGER" />
+        <result column="REG_TYPE" property="regType" jdbcType="INTEGER" />
+        <result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+        <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+        <result column="AGT_ORD_NUM" property="agtOrdNum" jdbcType="VARCHAR" />
+        <result column="REG_FEE" property="regFee" jdbcType="VARCHAR" />
+        <result column="REAL_REG_FEE" property="realRegFee" jdbcType="VARCHAR" />
+        <result column="TREAT_FEE" property="treatFee" jdbcType="VARCHAR" />
+        <result column="REAL_TREAT_FEE" property="realTreatFee" jdbcType="VARCHAR" />
+        <result column="HIS_ORD_NO" property="hisOrdNo" jdbcType="VARCHAR" />
+        <result column="IS_EXCEPTION" property="isException" jdbcType="INTEGER" />
+    </resultMap> -->
+    <select id="findStopRegisterRecord" resultMap="RegisterRecordResultMap" parameterType="java.util.Map"
+            statementType="STATEMENT">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        v_all_medical_card
+        AS r
+        WHERE
+        (r.PAY_STATUS = 1 OR r.PAY_STATUS = 2)
+        AND (r.IS_EXCEPTION = 0 OR r.IS_EXCEPTION IS NULL)
+        AND CONCAT(r.HOSPITAL_CODE , r.ORDER_NO) in (${condition})
+    </select>
+
+
+    <select id="findStopRegisterRecordPoll" resultMap="RegisterRecordResultMap" parameterType="java.util.Map"
+            statementType="STATEMENT">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        <include refid="Choose_Hash_Table_Name"/>
+        AS r
+        WHERE
+        (r.PAY_STATUS = 1 OR r.PAY_STATUS = 2)
+        AND r.REG_STATUS != 4
+        <!--AND (r.IS_EXCEPTION = 0 OR r.IS_EXCEPTION IS NULL)-->
+        AND CONCAT(r.BRANCH_CODE , r.HIS_ORD_NO) in (${condition})
+    </select>
+
+    <select id="findStopRegisterRecordByOrderNo" resultMap="RegisterRecordResultMap" parameterType="java.util.Map"
+            statementType="STATEMENT">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        <foreach item="item" index="index" collection="hashTableName" open="(" separator="UNION" close=")">
+            SELECT * FROM ${item} WHERE ORDER_NO = '${orderNo}'
+        </foreach>
+        AS r
+    </select>
+
+    <sql id="Down_Register_Record_Column_List">
+	    ID, HOSPITAL_ID, HOSPITAL_CODE, HOSPITAL_NAME ,BRANCH_ID, BRANCH_CODE, AGT_ORD_NUM,AGT_REFUND_ORD_NUM,
+	    HIS_ORD_NO,REFUND_HISORD_NO,PAY_STATUS,ORDER_NO,REFUND_ORDER_NO,REAL_TREAT_FEE,REAL_REG_FEE,REG_MODE,REG_TYPE,
+	    PATIENT_NAME
+	</sql>
+
+    <select id="findDownRegisterRecord" resultMap="RegisterRecordResultMap" parameterType="java.util.Map"
+            statementType="STATEMENT">
+        SELECT<include refid="Down_Register_Record_Column_List"/>,
+        '1' TRADE_TYPE,FROM_UNIXTIME(PAY_TIME/1000,'%Y-%m-%d %H:%i:%S') AS TRADE_TIME,SCHEDULE_DATE,IS_INSURANCE,TOTAL_FEE,INSURANCE_AMOUNT
+        FROM ${hashTableName} where HOSPITAL_ID = '${hospitalId}' and REG_STATUS in (1, 2, 4, 20, 22)
+        AND FROM_UNIXTIME(PAY_TIME/1000) BETWEEN '${startTime}' and '${endTime}' AND PAY_STATUS = 2
+        <if test="branchCode != null and branchCode != ''">
+            AND BRANCH_CODE = '${branchCode}'
+        </if>
+        <if test="tradeMode != null and tradeMode != ''">
+            AND REG_MODE = '${tradeMode}'
+        </if>
+        
+        <!-- 退单，拆分出支付单记录 -->
+        UNION ALL
+        SELECT<include refid="Down_Register_Record_Column_List"/>, '1'
+        TRADE_TYPE,FROM_UNIXTIME(PAY_TIME/1000,'%Y-%m-%d %H:%i:%S') AS TRADE_TIME,SCHEDULE_DATE,IS_INSURANCE,TOTAL_FEE,INSURANCE_AMOUNT
+        FROM ${hashTableName} where
+        HOSPITAL_ID = '${hospitalId}' and REG_STATUS in (1, 2, 4, 20, 22)
+        AND FROM_UNIXTIME(PAY_TIME/1000) BETWEEN '${startTime}' and '${endTime}'  AND PAY_STATUS = 3
+        <if test="branchCode != null and branchCode != ''">
+            AND BRANCH_CODE = '${branchCode}'
+        </if>
+        <if test="tradeMode != null and tradeMode != ''">
+            AND REG_MODE = '${tradeMode}'
+        </if>
+        
+        UNION ALL
+        SELECT<include refid="Down_Register_Record_Column_List"/>, '2'
+        TRADE_TYPE,FROM_UNIXTIME(REFUND_TIME/1000,'%Y-%m-%d %H:%i:%S') AS TRADE_TIME,SCHEDULE_DATE,IS_INSURANCE,TOTAL_FEE,INSURANCE_AMOUNT
+        FROM ${hashTableName} where
+        HOSPITAL_ID = '${hospitalId}' and REG_STATUS in (1, 2, 4, 20, 22)
+        AND FROM_UNIXTIME(REFUND_TIME/1000) BETWEEN '${startTime}' and '${endTime}'  AND PAY_STATUS = 3
+        <if test="branchCode != null and branchCode != ''">
+            AND BRANCH_CODE = '${branchCode}'
+        </if>
+        <if test="tradeMode != null and tradeMode != ''">
+            AND REG_MODE = '${tradeMode}'
+        </if>
+        ORDER BY ORDER_NO,TRADE_TYPE DESC
+    </select>
+
+    <select id="findDownRegisterRecordByScheduleDate"
+            resultMap="RegisterRecordResultMap" parameterType="java.util.Map" statementType="STATEMENT">
+        SELECT
+            <include refid="Down_Register_Record_Column_List"/>, '1'
+            TRADE_TYPE,SCHEDULE_DATE,FROM_UNIXTIME(PAY_TIME/1000,'%Y-%m-%d %H:%i:%S') AS TRADE_TIME ,
+            IS_INSURANCE
+        FROM ${hashTableName}
+        WHERE
+            HOSPITAL_ID = '${hospitalId}'
+            AND REG_STATUS IN (1, 2, 4, 20)
+            AND SCHEDULE_DATE BETWEEN '${startDate}' AND '${endDate}'
+           <!-- AND PAY_TIME > 0-->
+<!--            已支付订单 -->
+           AND PAY_STATUS = 2
+            <if test="branchCode != null and branchCode != ''">
+                AND BRANCH_CODE = '${branchCode}'
+            </if>
+            <if test="tradeMode != null and tradeMode != ''">
+                AND REG_MODE = '${tradeMode}'
+            </if>
+            <if test="regType != null and regType != ''">
+                AND REG_TYPE = '${regType}'
+            </if>
+            <if test="tradeStartDate != null and tradeStartDate != '' and tradeEndDate != null and tradeEndDate != ''">
+                AND FROM_UNIXTIME(PAY_TIME/1000,'%Y-%m-%d') BETWEEN '${tradeStartDate}' AND '${tradeEndDate}'
+            </if>
+
+		<!-- 退单，拆分出支付单记录 -->
+        UNION ALL
+        SELECT
+            <include refid="Down_Register_Record_Column_List"/>, '1'
+            TRADE_TYPE,SCHEDULE_DATE,FROM_UNIXTIME(PAY_TIME/1000,'%Y-%m-%d %H:%i:%S') AS TRADE_TIME ,
+            IS_INSURANCE
+        FROM ${hashTableName}
+        WHERE
+            HOSPITAL_ID = '${hospitalId}'
+            AND REG_STATUS IN (1, 2, 4, 20)
+            AND SCHEDULE_DATE BETWEEN '${startDate}' AND '${endDate}'
+<!--             AND REFUND_TIME > 0 -->
+<!--            已退费订单 -->
+            AND PAY_STATUS = 3
+            <if test="branchCode != null and branchCode != ''">
+                AND BRANCH_CODE = '${branchCode}'
+            </if>
+            <if test="tradeMode != null and tradeMode != ''">
+                AND REG_MODE = '${tradeMode}'
+            </if>
+            <if test="regType != null and regType != ''">
+                AND REG_TYPE = '${regType}'
+            </if>
+            <if test="tradeStartDate != null and tradeStartDate != '' and tradeEndDate != null and tradeEndDate != ''">
+                AND FROM_UNIXTIME(PAY_TIME/1000,'%Y-%m-%d') BETWEEN '${tradeStartDate}' AND '${tradeEndDate}'
+            </if>
+
+		UNION ALL
+        SELECT
+            <include refid="Down_Register_Record_Column_List"/>, '2'
+            TRADE_TYPE,SCHEDULE_DATE,FROM_UNIXTIME(REFUND_TIME/1000,'%Y-%m-%d %H:%i:%S') AS TRADE_TIME ,
+            IS_INSURANCE
+        FROM ${hashTableName}
+        WHERE
+            HOSPITAL_ID = '${hospitalId}'
+            AND REG_STATUS IN (1, 2, 4, 20)
+            AND SCHEDULE_DATE BETWEEN '${startDate}' AND '${endDate}'
+<!--             AND REFUND_TIME > 0 -->
+<!--            已退费订单 -->
+            AND PAY_STATUS = 3
+            <if test="branchCode != null and branchCode != ''">
+                AND BRANCH_CODE = '${branchCode}'
+            </if>
+            <if test="tradeMode != null and tradeMode != ''">
+                AND REG_MODE = '${tradeMode}'
+            </if>
+            <if test="regType != null and regType != ''">
+                AND REG_TYPE = '${regType}'
+            </if>
+            <if test="tradeStartDate != null and tradeStartDate != '' and tradeEndDate != null and tradeEndDate != ''">
+                AND FROM_UNIXTIME(REFUND_TIME/1000,'%Y-%m-%d') BETWEEN '${tradeStartDate}' AND '${tradeEndDate}'
+            </if>
+
+        ORDER BY ORDER_NO,TRADE_TYPE DESC
+    </select>
+
+    <select id="findRegisterRecordByIdAndHashTableName" resultMap="RegisterRecordResultMap"
+            parameterType="java.util.Map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        <include refid="Choose_Hash_Table_Name"/>
+        AS r
+        WHERE r.ID = #{id}
+    </select>
+
+    <!-- 按照scheduledate来找挂号记录 -->
+    <select id="findRecordsForVisitWarn" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where
+        SCHEDULE_DATE = #{scheduleDate ,jdbcType=VARCHAR}
+        AND REG_STATUS = 1
+        AND PAY_STATUS = 2
+    </select>
+
+
+    <!-- 通过userId, appCode来找挂号记录 -->
+    <select id="findRecordsByOpenIdAndAppCode" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where
+        USER_ID = #{userId ,jdbcType=VARCHAR}
+        <if test="appCode != null and appCode != ''">
+            AND APP_CODE = #{appCode, jdbcType=VARCHAR}
+        </if>
+        order by REGISTER_TIME desc
+    </select>
+    
+    <update id="updateRecordForRegYbPayMent" parameterType="com.yy.easyhealth.biz.register.entity.RegisterRecord">
+        update
+        <include refid="Choose_Hash_Table_Name"/>
+        <set>
+            <if test="realRegFee != null">
+                REAL_REG_FEE = #{realRegFee,jdbcType=INTEGER},
+            </if>
+            <if test="realTreatFee != null">
+                REAL_TREAT_FEE = #{realTreatFee,jdbcType=INTEGER},
+            </if>
+            <if test="accountAmount != null">
+                ACCOUNT_AMOUNT = #{accountAmount,jdbcType=VARCHAR},
+            </if>
+            <if test="insuranceAmount != null">
+                INSURANCE_AMOUNT = #{insuranceAmount,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ORDER_NO = #{orderNo,jdbcType=VARCHAR} AND ORDER_NO_HASH_VAL = #{orderNoHashVal ,jdbcType=INTEGER}
+    </update>
+
+    <select id="getRegisterRecordByOrderNo" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        select * from (select * from BIZ_REGISTER_RECORD_1 where ORDER_NO = #{orderNo ,jdbcType=VARCHAR}
+            union all
+            select * from BIZ_REGISTER_RECORD_2 where ORDER_NO = #{orderNo ,jdbcType=VARCHAR}
+            union all
+            select * from BIZ_REGISTER_RECORD_3 where ORDER_NO = #{orderNo ,jdbcType=VARCHAR}
+            union all
+            select * from BIZ_REGISTER_RECORD_4 where ORDER_NO = #{orderNo ,jdbcType=VARCHAR}
+            union all
+            select * from BIZ_REGISTER_RECORD_5 where ORDER_NO = #{orderNo ,jdbcType=VARCHAR}
+            union all
+            select * from BIZ_REGISTER_RECORD_6 where ORDER_NO = #{orderNo ,jdbcType=VARCHAR}
+            union all
+            select * from BIZ_REGISTER_RECORD_7 where ORDER_NO = #{orderNo ,jdbcType=VARCHAR}
+            union all
+            select * from BIZ_REGISTER_RECORD_8 where ORDER_NO = #{orderNo ,jdbcType=VARCHAR}
+            union all
+            select * from BIZ_REGISTER_RECORD_9 where ORDER_NO = #{orderNo ,jdbcType=VARCHAR}
+            union all
+            select * from BIZ_REGISTER_RECORD_10 where ORDER_NO = #{orderNo ,jdbcType=VARCHAR}) a
+    </select>
+
+    <select id="findByReceiptId" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where RECEIPT_ID = #{receiptId,jdbcType=VARCHAR} ORDER BY REGISTER_TIME DESC LIMIT 1
+    </select>
+
+    <select id="findByHisOrderNo" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where HIS_ORD_NO = #{hisOrderNo,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findAllNotPayClinicRegs" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        SELECT <include refid="Base_Column_List"/> FROM (
+        SELECT * FROM BIZ_REGISTER_RECORD_1 WHERE CHECK_FEE IS NOT NULL AND PAY_STATUS=2 UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_2 WHERE CHECK_FEE IS NOT NULL AND PAY_STATUS=2 UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_3 WHERE CHECK_FEE IS NOT NULL AND PAY_STATUS=2 UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_4 WHERE CHECK_FEE IS NOT NULL AND PAY_STATUS=2 UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_5 WHERE CHECK_FEE IS NOT NULL AND PAY_STATUS=2 UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_6 WHERE CHECK_FEE IS NOT NULL AND PAY_STATUS=2 UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_7 WHERE CHECK_FEE IS NOT NULL AND PAY_STATUS=2 UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_8 WHERE CHECK_FEE IS NOT NULL AND PAY_STATUS=2 UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_9 WHERE CHECK_FEE IS NOT NULL AND PAY_STATUS=2 UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_10 WHERE CHECK_FEE IS NOT NULL AND PAY_STATUS=2 ) A
+        WHERE 1=1
+        AND ((UNIX_TIMESTAMP(NOW()) - A.PAY_TIME/1000 )/60)>#{outTimeSecond,jdbcType=INTEGER}
+        AND SCHEDULE_DATE >= DATE_SUB(CURDATE(),INTERVAL 2 DAY)
+        AND ( EXISTS (
+        SELECT 1 FROM (
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_1 WHERE PAY_STATUS!=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_2 WHERE PAY_STATUS!=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_3 WHERE PAY_STATUS!=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_4 WHERE PAY_STATUS!=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_5 WHERE PAY_STATUS!=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_6 WHERE PAY_STATUS!=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_7 WHERE PAY_STATUS!=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_8 WHERE PAY_STATUS!=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_9 WHERE PAY_STATUS!=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_10) B
+        WHERE  B.MZFEE_ID=CONCAT(A.RECEIPT_NUM,':',A.RECEIPT_ID,':',A.RECEIPT_TYPE))
+        OR
+        NOT EXISTS (
+        SELECT 1 FROM (
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_1 UNION
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_2 UNION
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_3 UNION
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_4 UNION
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_5 UNION
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_6 UNION
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_7 UNION
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_8 UNION
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_9 UNION
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_10) B
+        WHERE  B.MZFEE_ID=CONCAT(A.RECEIPT_NUM,':',A.RECEIPT_ID,':',A.RECEIPT_TYPE))
+        )
+    </select>
+
+    <select id="findAllPayConversionRegs" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        SELECT <include refid="Base_Column_List"/> FROM (
+        SELECT * FROM BIZ_REGISTER_RECORD_1 WHERE PAY_STATUS=2 AND SCHEDULE_DATE >= DATE_SUB(CURDATE(),INTERVAL 2 DAY) UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_2 WHERE PAY_STATUS=2 AND SCHEDULE_DATE >= DATE_SUB(CURDATE(),INTERVAL 2 DAY) UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_3 WHERE PAY_STATUS=2 AND SCHEDULE_DATE >= DATE_SUB(CURDATE(),INTERVAL 2 DAY) UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_4 WHERE PAY_STATUS=2 AND SCHEDULE_DATE >= DATE_SUB(CURDATE(),INTERVAL 2 DAY) UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_5 WHERE PAY_STATUS=2 AND SCHEDULE_DATE >= DATE_SUB(CURDATE(),INTERVAL 2 DAY) UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_6 WHERE PAY_STATUS=2 AND SCHEDULE_DATE >= DATE_SUB(CURDATE(),INTERVAL 2 DAY) UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_7 WHERE PAY_STATUS=2 AND SCHEDULE_DATE >= DATE_SUB(CURDATE(),INTERVAL 2 DAY) UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_8 WHERE PAY_STATUS=2 AND SCHEDULE_DATE >= DATE_SUB(CURDATE(),INTERVAL 2 DAY) UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_9 WHERE PAY_STATUS=2 AND SCHEDULE_DATE >= DATE_SUB(CURDATE(),INTERVAL 2 DAY) UNION ALL
+        SELECT * FROM BIZ_REGISTER_RECORD_10 WHERE PAY_STATUS=2 AND SCHEDULE_DATE >= DATE_SUB(CURDATE(),INTERVAL 2 DAY)) A
+        WHERE 1=1
+        AND (
+        EXISTS(
+        SELECT 1 FROM (
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS FROM BIZ_REGISTER_RECORD_1 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS FROM BIZ_REGISTER_RECORD_2 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS FROM BIZ_REGISTER_RECORD_3 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS FROM BIZ_REGISTER_RECORD_4 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS FROM BIZ_REGISTER_RECORD_5 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS FROM BIZ_REGISTER_RECORD_6 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS FROM BIZ_REGISTER_RECORD_7 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS FROM BIZ_REGISTER_RECORD_8 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS FROM BIZ_REGISTER_RECORD_9 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS FROM BIZ_REGISTER_RECORD_10 WHERE PAY_STATUS=2) B
+        WHERE A.ORDER_NO=B.CONVERSION_ORDER_NO AND A.CHECK_FEE IS NULL
+        )
+        OR
+        EXISTS(
+        SELECT 1 FROM (
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS,RECEIPT_NUM,RECEIPT_ID,RECEIPT_TYPE FROM BIZ_REGISTER_RECORD_1 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS,RECEIPT_NUM,RECEIPT_ID,RECEIPT_TYPE FROM BIZ_REGISTER_RECORD_2 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS,RECEIPT_NUM,RECEIPT_ID,RECEIPT_TYPE FROM BIZ_REGISTER_RECORD_3 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS,RECEIPT_NUM,RECEIPT_ID,RECEIPT_TYPE FROM BIZ_REGISTER_RECORD_4 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS,RECEIPT_NUM,RECEIPT_ID,RECEIPT_TYPE FROM BIZ_REGISTER_RECORD_5 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS,RECEIPT_NUM,RECEIPT_ID,RECEIPT_TYPE FROM BIZ_REGISTER_RECORD_6 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS,RECEIPT_NUM,RECEIPT_ID,RECEIPT_TYPE FROM BIZ_REGISTER_RECORD_7 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS,RECEIPT_NUM,RECEIPT_ID,RECEIPT_TYPE FROM BIZ_REGISTER_RECORD_8 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS,RECEIPT_NUM,RECEIPT_ID,RECEIPT_TYPE FROM BIZ_REGISTER_RECORD_9 WHERE PAY_STATUS=2 UNION ALL
+        SELECT CONVERSION_ORDER_NO,PAY_STATUS,RECEIPT_NUM,RECEIPT_ID,RECEIPT_TYPE FROM BIZ_REGISTER_RECORD_10 WHERE PAY_STATUS=2) B
+        WHERE A.ORDER_NO=B.CONVERSION_ORDER_NO AND A.CHECK_FEE IS NOT NULL
+        AND
+        EXISTS (
+        SELECT 1 FROM (
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_1 WHERE PAY_STATUS=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_2 WHERE PAY_STATUS=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_3 WHERE PAY_STATUS=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_4 WHERE PAY_STATUS=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_5 WHERE PAY_STATUS=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_6 WHERE PAY_STATUS=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_7 WHERE PAY_STATUS=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_8 WHERE PAY_STATUS=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_9 WHERE PAY_STATUS=2 UNION ALL
+        SELECT MZFEE_ID,PAY_STATUS FROM BIZ_CLINIC_RECORD_10) C
+        WHERE  C.MZFEE_ID=CONCAT(B.RECEIPT_NUM,':',B.RECEIPT_ID,':',B.RECEIPT_TYPE))
+        ))
+    </select>
+    <select id="findByConversionOrderNo" resultMap="RegisterRecordResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Choose_Hash_Table_Name"/>
+        where CONVERSION_ORDER_NO = #{conversionOrderNo ,jdbcType=VARCHAR}
+        ORDER BY REGISTER_TIME desc
+    </select>
+    
+        
+    <!--深二对账挂号查询，按支付时间  -->
+    <select id="findDownShenerRegisterRecord" resultMap="RegisterRecordResultMap" parameterType="java.util.Map"
+            statementType="STATEMENT">
+        SELECT<include refid="Down_Register_Record_Column_List"/>,
+        '1' TRADE_TYPE,FROM_UNIXTIME(PAY_TIME/1000,'%Y-%m-%d %H:%i:%S') AS TRADE_TIME,SCHEDULE_DATE,IS_INSURANCE,TOTAL_FEE,INSURANCE_AMOUNT
+        FROM ${hashTableName} where HOSPITAL_ID = '${hospitalId}' and REG_STATUS in (1, 2, 4, 20, 22)
+        AND FROM_UNIXTIME(PAY_TIME/1000) BETWEEN '${startTime}' and '${endTime}' AND PAY_STATUS = 2
+        <if test="branchCode != null and branchCode != ''">
+            AND BRANCH_CODE = '${branchCode}'
+        </if>
+        <if test="tradeMode != null and tradeMode != ''">
+            AND REG_MODE = '${tradeMode}'
+        </if>
+        <if test="orderNo != null and orderNo != ''">
+            AND ORDER_NO = '${orderNo}'
+        </if>
+        
+        <!-- 退单，拆分出支付单记录 -->
+        UNION ALL
+        SELECT<include refid="Down_Register_Record_Column_List"/>, '1'
+        TRADE_TYPE,FROM_UNIXTIME(PAY_TIME/1000,'%Y-%m-%d %H:%i:%S') AS TRADE_TIME,SCHEDULE_DATE,IS_INSURANCE,TOTAL_FEE,INSURANCE_AMOUNT
+        FROM ${hashTableName} where
+        HOSPITAL_ID = '${hospitalId}' and REG_STATUS in (1, 2, 4, 20, 22)
+        AND FROM_UNIXTIME(PAY_TIME/1000) BETWEEN '${startTime}' and '${endTime}'  AND PAY_STATUS = 3
+        <if test="branchCode != null and branchCode != ''">
+            AND BRANCH_CODE = '${branchCode}'
+        </if>
+        <if test="tradeMode != null and tradeMode != ''">
+            AND REG_MODE = '${tradeMode}'
+        </if>
+        <if test="orderNo != null and orderNo != ''">
+            AND ORDER_NO = '${orderNo}'
+        </if>
+        
+        UNION ALL
+        SELECT<include refid="Down_Register_Record_Column_List"/>, '2'
+        TRADE_TYPE,FROM_UNIXTIME(REFUND_TIME/1000,'%Y-%m-%d %H:%i:%S') AS TRADE_TIME,SCHEDULE_DATE,IS_INSURANCE,TOTAL_FEE,INSURANCE_AMOUNT
+        FROM ${hashTableName} where
+        HOSPITAL_ID = '${hospitalId}' and REG_STATUS in (1, 2, 4, 20, 22)
+        AND FROM_UNIXTIME(REFUND_TIME/1000) BETWEEN '${startTime}' and '${endTime}'  AND PAY_STATUS = 3
+        <if test="branchCode != null and branchCode != ''">
+            AND BRANCH_CODE = '${branchCode}'
+        </if>
+        <if test="tradeMode != null and tradeMode != ''">
+            AND REG_MODE = '${tradeMode}'
+        </if>
+        <if test="orderNo != null and orderNo != ''">
+            AND ORDER_NO = '${orderNo}'
+        </if>
+        ORDER BY ORDER_NO,TRADE_TYPE DESC
+    </select>
+    
+    <select id="findDownShenerRegisterRecordByScheduleDate"
+            resultMap="RegisterRecordResultMap" parameterType="java.util.Map" statementType="STATEMENT">
+        SELECT
+            <include refid="Down_Register_Record_Column_List"/>, '1'
+            TRADE_TYPE,SCHEDULE_DATE,FROM_UNIXTIME(PAY_TIME/1000,'%Y-%m-%d %H:%i:%S') AS TRADE_TIME ,
+            IS_INSURANCE
+        FROM ${hashTableName}
+        WHERE
+            HOSPITAL_ID = '${hospitalId}'
+            AND REG_STATUS IN (1, 2, 4, 20)
+            AND SCHEDULE_DATE BETWEEN '${startDate}' AND '${endDate}'
+           <!-- AND PAY_TIME > 0-->
+<!--            已支付订单 -->
+           AND PAY_STATUS = 2
+            <if test="branchCode != null and branchCode != ''">
+                AND BRANCH_CODE = '${branchCode}'
+            </if>
+            <if test="tradeMode != null and tradeMode != ''">
+                AND REG_MODE = '${tradeMode}'
+            </if>
+            <if test="regType != null and regType != ''">
+                AND REG_TYPE = '${regType}'
+            </if>
+            <if test="tradeStartDate != null and tradeStartDate != '' and tradeEndDate != null and tradeEndDate != ''">
+                AND FROM_UNIXTIME(PAY_TIME/1000,'%Y-%m-%d') BETWEEN '${tradeStartDate}' AND '${tradeEndDate}'
+            </if>
+            <if test="orderNo != null and orderNo != ''">
+            AND ORDER_NO = '${orderNo}'
+        	</if>
+
+		<!-- 退单，拆分出支付单记录 -->
+        UNION ALL
+        SELECT
+            <include refid="Down_Register_Record_Column_List"/>, '1'
+            TRADE_TYPE,SCHEDULE_DATE,FROM_UNIXTIME(PAY_TIME/1000,'%Y-%m-%d %H:%i:%S') AS TRADE_TIME ,
+            IS_INSURANCE
+        FROM ${hashTableName}
+        WHERE
+            HOSPITAL_ID = '${hospitalId}'
+            AND REG_STATUS IN (1, 2, 4, 20)
+            AND SCHEDULE_DATE BETWEEN '${startDate}' AND '${endDate}'
+<!--             AND REFUND_TIME > 0 -->
+<!--            已退费订单 -->
+            AND PAY_STATUS = 3
+            <if test="branchCode != null and branchCode != ''">
+                AND BRANCH_CODE = '${branchCode}'
+            </if>
+            <if test="tradeMode != null and tradeMode != ''">
+                AND REG_MODE = '${tradeMode}'
+            </if>
+            <if test="regType != null and regType != ''">
+                AND REG_TYPE = '${regType}'
+            </if>
+            <if test="tradeStartDate != null and tradeStartDate != '' and tradeEndDate != null and tradeEndDate != ''">
+                AND FROM_UNIXTIME(PAY_TIME/1000,'%Y-%m-%d') BETWEEN '${tradeStartDate}' AND '${tradeEndDate}'
+            </if>
+            <if test="orderNo != null and orderNo != ''">
+            AND ORDER_NO = '${orderNo}'
+       		</if>
+
+		UNION ALL
+        SELECT
+            <include refid="Down_Register_Record_Column_List"/>, '2'
+            TRADE_TYPE,SCHEDULE_DATE,FROM_UNIXTIME(REFUND_TIME/1000,'%Y-%m-%d %H:%i:%S') AS TRADE_TIME ,
+            IS_INSURANCE
+        FROM ${hashTableName}
+        WHERE
+            HOSPITAL_ID = '${hospitalId}'
+            AND REG_STATUS IN (1, 2, 4, 20)
+            AND SCHEDULE_DATE BETWEEN '${startDate}' AND '${endDate}'
+<!--             AND REFUND_TIME > 0 -->
+<!--            已退费订单 -->
+            AND PAY_STATUS = 3
+            <if test="branchCode != null and branchCode != ''">
+                AND BRANCH_CODE = '${branchCode}'
+            </if>
+            <if test="tradeMode != null and tradeMode != ''">
+                AND REG_MODE = '${tradeMode}'
+            </if>
+            <if test="regType != null and regType != ''">
+                AND REG_TYPE = '${regType}'
+            </if>
+            <if test="tradeStartDate != null and tradeStartDate != '' and tradeEndDate != null and tradeEndDate != ''">
+                AND FROM_UNIXTIME(REFUND_TIME/1000,'%Y-%m-%d') BETWEEN '${tradeStartDate}' AND '${tradeEndDate}'
+            </if>
+            <if test="orderNo != null and orderNo != ''">
+            AND ORDER_NO = '${orderNo}'
+        	</if>
+
+        ORDER BY ORDER_NO,TRADE_TYPE DESC
+    </select>
+</mapper>

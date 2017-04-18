@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.platform.msgpush.entity.EHDeviceInfo">
+
+	<resultMap id="eHDeviceInfoMap" type="com.yy.platform.msgpush.entity.EHDeviceInfo">
+		<id column="ID" property="id" />
+		<result column="USER_ID" property="userId" />
+		<result column="APP_ID" property="appId"/>
+		<result column="APP_TYPE" property="appType" />
+		<result column="DEVICE_ID" property="deviceId" />
+		<result column="DEVICE_TYPE" property="deviceType" />
+		<result column="CHANNEL_ID" property="channelId" />
+		<result column="CP" property="cp" />
+		<result column="CT" property="ct" />
+		<result column="EP" property="ep" />
+		<result column="ET" property="et" />
+	</resultMap>
+	
+	<sql id="Choose_HashTable_Name">
+	         <choose>
+            <when test="hashTableName == 'EH_DEVICE_INFO_1'">
+                EH_DEVICE_INFO_1
+            </when>
+            <when test="hashTableName == 'EH_DEVICE_INFO_2'">
+                EH_DEVICE_INFO_2 
+            </when>
+            <when test="hashTableName == 'EH_DEVICE_INFO_3'">
+                EH_DEVICE_INFO_3 
+            </when>
+            <when test="hashTableName == 'EH_DEVICE_INFO_4'">
+                EH_DEVICE_INFO_4 
+            </when>
+            <when test="hashTableName == 'EH_DEVICE_INFO_5'">
+                EH_DEVICE_INFO_5 
+            </when>
+            <when test="hashTableName == 'EH_DEVICE_INFO_6'">
+                EH_DEVICE_INFO_6 
+            </when>
+            <when test="hashTableName == 'EH_DEVICE_INFO_7'">
+                EH_DEVICE_INFO_7 
+            </when>
+            <when test="hashTableName == 'EH_DEVICE_INFO_8'">
+                EH_DEVICE_INFO_8 
+            </when>
+            <when test="hashTableName == 'EH_DEVICE_INFO_9'">
+                EH_DEVICE_INFO_9 
+            </when>
+            <when test="hashTableName == 'EH_DEVICE_INFO_10'">
+                EH_DEVICE_INFO_10
+            </when> 
+        </choose>
+	</sql>
+	
+	<sql id="All_Column">
+		ID,USER_ID,APP_ID,APP_TYPE,DEVICE_ID,DEVICE_TYPE,CHANNEL_ID,CP,CT,EP,ET
+	</sql>
+	
+	<insert id="add" parameterType="com.yy.platform.msgpush.entity.EHDeviceInfo">
+		INSERT INTO 
+		 <include refid="Choose_HashTable_Name"></include>
+		(<include refid="All_Column"></include>)
+		VALUES
+		 (#{id}, #{userId}, #{appId}, #{appType}, #{deviceId}, #{deviceType},#{channelId},'8b1994dff203407a869161c0946f6e97', now(), '8b1994dff203407a869161c0946f6e97', now());
+	</insert>
+	<select id="findByUserId" parameterType="Map" resultMap="eHDeviceInfoMap">
+		SELECT * FROM 
+		<include refid="Choose_HashTable_Name"></include>
+		 WHERE USER_ID=#{userId}
+	</select>
+	<select id="findByDeviceId" parameterType="Map" resultMap="eHDeviceInfoMap">
+		SELECT * FROM 
+		<include refid="Choose_HashTable_Name"></include>
+ 		WHERE DEVICE_ID=#{deviceId} and DEVICE_TYPE=#{deviceType}
+	</select>
+	<delete id="deleteByUserId" parameterType="com.yy.platform.msgpush.entity.EHDeviceInfo">
+		DELETE FROM <include refid="Choose_HashTable_Name"></include> where USER_ID=#{userId} AND DEVICE_ID=#{deviceId} and DEVICE_TYPE=#{deviceType}
+	</delete>
+	<update id="update" parameterType="com.yy.platform.msgpush.entity.EHDeviceInfo">
+		 	update 
+	         <include refid="Choose_HashTable_Name"></include>
+				SET	USER_ID = #{userId}
+		where 
+			DEVICE_ID=#{deviceId} and DEVICE_TYPE=#{deviceType}
+	</update>
+</mapper>

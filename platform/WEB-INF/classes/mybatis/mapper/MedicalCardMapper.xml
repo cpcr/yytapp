@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+	<resultMap id="medicalCardResultMap" type="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_NAME" property="hospitalName" jdbcType="VARCHAR" />
+		<result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+		<result column="BRANCH_CODE" property="branchCode" jdbcType="VARCHAR" />
+		<result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR" />
+		<result column="PLATFORM" property="platform" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="SEX" property="sex" jdbcType="SMALLINT" />
+		<result column="AGE" property="age" jdbcType="SMALLINT" />
+		<result column="BIRTH" property="birth" jdbcType="VARCHAR" />
+		<result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+		<result column="ID_TYPE" property="idType" jdbcType="SMALLINT" />
+		<result column="ID_NO" property="idNo" jdbcType="VARCHAR" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+		<result column="OWNERSHIP" property="ownership" jdbcType="SMALLINT" />
+		<result column="CARD_TYPE" property="cardType" jdbcType="SMALLINT" />
+		<result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+		<result column="ADMISSION_NO" property="admissionNo" jdbcType="VARCHAR" />
+		<result column="GUARD_NAME" property="guardName" jdbcType="VARCHAR" />
+		<result column="GUARD_ID_TYPE" property="guardIdType" jdbcType="SMALLINT" />
+		<result column="GUARD_ID_NO" property="guardIdNo" jdbcType="VARCHAR" />
+		<result column="GUARD_MOBILE" property="guardMobile" jdbcType="VARCHAR" />
+		<result column="IS_MEDICARE" property="isMedicare" jdbcType="SMALLINT" />
+		<result column="MEDICARE_NO" property="medicareNo" jdbcType="VARCHAR" />
+		<result column="MARK" property="mark" jdbcType="VARCHAR" />
+		<result column="STATE" property="state" jdbcType="SMALLINT" />
+		<result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+		<result column="BIND_WAY" property="bindWay" jdbcType="SMALLINT" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="BIGINT" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="BIGINT" />
+		<result column="FAMILY_ID" property="familyId" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="All_Column">
+		ID, USER_ID, BRANCH_ID, BRANCH_CODE, HOSPITAL_ID , HOSPITAL_CODE, PLATFORM, NAME,
+		SEX, AGE, BIRTH, MOBILE, ID_TYPE, HOSPITAL_NAME, BRANCH_NAME,
+		ID_NO, ADDRESS, OPEN_ID, OWNERSHIP, CARD_TYPE,
+		CARD_NO, ADMISSION_NO, GUARD_NAME, GUARD_ID_TYPE, GUARD_ID_NO, GUARD_MOBILE,
+		IS_MEDICARE, MEDICARE_NO, MARK, STATE, PATIENT_ID,
+		BIND_WAY, CREATE_TIME, UPDATE_TIME, FAMILY_ID
+	</sql>
+	<sql id="Base_Column">
+		ID, USER_ID, BRANCH_ID, BRANCH_CODE, HOSPITAL_ID , HOSPITAL_CODE, PLATFORM, NAME,
+		SEX, AGE, BIRTH, MOBILE, ID_TYPE, HOSPITAL_NAME, BRANCH_NAME,
+		ID_NO, ADDRESS, OPEN_ID, OWNERSHIP, CARD_TYPE,
+		CARD_NO, ADMISSION_NO, GUARD_NAME, GUARD_ID_TYPE, GUARD_ID_NO, GUARD_MOBILE,
+		IS_MEDICARE, MEDICARE_NO, MARK, STATE, PATIENT_ID,
+		BIND_WAY, CREATE_TIME, UPDATE_TIME, FAMILY_ID
+	</sql>
+	<sql id="Choose_HashTable_Name">
+		<choose>
+			<when test="hashTableName == 'BIZ_MEDICAL_CARD_1'">
+				BIZ_MEDICAL_CARD_1
+			</when>
+			<when test="hashTableName == 'BIZ_MEDICAL_CARD_2'">
+				BIZ_MEDICAL_CARD_2
+			</when>
+			<when test="hashTableName == 'BIZ_MEDICAL_CARD_3'">
+				BIZ_MEDICAL_CARD_3
+			</when>
+			<when test="hashTableName == 'BIZ_MEDICAL_CARD_4'">
+				BIZ_MEDICAL_CARD_4
+			</when>
+			<when test="hashTableName == 'BIZ_MEDICAL_CARD_5'">
+				BIZ_MEDICAL_CARD_5
+			</when>
+			<when test="hashTableName == 'BIZ_MEDICAL_CARD_6'">
+				BIZ_MEDICAL_CARD_6
+			</when>
+			<when test="hashTableName == 'BIZ_MEDICAL_CARD_7'">
+				BIZ_MEDICAL_CARD_7
+			</when>
+			<when test="hashTableName == 'BIZ_MEDICAL_CARD_8'">
+				BIZ_MEDICAL_CARD_8
+			</when>
+			<when test="hashTableName == 'BIZ_MEDICAL_CARD_9'">
+				BIZ_MEDICAL_CARD_9
+			</when>
+			<when test="hashTableName == 'BIZ_MEDICAL_CARD_10'">
+				BIZ_MEDICAL_CARD_10
+			</when>
+		</choose>
+	</sql>
+
+
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		INSERT INTO
+		<include refid="Choose_HashTable_Name"></include>
+		(
+		<include refid="All_Column"></include>
+		)
+		VALUES
+		(#{id},#{userId},#{branchId},#{branchCode},#{hospitalId},#{hospitalCode},#{platform},#{name},
+		#{sex},#{age},#{birth},#{mobile},#{idType},#{hospitalName},#{branchName},#{idNo},
+		#{address},#{openId},#{ownership},#{cardType},#{cardNo}, #{admissionNo},
+		#{guardName},#{guardIdType},#{guardIdNo},#{guardMobile},
+		#{isMedicare},#{medicareNo},#{mark},#{state},#{patientId},
+		#{bindWay},#{createTime},#{updateTime},#{familyId})
+	</insert>
+
+	<!-- 批量插入 -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		INSERT INTO
+		<include refid="Choose_HashTable_Name"></include>
+		(
+		<include refid="All_Column"></include>
+		)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id},#{item.userId},#{item.branchId},#{item.branchCode},#{item.hospitalId},#{item.hospitalCode},#{item.platform},#{item.name},
+			#{item.sex},#{item.age},#{item.birth},#{item.mobile},#{item.idType},#{hospitalName},#{branchName},#{item.idNo},
+			#{item.address},#{item.openId},#{item.ownership},#{item.cardType},#{item.cardNo}, #{item.admissionNo}
+			#{item.guardName},#{item.guardIdType},#{item.guardIdNo},#{item.guardMobile},
+			#{item.isMedicare},#{item.medicareNo},#{item.mark},#{item.state},#{item.patientId},
+			#{item.bindWay},#{item.createTime},#{item.updateTime},#{item.familyId})
+		</foreach>
+	</insert>
+
+	<!-- 更新 -->
+	<update id="update" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		update
+		<include refid="Choose_HashTable_Name"></include>
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				SEX = #{sex,jdbcType=SMALLINT},
+			</if>
+			<if test="hospitalId != null">
+				HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalCode != null">
+				HOSPITAL_CODE = #{hospitalCode,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalName != null">
+				HOSPITAL_NAME = #{hospitalName,jdbcType=VARCHAR},
+			</if>
+			<if test="branchCode != null">
+				BRANCH_CODE = #{branchCode,jdbcType=VARCHAR},
+			</if>
+			<if test="branchId != null">
+				BRANCH_ID = #{branchId,jdbcType=VARCHAR},
+			</if>
+			<if test="branchName != null">
+				BRANCH_NAME = #{branchName,jdbcType=VARCHAR},
+			</if>
+			<if test="age != null">
+				AGE = #{age,jdbcType=SMALLINT},
+			</if>
+			<if test="birth != null">
+				BIRTH = #{birth,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="idType != null">
+				ID_TYPE = #{idType,jdbcType=SMALLINT},
+			</if>
+			<if test="idNo != null">
+				ID_NO = #{idNo,jdbcType=VARCHAR},
+			</if>
+			<if test="admissionNo != null">
+				ADMISSION_NO = #{admissionNo,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				ADDRESS = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="openId != null">
+				OPEN_ID = #{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+                USER_ID = #{userId,jdbcType=VARCHAR},
+            </if>
+			<if test="ownership != null">
+				OWNERSHIP = #{ownership,jdbcType=SMALLINT},
+			</if>
+			<if test="guardName != null">
+				GUARD_NAME = #{guardName,jdbcType=VARCHAR},
+			</if>
+			<if test="guardIdType != null">
+				GUARD_ID_TYPE = #{guardIdType,jdbcType=SMALLINT},
+			</if>
+			<if test="guardIdNo != null">
+				GUARD_ID_NO = #{guardIdNo,jdbcType=VARCHAR},
+			</if>
+			<if test="guardMobile != null">
+				GUARD_MOBILE = #{guardMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="isMedicare != null">
+				IS_MEDICARE = #{isMedicare,jdbcType=SMALLINT},
+			</if>
+			<if test="medicareNo != null">
+				MEDICARE_NO = #{medicareNo,jdbcType=VARCHAR},
+			</if>
+			<if test="mark != null">
+				MARK = #{mark,jdbcType=VARCHAR},
+			</if>
+			<if test="patientId != null">
+				PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				STATE = #{state,jdbcType=SMALLINT},
+			</if>
+			<if test="bindWay != null">
+				BIND_WAY = #{bindWay,jdbcType=SMALLINT},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo,jdbcType=SMALLINT},
+			</if>
+			<if test="cardType != null">
+				CARD_TYPE = #{cardType,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where
+		ID = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 更新familyId -->
+	<update id="updateFamilyId" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		update
+		<include refid="Choose_HashTable_Name"></include>
+		<set>
+			<if test="familyId != null">
+				FAMILY_ID = #{familyId}
+			</if>
+		</set>
+		where
+		ID = #{id}
+	</update>
+
+	<!-- 更新住院信息 -->
+	<update id="updateAdmissionNo" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		update
+		<include refid="Choose_HashTable_Name"></include>
+		<set>
+			<if test="admissionNo != null">
+				ADMISSION_NO = #{admissionNo,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+			</if>
+		</set>
+		where
+		ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 解绑 就诊卡 -->
+	<update id="unbindCard" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		update
+		<include refid="Choose_HashTable_Name"></include>
+		set
+		STATE = #{state}, UPDATE_TIME = now()
+		where ID=#{id}
+	</update>
+
+	<!-- 查询在该医院绑定的就诊卡 -->
+	<select id="findCardsByUserIdAndHospitalCode" resultMap="medicalCardResultMap" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		USER_ID = #{userId}
+		and STATE = 1
+		<if test="hospitalCode != null and hospitalCode != ''">
+			and HOSPITAL_CODE = #{hospitalCode}
+		</if>
+		<if test="branchCode != null and branchCode != ''">
+			and BRANCH_CODE = #{branchCode}
+		</if>
+	</select>
+
+	<!-- 查询在该医院绑定的本人就诊卡（唯一） -->
+	<select id="findCardsByUserIdAndOwnershipAndHospitalCode" resultMap="medicalCardResultMap" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		USER_ID = #{userId}
+		and STATE = 1
+		and OWNERSHIP = 1
+		<if test="hospitalCode != null and hospitalCode != ''">
+			and HOSPITAL_CODE = #{hospitalCode}
+		</if>
+		<if test="branchCode != null and branchCode != ''">
+			and BRANCH_CODE = #{branchCode}
+		</if>
+	</select>
+
+	<!-- 通过Id和HashTable找卡 -->
+	<select id="findByIdAndHashTableName" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		ID = #{id}
+		and STATE = 1
+	</select>
+
+	<!-- 查询绑卡数 -->
+	<select id="getCardCountByUserIdAndHospitalCode" resultType="java.lang.Integer" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		select
+		count(ID) as cardCount
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where USER_ID = #{userId} and HOSPITAL_CODE = #{hospitalCode} and PLATFORM = #{platform} and STATE = 1
+	</select>
+
+	<!-- 通过就诊卡号查找卡(同一分院，就诊卡号唯一) -->
+	<select id="findCardByCardNoAndHospitalCode" resultMap="medicalCardResultMap" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		CARD_NO = #{cardNo}
+		and HOSPITAL_CODE = #{hospitalCode}
+		and PLATFORM = #{platform}
+		<if test="cardType != null and cardType != ''">
+			and CARD_TYPE = #{cardType}
+		</if>
+		and STATE = #{state}
+	</select>
+
+	<!-- 通过就诊卡号查找卡(同一分院，就诊卡号唯一) -->
+	<select id="findCardByIdNoAndHospitalCode" resultMap="medicalCardResultMap" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where ID_NO = #{idNo} and HOSPITAL_CODE = #{hospitalCode} and PLATFORM = #{platform} and ID_TYPE = #{idType} and STATE = #{state}
+	</select>
+
+	<!-- 通过就诊卡号查找卡(同一分院，就诊卡号唯一) -->
+	<select id="findCardByCardNoAndHospitalCodeAndUserId" resultMap="medicalCardResultMap" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where CARD_NO = #{cardNo} and HOSPITAL_CODE = #{hospitalCode}  and PLATFORM = #{platform} and CARD_TYPE = #{cardType}and STATE = #{state} and USER_ID = #{userId}
+	</select>
+
+	<!-- 通过住院号、医院代码查找卡(住院号唯一) -->
+	<select id="findCardByAdmissionNOAndHospitalCodeAndUserIdAndPlatform" resultMap="medicalCardResultMap" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		HOSPITAL_CODE = #{hospitalCode}
+		<if test="userId != null and openId != ''">
+			and USER_ID = #{userId}
+		</if>
+		and PLATFORM = #{platform}
+		and ADMISSION_NO = #{admissionNo}
+		and STATE = #{state}
+	</select>
+
+	<!-- 通过身份证找卡(同一个分院，同一张身份证只能绑定一个诊疗卡) -->
+	<select id="findCardByIdNoAndHospitalCodeAndUserId" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		USER_ID = #{userId}
+		and HOSPITAL_CODE = #{hospitalCode}
+		and PLATFORM = #{platform}
+		and ID_TYPE = #{idType}
+		and ID_NO = #{idNo}
+		and STATE = #{state}
+	</select>
+
+	<select id="findByIdFromHashTable" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where ID = #{id}
+	</select>
+
+	<!-- 查找某个人绑的某类卡 -->
+	<select id="findCardsByUserIdAndHospitalCodeAndOwnership" resultMap="medicalCardResultMap" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where USER_ID = #{userId, jdbcType=VARCHAR} and PLATFORM = #{platform} and HOSPITAL_CODE = #{hospitalCode} and
+		<choose>
+			<when test="ownership == 1">
+				OWNERSHIP = 1 and
+			</when>
+			<otherwise>
+				OWNERSHIP != 1 and
+			</otherwise>
+		</choose>
+		STATE = #{state}
+	</select>
+
+	<resultMap id="simpleMedicalCardResultMap" type="com.yy.platform.datas.cache.vo.SimpleMedicalCard">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR" />
+		<result column="BRANCH_CODE" property="branchCode" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_NAME" property="hospitalName" jdbcType="VARCHAR" />
+		<result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+		<result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR" />
+		<result column="PLATFORM" property="platform" jdbcType="SMALLINT" />
+		<result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+		<result column="CARD_TYPE" property="cardType" jdbcType="SMALLINT" />
+		<result column="OWNERSHIP" property="ownership" jdbcType="SMALLINT" />
+		<result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+		<result column="ADMISSION_NO" property="admissionNo" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="BIGINT" />
+		<result column="SEX" property="sex" jdbcType="SMALLINT" />
+		<result column="AGE" property="age" jdbcType="SMALLINT" />
+		<result column="BIRTH" property="birth" jdbcType="VARCHAR" />
+		<result column="ID_TYPE" property="idType" jdbcType="SMALLINT" />
+		<result column="ID_NO" property="idNo" jdbcType="VARCHAR" />
+		<result column="STATE" property="state" jdbcType="SMALLINT" />
+		<result column="FAMILY_ID" property="familyId" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- -->
+	<select id="findAllForCache" resultMap="simpleMedicalCardResultMap" parameterType="java.util.Map">
+		select ID, HOSPITAL_CODE, BRANCH_CODE, PLATFORM, USER_ID ,OPEN_ID, HOSPITAL_ID, HOSPITAL_NAME, BRANCH_ID, BRANCH_NAME,
+		NAME, MOBILE, CARD_TYPE, OWNERSHIP, CARD_NO, ADMISSION_NO, CREATE_TIME,
+		SEX , AGE ,BIRTH,ID_TYPE,ID_NO,STATE, FAMILY_ID
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		STATE = 1
+	</select>
+
+	<!-- 根据userId查询绑卡信息 -->
+	<select id="findCardsByUserId" resultMap="medicalCardResultMap" parameterType="map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+
+		where USER_ID=#{userId} and PLATFORM=#{platform}
+		and  HOSPITAL_ID=#{hospitalId} and STATE=1 and OWNERSHIP=1
+	</select>
+
+	<!-- 根据诊疗卡查userId -->
+	<select id="findUserIdByCardNo" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+
+		where CARD_NO=#{cardNo} and PLATFORM=#{platformType}
+		and  HOSPITAL_ID=#{hospitalId}
+	</select>
+
+	<!-- 根据userId查询绑卡信息 -->
+	<select id="findCardsByUserIdForEasyHealth" resultMap="medicalCardResultMap" parameterType="map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+
+		where 
+		USER_ID=#{userId}
+		and HOSPITAL_ID=#{hospitalId}
+		and PLATFORM=#{platform}
+		and STATE=1
+	</select>
+
+	<select id="findCardForParams" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where 1=1
+		<if test="cardNo != null and cardNo != ''">
+			and CARD_NO = #{cardNo}
+		</if>
+		<if test="idNo != null and idNo != ''">
+			and ID_NO = #{idNo}
+		</if>
+		<if test="hospitalId != null and hospitalId != ''">
+			and HOSPITAL_ID = #{hospitalId}
+		</if>
+		<if test="name != null and name != ''">
+			and NAME like #{name}
+		</if>
+		<if test="mobile != null and mobile != ''">
+			and MOBILE = #{mobile}
+		</if>
+		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''" >
+			and FROM_UNIXTIME(CREATE_TIME/1000) BETWEEN #{startTime} AND #{endTime}
+		</if>
+	</select>
+
+	<!-- 通过userId找到他绑的所有的卡 -->
+	<select id="findAllCardsByUserId" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		USER_ID = #{userId}
+		and PLATFORM = 3
+		and STATE = 1
+		ORDER BY HOSPITAL_CODE
+	</select>
+
+	<!-- 通过userId,cardNo, hospitalId找到他绑的所有的卡 -->
+	<select id="findCardByHospitalIdAndUserIdAndCardNo" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		USER_ID = #{userId}
+		and HOSPITAL_ID = #{hospitalId}
+		and CARD_NO = #{cardNo}
+		ORDER BY STATE DESC
+	</select>
+	            
+	<select id="findCardByCardNoAndHospitalIdAndUserIdAndCardNoAndFamilyId" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		USER_ID = #{userId}
+		and HOSPITAL_ID = #{hospitalId}
+		and CARD_NO = #{cardNo} 
+		and FAMILY_ID = #{familyId} 
+		ORDER BY STATE DESC
+	</select>
+
+	<!-- 通过住院号、医院代码查找卡(住院号唯一) -->
+	<select id="findCardByUserIdAndHospitalCodeAndIdNo" resultMap="medicalCardResultMap" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		USER_ID = #{userId}
+		and HOSPITAL_CODE = #{hospitalCode}
+		and ID_TYPE = #{idType}
+		and ID_NO = #{idNo}
+		and STATE = 1
+	</select>
+
+	<!-- 通过userId, familyId找出所有的卡 -->
+	<select id="findCardsByUserIdAndFamilyId" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		USER_ID = #{userId}
+		and FAMILY_ID = #{familyId}
+		and STATE = 1
+	</select>
+	
+	<!-- 通过userId, familyId, hospitalCode找出医院的所有的卡 -->
+	<select id="findCardsByUserIdAndFamilyIdAndHospitalCode" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		USER_ID = #{userId}
+		<if test = " familyId != null and familyId != ''">
+		and FAMILY_ID = #{familyId}
+		</if>
+		and HOSPITAL_CODE = #{hospitalCode}
+		and STATE = 1
+	</select>
+	
+	<!-- 分页查询 -->
+	<select id="findListByPage" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select 
+		<include refid="All_Column"></include> 
+		from 
+		<include refid="Choose_HashTable_Name"></include> 
+		<where>
+			1=1 
+			<if test="state!=null">
+				and STATE = #{state}
+			</if>
+			<if test="platform!=null">
+				and PLATFORM = #{platform}
+			</if>
+		</where>
+		order by UPDATE_TIME DESC
+	</select>
+
+	<!-- 删除卡 -->
+	<update id="removeCardsByFamilyId" parameterType="java.util.Map">
+		update
+		<include refid="Choose_HashTable_Name"></include>
+		<set>
+			UPDATE_TIME = #{updateTime,jdbcType=BIGINT},
+			STATE = 0
+		</set>
+		where
+		USER_ID = #{userId,jdbcType=VARCHAR}
+		and FAMILY_ID = #{familyId}
+	</update>
+	
+	<!-- 通过就诊卡号查找卡(同一分院，就诊卡号唯一) -->
+	<select id="findCardByCardNoAndHospitalCodeAndUserIdAndFamilyId" resultMap="medicalCardResultMap" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where 
+		USER_ID = #{userId}
+		and CARD_NO = #{cardNo} 
+		and	HOSPITAL_CODE = #{hospitalCode} 
+		and STATE = #{state} 
+		and PLATFORM = #{platform} 
+		and CARD_TYPE = #{cardType} 
+		
+		and FAMILY_ID = #{familyId}
+	</select>
+
+
+	<!-- 通过patId、hospitalId 查询卡号信息 -->
+	<select id="findCardByPatIdAndHospitalId" resultMap="medicalCardResultMap" parameterType="com.yy.easyhealth.biz.medicalcard.entity.MedicalCard">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where
+		PATIENT_ID = #{patientId}
+		and HOSPITAL_ID = #{hospitalId}
+		
+	</select>
+
+	<!-- 通过 patId 查询卡号信息 -->
+	<select id="findCardsByPatId_old" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		v_all_medical_card
+		where PATIENT_ID = #{patientId}
+	</select>
+	
+ 
+	<!-- 通过 patId 查询卡号信息 -->
+	<select id="findCardsByPatId" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		(
+			select '1' AS TID,BIZ_MEDICAL_CARD_1.ID AS ID,BIZ_MEDICAL_CARD_1.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_1.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_1.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_1.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_1.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_1.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_1.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_1.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_1.NAME AS NAME,BIZ_MEDICAL_CARD_1.SEX AS SEX,BIZ_MEDICAL_CARD_1.AGE AS AGE,BIZ_MEDICAL_CARD_1.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_1.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_1.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_1.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_1.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_1.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_1.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_1.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_1.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_1.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_1.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_1.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_1.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_1.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_1.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_1.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_1.MARK AS MARK,BIZ_MEDICAL_CARD_1.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_1.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_1.STATE AS STATE,BIZ_MEDICAL_CARD_1.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_1.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_1.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_1.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_1.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_1 
+			where PATIENT_ID = #{patientId} 
+			
+			union all select '2' AS TID,BIZ_MEDICAL_CARD_2.ID AS ID,BIZ_MEDICAL_CARD_2.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_2.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_2.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_2.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_2.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_2.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_2.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_2.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_2.NAME AS NAME,BIZ_MEDICAL_CARD_2.SEX AS SEX,BIZ_MEDICAL_CARD_2.AGE AS AGE,BIZ_MEDICAL_CARD_2.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_2.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_2.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_2.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_2.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_2.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_2.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_2.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_2.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_2.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_2.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_2.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_2.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_2.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_2.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_2.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_2.MARK AS MARK,BIZ_MEDICAL_CARD_2.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_2.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_2.STATE AS STATE,BIZ_MEDICAL_CARD_2.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_2.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_2.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_2.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_2.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_2 
+			where PATIENT_ID = #{patientId} 
+			
+			union all select '3' AS TID,BIZ_MEDICAL_CARD_3.ID AS ID,BIZ_MEDICAL_CARD_3.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_3.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_3.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_3.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_3.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_3.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_3.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_3.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_3.NAME AS NAME,BIZ_MEDICAL_CARD_3.SEX AS SEX,BIZ_MEDICAL_CARD_3.AGE AS AGE,BIZ_MEDICAL_CARD_3.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_3.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_3.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_3.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_3.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_3.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_3.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_3.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_3.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_3.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_3.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_3.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_3.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_3.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_3.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_3.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_3.MARK AS MARK,BIZ_MEDICAL_CARD_3.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_3.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_3.STATE AS STATE,BIZ_MEDICAL_CARD_3.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_3.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_3.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_3.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_3.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_3 
+			where PATIENT_ID = #{patientId} 
+			
+			union all select '4' AS TID,BIZ_MEDICAL_CARD_4.ID AS ID,BIZ_MEDICAL_CARD_4.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_4.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_4.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_4.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_4.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_4.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_4.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_4.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_4.NAME AS NAME,BIZ_MEDICAL_CARD_4.SEX AS SEX,BIZ_MEDICAL_CARD_4.AGE AS AGE,BIZ_MEDICAL_CARD_4.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_4.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_4.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_4.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_4.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_4.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_4.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_4.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_4.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_4.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_4.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_4.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_4.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_4.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_4.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_4.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_4.MARK AS MARK,BIZ_MEDICAL_CARD_4.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_4.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_4.STATE AS STATE,BIZ_MEDICAL_CARD_4.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_4.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_4.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_4.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_4.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_4 
+			where PATIENT_ID = #{patientId} 
+			
+			union all select '5' AS TID,BIZ_MEDICAL_CARD_5.ID AS ID,BIZ_MEDICAL_CARD_5.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_5.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_5.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_5.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_5.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_5.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_5.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_5.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_5.NAME AS NAME,BIZ_MEDICAL_CARD_5.SEX AS SEX,BIZ_MEDICAL_CARD_5.AGE AS AGE,BIZ_MEDICAL_CARD_5.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_5.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_5.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_5.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_5.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_5.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_5.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_5.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_5.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_5.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_5.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_5.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_5.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_5.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_5.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_5.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_5.MARK AS MARK,BIZ_MEDICAL_CARD_5.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_5.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_5.STATE AS STATE,BIZ_MEDICAL_CARD_5.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_5.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_5.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_5.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_5.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_5 
+			where PATIENT_ID = #{patientId} 
+			
+			union all select '6' AS TID,BIZ_MEDICAL_CARD_6.ID AS ID,BIZ_MEDICAL_CARD_6.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_6.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_6.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_6.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_6.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_6.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_6.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_6.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_6.NAME AS NAME,BIZ_MEDICAL_CARD_6.SEX AS SEX,BIZ_MEDICAL_CARD_6.AGE AS AGE,BIZ_MEDICAL_CARD_6.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_6.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_6.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_6.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_6.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_6.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_6.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_6.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_6.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_6.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_6.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_6.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_6.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_6.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_6.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_6.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_6.MARK AS MARK,BIZ_MEDICAL_CARD_6.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_6.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_6.STATE AS STATE,BIZ_MEDICAL_CARD_6.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_6.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_6.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_6.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_6.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_6 
+			where PATIENT_ID = #{patientId} 
+			
+			union all select '7' AS TID,BIZ_MEDICAL_CARD_7.ID AS ID,BIZ_MEDICAL_CARD_7.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_7.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_7.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_7.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_7.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_7.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_7.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_7.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_7.NAME AS NAME,BIZ_MEDICAL_CARD_7.SEX AS SEX,BIZ_MEDICAL_CARD_7.AGE AS AGE,BIZ_MEDICAL_CARD_7.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_7.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_7.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_7.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_7.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_7.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_7.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_7.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_7.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_7.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_7.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_7.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_7.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_7.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_7.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_7.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_7.MARK AS MARK,BIZ_MEDICAL_CARD_7.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_7.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_7.STATE AS STATE,BIZ_MEDICAL_CARD_7.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_7.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_7.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_7.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_7.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_7 
+			where PATIENT_ID = #{patientId} 
+			
+			union all select '8' AS TID,BIZ_MEDICAL_CARD_8.ID AS ID,BIZ_MEDICAL_CARD_8.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_8.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_8.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_8.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_8.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_8.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_8.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_8.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_8.NAME AS NAME,BIZ_MEDICAL_CARD_8.SEX AS SEX,BIZ_MEDICAL_CARD_8.AGE AS AGE,BIZ_MEDICAL_CARD_8.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_8.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_8.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_8.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_8.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_8.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_8.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_8.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_8.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_8.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_8.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_8.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_8.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_8.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_8.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_8.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_8.MARK AS MARK,BIZ_MEDICAL_CARD_8.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_8.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_8.STATE AS STATE,BIZ_MEDICAL_CARD_8.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_8.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_8.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_8.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_8.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_8 
+			where PATIENT_ID = #{patientId} 
+			
+			union all select '9' AS TID,BIZ_MEDICAL_CARD_9.ID AS ID,BIZ_MEDICAL_CARD_9.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_9.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_9.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_9.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_9.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_9.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_9.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_9.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_9.NAME AS NAME,BIZ_MEDICAL_CARD_9.SEX AS SEX,BIZ_MEDICAL_CARD_9.AGE AS AGE,BIZ_MEDICAL_CARD_9.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_9.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_9.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_9.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_9.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_9.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_9.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_9.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_9.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_9.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_9.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_9.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_9.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_9.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_9.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_9.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_9.MARK AS MARK,BIZ_MEDICAL_CARD_9.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_9.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_9.STATE AS STATE,BIZ_MEDICAL_CARD_9.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_9.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_9.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_9.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_9.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_9 
+			where PATIENT_ID = #{patientId} 
+			
+			union all select '10' AS TID,BIZ_MEDICAL_CARD_10.ID AS ID,BIZ_MEDICAL_CARD_10.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_10.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_10.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_10.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_10.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_10.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_10.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_10.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_10.NAME AS NAME,BIZ_MEDICAL_CARD_10.SEX AS SEX,BIZ_MEDICAL_CARD_10.AGE AS AGE,BIZ_MEDICAL_CARD_10.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_10.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_10.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_10.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_10.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_10.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_10.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_10.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_10.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_10.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_10.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_10.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_10.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_10.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_10.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_10.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_10.MARK AS MARK,BIZ_MEDICAL_CARD_10.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_10.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_10.STATE AS STATE,BIZ_MEDICAL_CARD_10.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_10.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_10.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_10.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_10.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_10
+			where PATIENT_ID = #{patientId} 
+		) t
+	</select>
+	
+	<!-- 通过 hospitalCode、patName、patCardNo、IdNo 查询卡号信息 -->
+	<select id="findCardsByHospitalCodeAndPatNameAndPatCardNoAndIdNo" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+	select
+		<include refid="All_Column"></include>
+		from
+		(
+			select '1' AS TID,BIZ_MEDICAL_CARD_1.ID AS ID,BIZ_MEDICAL_CARD_1.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_1.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_1.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_1.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_1.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_1.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_1.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_1.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_1.NAME AS NAME,BIZ_MEDICAL_CARD_1.SEX AS SEX,BIZ_MEDICAL_CARD_1.AGE AS AGE,BIZ_MEDICAL_CARD_1.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_1.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_1.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_1.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_1.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_1.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_1.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_1.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_1.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_1.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_1.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_1.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_1.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_1.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_1.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_1.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_1.MARK AS MARK,BIZ_MEDICAL_CARD_1.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_1.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_1.STATE AS STATE,BIZ_MEDICAL_CARD_1.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_1.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_1.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_1.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_1.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_1 
+			where   
+					CARD_NO = #{cardNo}
+					and HOSPITAL_CODE = #{hospitalCode}
+					and ID_NO = #{idNo}
+					and NAME = #{name}
+			
+			union all select '2' AS TID,BIZ_MEDICAL_CARD_2.ID AS ID,BIZ_MEDICAL_CARD_2.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_2.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_2.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_2.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_2.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_2.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_2.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_2.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_2.NAME AS NAME,BIZ_MEDICAL_CARD_2.SEX AS SEX,BIZ_MEDICAL_CARD_2.AGE AS AGE,BIZ_MEDICAL_CARD_2.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_2.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_2.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_2.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_2.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_2.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_2.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_2.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_2.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_2.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_2.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_2.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_2.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_2.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_2.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_2.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_2.MARK AS MARK,BIZ_MEDICAL_CARD_2.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_2.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_2.STATE AS STATE,BIZ_MEDICAL_CARD_2.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_2.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_2.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_2.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_2.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_2 
+			where
+					CARD_NO = #{cardNo}
+					and HOSPITAL_CODE = #{hospitalCode}
+					and ID_NO = #{idNo}
+					and NAME = #{name}
+			
+			union all select '3' AS TID,BIZ_MEDICAL_CARD_3.ID AS ID,BIZ_MEDICAL_CARD_3.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_3.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_3.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_3.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_3.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_3.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_3.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_3.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_3.NAME AS NAME,BIZ_MEDICAL_CARD_3.SEX AS SEX,BIZ_MEDICAL_CARD_3.AGE AS AGE,BIZ_MEDICAL_CARD_3.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_3.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_3.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_3.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_3.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_3.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_3.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_3.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_3.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_3.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_3.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_3.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_3.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_3.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_3.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_3.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_3.MARK AS MARK,BIZ_MEDICAL_CARD_3.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_3.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_3.STATE AS STATE,BIZ_MEDICAL_CARD_3.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_3.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_3.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_3.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_3.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_3 
+			where
+					CARD_NO = #{cardNo}
+					and HOSPITAL_CODE = #{hospitalCode}
+					and ID_NO = #{idNo}
+					and NAME = #{name}
+			
+			union all select '4' AS TID,BIZ_MEDICAL_CARD_4.ID AS ID,BIZ_MEDICAL_CARD_4.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_4.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_4.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_4.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_4.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_4.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_4.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_4.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_4.NAME AS NAME,BIZ_MEDICAL_CARD_4.SEX AS SEX,BIZ_MEDICAL_CARD_4.AGE AS AGE,BIZ_MEDICAL_CARD_4.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_4.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_4.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_4.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_4.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_4.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_4.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_4.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_4.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_4.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_4.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_4.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_4.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_4.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_4.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_4.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_4.MARK AS MARK,BIZ_MEDICAL_CARD_4.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_4.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_4.STATE AS STATE,BIZ_MEDICAL_CARD_4.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_4.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_4.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_4.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_4.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_4 
+			where
+					CARD_NO = #{cardNo}
+					and HOSPITAL_CODE = #{hospitalCode}
+					and ID_NO = #{idNo}
+					and NAME = #{name}
+			
+			union all select '5' AS TID,BIZ_MEDICAL_CARD_5.ID AS ID,BIZ_MEDICAL_CARD_5.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_5.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_5.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_5.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_5.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_5.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_5.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_5.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_5.NAME AS NAME,BIZ_MEDICAL_CARD_5.SEX AS SEX,BIZ_MEDICAL_CARD_5.AGE AS AGE,BIZ_MEDICAL_CARD_5.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_5.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_5.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_5.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_5.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_5.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_5.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_5.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_5.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_5.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_5.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_5.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_5.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_5.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_5.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_5.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_5.MARK AS MARK,BIZ_MEDICAL_CARD_5.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_5.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_5.STATE AS STATE,BIZ_MEDICAL_CARD_5.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_5.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_5.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_5.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_5.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_5 
+			where
+					CARD_NO = #{cardNo}
+					and HOSPITAL_CODE = #{hospitalCode}
+					and ID_NO = #{idNo}
+					and NAME = #{name}
+			
+			union all select '6' AS TID,BIZ_MEDICAL_CARD_6.ID AS ID,BIZ_MEDICAL_CARD_6.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_6.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_6.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_6.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_6.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_6.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_6.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_6.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_6.NAME AS NAME,BIZ_MEDICAL_CARD_6.SEX AS SEX,BIZ_MEDICAL_CARD_6.AGE AS AGE,BIZ_MEDICAL_CARD_6.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_6.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_6.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_6.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_6.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_6.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_6.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_6.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_6.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_6.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_6.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_6.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_6.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_6.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_6.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_6.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_6.MARK AS MARK,BIZ_MEDICAL_CARD_6.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_6.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_6.STATE AS STATE,BIZ_MEDICAL_CARD_6.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_6.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_6.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_6.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_6.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_6 
+			where
+					CARD_NO = #{cardNo}
+					and HOSPITAL_CODE = #{hospitalCode}
+					and ID_NO = #{idNo}
+					and NAME = #{name}
+			
+			union all select '7' AS TID,BIZ_MEDICAL_CARD_7.ID AS ID,BIZ_MEDICAL_CARD_7.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_7.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_7.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_7.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_7.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_7.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_7.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_7.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_7.NAME AS NAME,BIZ_MEDICAL_CARD_7.SEX AS SEX,BIZ_MEDICAL_CARD_7.AGE AS AGE,BIZ_MEDICAL_CARD_7.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_7.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_7.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_7.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_7.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_7.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_7.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_7.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_7.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_7.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_7.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_7.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_7.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_7.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_7.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_7.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_7.MARK AS MARK,BIZ_MEDICAL_CARD_7.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_7.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_7.STATE AS STATE,BIZ_MEDICAL_CARD_7.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_7.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_7.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_7.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_7.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_7 
+			where
+					CARD_NO = #{cardNo}
+					and HOSPITAL_CODE = #{hospitalCode}
+					and ID_NO = #{idNo}
+					and NAME = #{name}
+			
+			union all select '8' AS TID,BIZ_MEDICAL_CARD_8.ID AS ID,BIZ_MEDICAL_CARD_8.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_8.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_8.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_8.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_8.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_8.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_8.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_8.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_8.NAME AS NAME,BIZ_MEDICAL_CARD_8.SEX AS SEX,BIZ_MEDICAL_CARD_8.AGE AS AGE,BIZ_MEDICAL_CARD_8.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_8.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_8.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_8.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_8.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_8.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_8.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_8.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_8.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_8.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_8.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_8.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_8.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_8.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_8.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_8.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_8.MARK AS MARK,BIZ_MEDICAL_CARD_8.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_8.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_8.STATE AS STATE,BIZ_MEDICAL_CARD_8.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_8.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_8.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_8.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_8.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_8 
+			where
+					CARD_NO = #{cardNo}
+					and HOSPITAL_CODE = #{hospitalCode}
+					and ID_NO = #{idNo}
+					and NAME = #{name}
+			
+			union all select '9' AS TID,BIZ_MEDICAL_CARD_9.ID AS ID,BIZ_MEDICAL_CARD_9.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_9.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_9.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_9.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_9.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_9.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_9.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_9.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_9.NAME AS NAME,BIZ_MEDICAL_CARD_9.SEX AS SEX,BIZ_MEDICAL_CARD_9.AGE AS AGE,BIZ_MEDICAL_CARD_9.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_9.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_9.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_9.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_9.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_9.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_9.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_9.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_9.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_9.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_9.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_9.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_9.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_9.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_9.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_9.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_9.MARK AS MARK,BIZ_MEDICAL_CARD_9.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_9.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_9.STATE AS STATE,BIZ_MEDICAL_CARD_9.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_9.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_9.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_9.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_9.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_9 
+			where
+					CARD_NO = #{cardNo}
+					and HOSPITAL_CODE = #{hospitalCode}
+					and ID_NO = #{idNo}
+					and NAME = #{name}
+			
+			union all select '10' AS TID,BIZ_MEDICAL_CARD_10.ID AS ID,BIZ_MEDICAL_CARD_10.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_10.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_10.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_10.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_10.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_10.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_10.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_10.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_10.NAME AS NAME,BIZ_MEDICAL_CARD_10.SEX AS SEX,BIZ_MEDICAL_CARD_10.AGE AS AGE,BIZ_MEDICAL_CARD_10.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_10.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_10.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_10.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_10.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_10.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_10.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_10.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_10.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_10.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_10.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_10.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_10.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_10.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_10.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_10.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_10.MARK AS MARK,BIZ_MEDICAL_CARD_10.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_10.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_10.STATE AS STATE,BIZ_MEDICAL_CARD_10.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_10.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_10.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_10.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_10.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_10
+			where
+					CARD_NO = #{cardNo}
+					and HOSPITAL_CODE = #{hospitalCode}
+					and ID_NO = #{idNo}
+					and NAME = #{name}
+		) t
+
+		
+	</select>
+
+
+	<!-- 通过 hospitalCode、userId、oepnId、status = 0 查询卡号信息 -->
+	<select id="findCardsByHospitalCodeAndOpenIdAndUserId" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+	select
+		<include refid="All_Column"></include>
+		from
+		(
+			select '1' AS TID,BIZ_MEDICAL_CARD_1.ID AS ID,BIZ_MEDICAL_CARD_1.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_1.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_1.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_1.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_1.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_1.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_1.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_1.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_1.NAME AS NAME,BIZ_MEDICAL_CARD_1.SEX AS SEX,BIZ_MEDICAL_CARD_1.AGE AS AGE,BIZ_MEDICAL_CARD_1.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_1.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_1.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_1.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_1.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_1.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_1.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_1.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_1.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_1.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_1.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_1.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_1.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_1.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_1.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_1.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_1.MARK AS MARK,BIZ_MEDICAL_CARD_1.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_1.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_1.STATE AS STATE,BIZ_MEDICAL_CARD_1.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_1.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_1.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_1.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_1.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_1 
+			where
+				USER_ID = #{userId}
+				and HOSPITAL_CODE = #{hospitalCode}
+				and OPEN_ID = #{openId}
+				and STATE = 1
+			
+			union all select '2' AS TID,BIZ_MEDICAL_CARD_2.ID AS ID,BIZ_MEDICAL_CARD_2.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_2.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_2.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_2.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_2.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_2.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_2.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_2.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_2.NAME AS NAME,BIZ_MEDICAL_CARD_2.SEX AS SEX,BIZ_MEDICAL_CARD_2.AGE AS AGE,BIZ_MEDICAL_CARD_2.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_2.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_2.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_2.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_2.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_2.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_2.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_2.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_2.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_2.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_2.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_2.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_2.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_2.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_2.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_2.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_2.MARK AS MARK,BIZ_MEDICAL_CARD_2.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_2.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_2.STATE AS STATE,BIZ_MEDICAL_CARD_2.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_2.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_2.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_2.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_2.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_2 
+			where
+				USER_ID = #{userId}
+				and HOSPITAL_CODE = #{hospitalCode}
+				and OPEN_ID = #{openId}
+				and STATE = 1
+			
+			union all select '3' AS TID,BIZ_MEDICAL_CARD_3.ID AS ID,BIZ_MEDICAL_CARD_3.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_3.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_3.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_3.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_3.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_3.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_3.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_3.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_3.NAME AS NAME,BIZ_MEDICAL_CARD_3.SEX AS SEX,BIZ_MEDICAL_CARD_3.AGE AS AGE,BIZ_MEDICAL_CARD_3.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_3.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_3.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_3.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_3.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_3.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_3.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_3.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_3.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_3.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_3.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_3.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_3.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_3.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_3.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_3.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_3.MARK AS MARK,BIZ_MEDICAL_CARD_3.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_3.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_3.STATE AS STATE,BIZ_MEDICAL_CARD_3.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_3.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_3.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_3.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_3.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_3 
+			where
+				USER_ID = #{userId}
+				and HOSPITAL_CODE = #{hospitalCode}
+				and OPEN_ID = #{openId}
+				and STATE = 1
+			
+			union all select '4' AS TID,BIZ_MEDICAL_CARD_4.ID AS ID,BIZ_MEDICAL_CARD_4.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_4.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_4.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_4.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_4.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_4.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_4.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_4.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_4.NAME AS NAME,BIZ_MEDICAL_CARD_4.SEX AS SEX,BIZ_MEDICAL_CARD_4.AGE AS AGE,BIZ_MEDICAL_CARD_4.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_4.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_4.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_4.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_4.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_4.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_4.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_4.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_4.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_4.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_4.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_4.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_4.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_4.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_4.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_4.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_4.MARK AS MARK,BIZ_MEDICAL_CARD_4.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_4.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_4.STATE AS STATE,BIZ_MEDICAL_CARD_4.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_4.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_4.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_4.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_4.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_4 
+			where
+				USER_ID = #{userId}
+				and HOSPITAL_CODE = #{hospitalCode}
+				and OPEN_ID = #{openId}
+				and STATE = 1
+			
+			union all select '5' AS TID,BIZ_MEDICAL_CARD_5.ID AS ID,BIZ_MEDICAL_CARD_5.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_5.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_5.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_5.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_5.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_5.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_5.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_5.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_5.NAME AS NAME,BIZ_MEDICAL_CARD_5.SEX AS SEX,BIZ_MEDICAL_CARD_5.AGE AS AGE,BIZ_MEDICAL_CARD_5.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_5.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_5.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_5.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_5.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_5.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_5.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_5.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_5.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_5.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_5.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_5.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_5.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_5.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_5.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_5.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_5.MARK AS MARK,BIZ_MEDICAL_CARD_5.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_5.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_5.STATE AS STATE,BIZ_MEDICAL_CARD_5.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_5.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_5.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_5.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_5.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_5 
+			where
+				USER_ID = #{userId}
+				and HOSPITAL_CODE = #{hospitalCode}
+				and OPEN_ID = #{openId}
+				and STATE = 1
+			
+			union all select '6' AS TID,BIZ_MEDICAL_CARD_6.ID AS ID,BIZ_MEDICAL_CARD_6.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_6.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_6.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_6.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_6.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_6.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_6.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_6.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_6.NAME AS NAME,BIZ_MEDICAL_CARD_6.SEX AS SEX,BIZ_MEDICAL_CARD_6.AGE AS AGE,BIZ_MEDICAL_CARD_6.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_6.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_6.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_6.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_6.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_6.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_6.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_6.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_6.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_6.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_6.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_6.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_6.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_6.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_6.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_6.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_6.MARK AS MARK,BIZ_MEDICAL_CARD_6.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_6.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_6.STATE AS STATE,BIZ_MEDICAL_CARD_6.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_6.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_6.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_6.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_6.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_6 
+			where
+				USER_ID = #{userId}
+				and HOSPITAL_CODE = #{hospitalCode}
+				and OPEN_ID = #{openId}
+				and STATE = 1
+			
+			union all select '7' AS TID,BIZ_MEDICAL_CARD_7.ID AS ID,BIZ_MEDICAL_CARD_7.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_7.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_7.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_7.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_7.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_7.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_7.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_7.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_7.NAME AS NAME,BIZ_MEDICAL_CARD_7.SEX AS SEX,BIZ_MEDICAL_CARD_7.AGE AS AGE,BIZ_MEDICAL_CARD_7.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_7.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_7.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_7.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_7.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_7.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_7.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_7.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_7.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_7.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_7.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_7.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_7.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_7.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_7.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_7.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_7.MARK AS MARK,BIZ_MEDICAL_CARD_7.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_7.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_7.STATE AS STATE,BIZ_MEDICAL_CARD_7.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_7.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_7.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_7.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_7.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_7 
+			where
+				USER_ID = #{userId}
+				and HOSPITAL_CODE = #{hospitalCode}
+				and OPEN_ID = #{openId}
+				and STATE = 1
+			
+			union all select '8' AS TID,BIZ_MEDICAL_CARD_8.ID AS ID,BIZ_MEDICAL_CARD_8.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_8.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_8.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_8.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_8.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_8.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_8.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_8.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_8.NAME AS NAME,BIZ_MEDICAL_CARD_8.SEX AS SEX,BIZ_MEDICAL_CARD_8.AGE AS AGE,BIZ_MEDICAL_CARD_8.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_8.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_8.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_8.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_8.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_8.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_8.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_8.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_8.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_8.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_8.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_8.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_8.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_8.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_8.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_8.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_8.MARK AS MARK,BIZ_MEDICAL_CARD_8.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_8.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_8.STATE AS STATE,BIZ_MEDICAL_CARD_8.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_8.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_8.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_8.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_8.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_8 
+			where
+				USER_ID = #{userId}
+				and HOSPITAL_CODE = #{hospitalCode}
+				and OPEN_ID = #{openId}
+				and STATE = 1
+			
+			union all select '9' AS TID,BIZ_MEDICAL_CARD_9.ID AS ID,BIZ_MEDICAL_CARD_9.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_9.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_9.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_9.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_9.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_9.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_9.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_9.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_9.NAME AS NAME,BIZ_MEDICAL_CARD_9.SEX AS SEX,BIZ_MEDICAL_CARD_9.AGE AS AGE,BIZ_MEDICAL_CARD_9.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_9.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_9.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_9.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_9.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_9.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_9.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_9.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_9.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_9.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_9.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_9.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_9.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_9.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_9.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_9.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_9.MARK AS MARK,BIZ_MEDICAL_CARD_9.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_9.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_9.STATE AS STATE,BIZ_MEDICAL_CARD_9.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_9.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_9.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_9.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_9.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_9 
+			where
+				USER_ID = #{userId}
+				and HOSPITAL_CODE = #{hospitalCode}
+				and OPEN_ID = #{openId}
+				and STATE = 1
+			
+			union all select '10' AS TID,BIZ_MEDICAL_CARD_10.ID AS ID,BIZ_MEDICAL_CARD_10.USER_ID AS USER_ID,BIZ_MEDICAL_CARD_10.BRANCH_ID AS BRANCH_ID,BIZ_MEDICAL_CARD_10.BRANCH_NAME AS BRANCH_NAME,BIZ_MEDICAL_CARD_10.BRANCH_CODE AS BRANCH_CODE,BIZ_MEDICAL_CARD_10.HOSPITAL_ID AS HOSPITAL_ID,BIZ_MEDICAL_CARD_10.HOSPITAL_NAME AS HOSPITAL_NAME,BIZ_MEDICAL_CARD_10.HOSPITAL_CODE AS HOSPITAL_CODE,BIZ_MEDICAL_CARD_10.PLATFORM AS PLATFORM,BIZ_MEDICAL_CARD_10.NAME AS NAME,BIZ_MEDICAL_CARD_10.SEX AS SEX,BIZ_MEDICAL_CARD_10.AGE AS AGE,BIZ_MEDICAL_CARD_10.BIRTH AS BIRTH,BIZ_MEDICAL_CARD_10.MOBILE AS MOBILE,BIZ_MEDICAL_CARD_10.ID_TYPE AS ID_TYPE,BIZ_MEDICAL_CARD_10.ID_NO AS ID_NO,BIZ_MEDICAL_CARD_10.ADDRESS AS ADDRESS,BIZ_MEDICAL_CARD_10.OPEN_ID AS OPEN_ID,BIZ_MEDICAL_CARD_10.OWNERSHIP AS OWNERSHIP,BIZ_MEDICAL_CARD_10.CARD_TYPE AS CARD_TYPE,BIZ_MEDICAL_CARD_10.CARD_NO AS CARD_NO,BIZ_MEDICAL_CARD_10.ADMISSION_NO AS ADMISSION_NO,BIZ_MEDICAL_CARD_10.GUARD_NAME AS GUARD_NAME,BIZ_MEDICAL_CARD_10.GUARD_ID_TYPE AS GUARD_ID_TYPE,BIZ_MEDICAL_CARD_10.GUARD_ID_NO AS GUARD_ID_NO,BIZ_MEDICAL_CARD_10.GUARD_MOBILE AS GUARD_MOBILE,BIZ_MEDICAL_CARD_10.IS_MEDICARE AS IS_MEDICARE,BIZ_MEDICAL_CARD_10.MEDICARE_NO AS MEDICARE_NO,BIZ_MEDICAL_CARD_10.MARK AS MARK,BIZ_MEDICAL_CARD_10.BIND_WAY AS BIND_WAY,BIZ_MEDICAL_CARD_10.PATIENT_ID AS PATIENT_ID,BIZ_MEDICAL_CARD_10.STATE AS STATE,BIZ_MEDICAL_CARD_10.CREATE_TIME AS CREATE_TIME,BIZ_MEDICAL_CARD_10.UPDATE_TIME AS UPDATE_TIME,BIZ_MEDICAL_CARD_10.FAMILY_ID AS FAMILY_ID,BIZ_MEDICAL_CARD_10.APP_ID AS APP_ID,BIZ_MEDICAL_CARD_10.APP_CODE AS APP_CODE from BIZ_MEDICAL_CARD_10
+			where
+				USER_ID = #{userId}
+				and HOSPITAL_CODE = #{hospitalCode}
+				and OPEN_ID = #{openId}
+				and STATE = 1
+		) t
+		
+	</select>
+
+	<!-- 通过 hospitalCode、patName、patCardNo、IdNo 查询卡号信息 -->
+	<select id="findCardsByHospitalCodeAndPatNameAndPatCardNoAndIdNo_old" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		v_all_medical_card
+		where
+		HOSPITAL_CODE = #{hospitalCode}
+		and NAME = #{name}
+		and CARD_NO = #{cardNo}
+		and ID_NO = #{idNo}
+	</select>
+
+
+	<!-- 通过 hospitalCode、userId、oepnId、status = 0 查询卡号信息 -->
+	<select id="findCardsByHospitalCodeAndOpenIdAndUserId_old" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		v_all_medical_card
+		where
+		HOSPITAL_CODE = #{hospitalCode}
+		and OPEN_ID = #{openId}
+		and USER_ID = #{userId}
+		and STATE = 1
+	</select>
+	
+	<select id="findOpenIdByCardNo" resultMap="medicalCardResultMap" parameterType="java.util.Map">
+		select
+		<include refid="All_Column"></include>
+		from
+		<include refid="Choose_HashTable_Name"></include>
+		where 1=1
+		<if test="cardNo != null">
+			and CARD_NO = #{cardNo}
+		</if>
+		<if test="hospitalCode != null">
+			and HOSPITAL_CODE = #{hospitalCode}
+		</if>
+		<if test="platformType != null">
+			and PLATFORM = #{platformType}
+		</if>
+		
+	</select>
+</mapper>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<businesses>
+	<code>2014112600017753</code>
+	<hospital>
+		<!-- 医院ID -->
+		<id>2014112600017753</id>
+		<!-- 医院编码 -->
+		<code>gdsdermyy</code>
+		<!-- 医院名称 -->
+		<name>广东省第二人民医院</name>
+		<!-- 是否存在分院,true:存在,false:不存在 -->
+		<isBranch>false</isBranch>
+	</hospital>
+	<!-- 全局类型 -->
+	<globalTypes>
+		<!-- 就诊卡类型 -->
+		<globalType>
+			<name>cardTypes</name>
+			<desc>患者证件类型</desc>
+			<options>
+				<option>
+					<value>0</value>
+					<desc>患者身份证件号码</desc>
+				</option>
+				<option>
+					<value>1</value>
+					<desc>患者诊疗卡号码</desc>
+					<selected>true</selected>
+				</option>
+				<option>
+					<value>2</value>
+					<desc>患者市民卡号码</desc>
+				</option>
+				<option>
+					<value>3</value>
+					<desc>患者医保卡号码</desc>
+				</option>
+				<option>
+					<value>4</value>
+					<desc>患者监护人身份证件号码</desc>
+				</option>
+				<option>
+					<value>5</value>
+					<desc>患者电话</desc>
+				</option>
+			</options>
+		</globalType>
+		<!-- 支付方式 -->
+		<globalType>
+			<name>payTypes</name>
+			<desc>支付方式</desc>
+			<options>
+				<option>
+					<value>1</value>
+					<desc>财付通支付</desc>
+				</option>
+				<option>
+					<value>2</value>
+					<desc>支付宝支付</desc>
+				</option>
+			</options>
+		</globalType>
+		<!-- 证件类型 -->
+		<globalType>
+			<name>idTypes</name>
+			<desc>证件类型</desc>
+			<options>
+				<option>
+					<value>1</value>
+					<desc>二代身份证</desc>
+				</option>
+				<option>
+					<value>2</value>
+					<desc>港澳居民身份证</desc>
+				</option>
+				<option>
+					<value>3</value>
+					<desc>台湾居民身份证</desc>
+				</option>
+				<option>
+					<value>4</value>
+					<desc>护照</desc>
+				</option>
+			</options>
+		</globalType>
+	</globalTypes>
+	<!-- 功能 -->
+	<functions>
+		<function>
+			<code>medicalCard</code>
+			<name>绑卡功能</name>
+			<!--医院接口描述 -->
+			<hisInterfaces>
+				<!-- 查询患者信息接口 -->
+				<hisInterface>
+					<!-- 接口代码,以便于在程序中通过代码来唯一标识并获取接口,而不是通过接口名称来标识获取接口,因为每个医院的接口名称都不一样 -->
+					<code>getUserInfo</code>
+					<name>GetPatientInfo</name>
+					<url>http://59.41.70.229:3360/wxwebservicetest/service.asmx</url>
+					<!-- 自定义命名空间名称 -->
+					<customNamespaceName>gdcc</customNamespaceName>
+					<!-- 自定义命名空间地址 -->
+					<customNamespaceUrl>http://www.gdcc.com.cn/</customNamespaceUrl>
+					<!-- 请求报文 -->
+					<parameters>
+						<!--证件号码 -->
+						<parameter>
+							<name>cardNo</name>
+							<targetName>id</targetName>
+							<required>true</required>
+						</parameter>
+						<!--患者名称 -->
+						<parameter>
+							<name>name</name>
+							<targetName>name</targetName>
+							<required>true</required>
+						</parameter>
+						<!-- 患者性别 -->
+						<parameter>
+							<name>sex</name>
+							<targetName>sex</targetName>
+							<required>true</required>
+							<convertUtil>
+								<className>com.yy.framework.utils.IdCardUtils</className>
+								<methodName>getGenderByIdCard</methodName>
+								<paramsType>java.lang.String</paramsType>
+								<paramsName>idNo</paramsName>
+							</convertUtil>
+							<converts>
+								<!-- 数据转换,M转换为男,F转换为女 -->
+								<convert>
+									<sourceData>M</sourceData>
+									<targetData>男</targetData>
+								</convert>
+								<convert>
+									<sourceData>F</sourceData>
+									<targetData>女</targetData>
+								</convert>
+							</converts>
+						</parameter>
+					</parameters>
+					<!-- 响应报文 -->
+					<!-- 数据节点名称,根据医院返回的数据格式 -->
+					<dataNode>
+					<name>GetPatientInfoResult</name>
+					<dataNode>
+						<name>Content</name>
+							<parameters>
+								<!-- 患者诊疗卡号码 -->
+								<parameter>
+									<name>ID</name>
+									<required>true</required>
+									<targetName>cardNo</targetName>
+								</parameter>								
+								<!-- 患者姓名 -->
+								<parameter>
+									<name>Name</name>
+									<required>true</required>
+									<targetName>name</targetName>
+								</parameter>
+								<!-- 患者性别：男,女 -->
+								<parameter>
+									<name>Sex</name>
+									<required>true</required>
+									<targetName>sex</targetName>
+									<converts>
+										<!-- 数据转换,男转换为1,女转换为2 -->
+										<convert>
+											<sourceData>男</sourceData>
+											<targetData>1</targetData>
+										</convert>
+										<convert>
+											<sourceData>女</sourceData>
+											<targetData>2</targetData>
+										</convert>
+									</converts>
+								</parameter>
+								<!-- 患者电话 -->
+								<parameter>
+									<name>Phone</name>
+									<required>true</required>
+									<targetName>mobileNo</targetName>
+								</parameter>
+							</parameters>
+						</dataNode>
+					</dataNode>
+				</hisInterface>
+			</hisInterfaces>
+		</function>
+	</functions>
+</businesses>

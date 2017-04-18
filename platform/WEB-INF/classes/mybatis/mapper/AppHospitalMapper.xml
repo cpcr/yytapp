@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.platform.hospital.entity.AppHospital">
+	
+	<resultMap id="appHospitalResultMap" type="AppHospital">		
+		<id column="ID" property="id" jdbcType="VARCHAR" />		
+		<result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+		<result column="PARENTAPPID" property="parentAppId" jdbcType="VARCHAR" />
+		<result column="SORT" property="sort" jdbcType="INTEGER" />
+		<result column="CP" property="cp" jdbcType="INTEGER" />
+		<result column="CT" property="ct" jdbcType="TIMESTAMP" />
+		<result column="EP" property="ep" jdbcType="INTEGER" />
+		<result column="ET" property="et" jdbcType="TIMESTAMP" />
+		<result column="HOSPITALNAME" property="hospitalName" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="hospitalResultMap" type="Hospital">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="CODE" property="code" jdbcType="VARCHAR" />
+		<!-- 2015年10月13日 11:46:18 增加区域代码 用于区分医院所在区域 增加人：周鉴斌 -->
+		<result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+		<result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+		<result column="CONTACT_TEL" property="contactTel" jdbcType="VARCHAR" />
+		<result column="GUIDE_URL" property="guideURL" jdbcType="VARCHAR" />
+		<result column="CLOUD_HOSP_URL" property="cloudURL" jdbcType="VARCHAR" />
+		<result column="TRAFFIC_URL" property="trafficURL" jdbcType="VARCHAR" />
+		<result column="LOGO" property="logo" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="INTEGER" />
+		<result column="CP" property="cp" jdbcType="INTEGER" />
+		<result column="CT" property="ct" jdbcType="TIMESTAMP" />
+		<result column="EP" property="ep" jdbcType="INTEGER" />
+		<result column="ET" property="et" jdbcType="TIMESTAMP" />
+        <result column="RULE_LAST_EDIT_TIME" property="ruleLastEditTime" jdbcType="TIMESTAMP" />
+        <result column="RULE_PUBLISH_TIME" property="rulePublishTime" jdbcType="TIMESTAMP" />
+        <result column="RULE_LAST_HANDLER_ID" property="lastHandlerId" jdbcType="INTEGER" />
+        <result column="IS_PUBLISH_RULE" property="isPublishRule" jdbcType="INTEGER" />
+		<collection column="ID" property="branchHospitals" javaType="ArrayList" select="com.yy.platform.hospital.entity.BranchHospital.selectBranchHospitalsByHospitalId" />
+	</resultMap>
+	
+	
+	<!-- 分页查询医院列表 -->
+	<select id="findListHospitalByPageNotInAppHospital" resultMap="hospitalResultMap" parameterType="java.util.Map">
+	
+		select ID,NAME,CODE,AREA_CODE,CONTACT_NAME,CONTACT_TEL,STATUS,CP,CT,EP,ET,RULE_LAST_EDIT_TIME,RULE_PUBLISH_TIME,IS_PUBLISH_RULE,RULE_LAST_HANDLER_ID,
+		GUIDE_URL,CLOUD_HOSP_URL,TRAFFIC_URL,LOGO 
+		from SYS_HOSPITAL h  
+		INNER JOIN (select sps.APP_ID,shps.HOSPITAL_ID,sps.PLATFORM_ID from SYS_HOSPITAL_PLATFORM_SETTINGS shps INNER JOIN SYS_PLATFORM_SETTINGS sps on shps.PLATFORM_SETTINGS_ID=sps.ID) t
+		on t.HOSPITAL_ID=h.ID 
+		where h.ID not in (select HOSPITAL_ID from SYS_APP_HOSPITAL  where PARENTAPPID=#{parentAppId}) and  h.ID &lt;&gt; #{hospitalId} and h.svc_type=1  and t.APP_ID IS NOT NULL and LENGTH(trim(t.APP_ID ))>0 and t.PLATFORM_ID=#{platformsId} 
+			
+		<if test="search!=null">
+			and (h.NAME like concat(concat('%',#{search}),'%') or CONTACT_NAME like concat(concat('%',#{search}),'%') or CODE like concat(concat('%',#{search}),'%'))
+		</if>
+		
+		<if test="hospitalIds != null" >
+			and h.ID in
+			<foreach item="item" index="index" collection="hospitalIds" open="(" separator="," close=")">  
+	  			#{item}
+	  		</foreach> 
+		</if>			
+		
+		order by h.CT desc
+	</select>
+
+	<!-- 返回appid-->
+	<select id="findAppIdByHospitalIdAndPlatformId" resultType="java.lang.String" parameterType="java.util.Map">		
+		select sps.APP_ID from SYS_HOSPITAL_PLATFORM_SETTINGS shps 
+		INNER JOIN  SYS_PLATFORM_SETTINGS sps on shps.PLATFORM_SETTINGS_ID=sps.ID
+		where shps.HOSPITAL_ID=#{hospitalId} and sps.PLATFORM_ID=#{platformId}
+	</select>
+	
+	<!-- 返回appid-->
+	<select id="findAppIdByHospitalIdAndAppCode" resultType="java.lang.String" parameterType="java.util.Map">		
+		
+		select sps.APP_ID from SYS_PLATFORM_SETTINGS sps
+		INNER JOIN SYS_HOSPITAL_PLATFORM_SETTINGS shps on shps.PLATFORM_SETTINGS_ID=sps.ID
+		INNER JOIN SYS_PLATFORM sp on sps.PLATFORM_ID=sp.ID
+		where shps.HOSPITAL_ID=#{hospitalId} and sp.`CODE`=#{appCode}
+	
+	</select>
+	
+	<!-- 返回hospitalid-->
+	<select id="findHospitalIdByAppId" resultType="java.lang.String" parameterType="java.lang.String">		
+		select shps.HOSPITAL_ID from SYS_PLATFORM_SETTINGS sps 
+		INNER JOIN SYS_HOSPITAL_PLATFORM_SETTINGS shps 
+		on sps.ID=shps.PLATFORM_SETTINGS_ID 
+		where sps.APP_ID=#{appId}
+	</select>
+		
+	<!-- 返回查询结果 -->
+	<select id="findAppHospitalByAppId" resultMap="appHospitalResultMap" parameterType="java.lang.String">		
+		select syh.*,sh.`NAME` as HOSPITALNAME from SYS_APP_HOSPITAL syh
+		INNER JOIN SYS_HOSPITAL sh
+		ON syh.HOSPITAL_ID=sh.ID
+		where syh.PARENTAPPID=#{parentAppId}
+		order by syh.SORT
+	</select>	
+	
+	<!-- 添加 -->
+	<insert id="add" parameterType="AppHospital">
+		insert into 
+		SYS_APP_HOSPITAL(ID,PARENTAPPID,HOSPITAL_ID,SORT,CP,CT,EP,ET)
+		values 
+		(#{id},#{parentAppId},#{hospitalId},#{sort},#{cp},now(),#{ep},#{et})
+	</insert>
+	
+	<!-- 删除 -->
+	<delete id="deleteById" parameterType="java.lang.String">
+		DELETE FROM SYS_APP_HOSPITAL WHERE ID = #{id}
+	</delete>
+	
+	<update id="sortById" parameterType="java.util.Map">
+		UPDATE SYS_APP_HOSPITAL SET SORT=#{sort} WHERE ID=#{id}
+	</update>
+</mapper>

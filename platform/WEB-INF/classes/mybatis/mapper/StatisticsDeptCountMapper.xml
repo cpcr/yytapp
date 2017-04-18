@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.platform.statistics.entity.DeptCount">
+	
+	<resultMap id="orderCountResultMap" type="com.yy.platform.statistics.entity.DeptCount">
+		<result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+		<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+		<result column="COUNT" property="count" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 科室订单统计 -->
+	<select id="findDeptCountByParams" resultMap="orderCountResultMap" parameterType="map">
+		SELECT DEPT_CODE AS DEPT_CODE, DEPT_NAME AS DEPT_NAME, COUNT(1) as count FROM 
+			<choose>
+			    <when test="hashTableName == 'BIZ_REGISTER_RECORD_1'">
+			         BIZ_REGISTER_RECORD_1 
+			    </when>
+			    <when test="hashTableName == 'BIZ_REGISTER_RECORD_2'">
+			         BIZ_REGISTER_RECORD_2 
+			    </when>
+			    <when test="hashTableName == 'BIZ_REGISTER_RECORD_3'">
+			         BIZ_REGISTER_RECORD_3 
+			    </when>
+			    <when test="hashTableName == 'BIZ_REGISTER_RECORD_4'">
+			         BIZ_REGISTER_RECORD_4 
+			    </when>
+			    <when test="hashTableName == 'BIZ_REGISTER_RECORD_5'">
+			         BIZ_REGISTER_RECORD_5 
+			    </when>
+			    <when test="hashTableName == 'BIZ_REGISTER_RECORD_6'">
+			         BIZ_REGISTER_RECORD_6 
+			    </when>
+			    <when test="hashTableName == 'BIZ_REGISTER_RECORD_7'">
+			         BIZ_REGISTER_RECORD_7 
+			    </when>
+			    <when test="hashTableName == 'BIZ_REGISTER_RECORD_8'">
+			         BIZ_REGISTER_RECORD_8 
+			    </when>
+			    <when test="hashTableName == 'BIZ_REGISTER_RECORD_9'">
+			         BIZ_REGISTER_RECORD_9 
+			    </when>
+			    <when test="hashTableName == 'BIZ_REGISTER_RECORD_10'">
+			         BIZ_REGISTER_RECORD_10 
+			    </when>
+		    </choose>
+		where HOSPITAL_ID = #{hospitalId} 
+		<if test="branchId != null and branchId != ''">
+			AND BRANCH_ID = #{branchId}  
+		</if>
+		<if test="startDateStr != null and startDateStr != '' and endDateStr != null and endDateStr != ''">
+			AND from_UNIXTIME(REGISTER_TIME / 1000,'%Y-%m-%d') BETWEEN #{startDate} AND #{endDate}    
+		</if>
+		GROUP BY DEPT_CODE
+	</select>
+</mapper>

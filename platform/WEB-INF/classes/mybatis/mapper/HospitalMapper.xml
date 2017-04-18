@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.platform.hospital.entity.Hospital">
+
+	<resultMap id="hospitalResultMap" type="Hospital">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="CODE" property="code" jdbcType="VARCHAR" />
+		<!-- 2015年10月13日 11:46:18 增加区域代码 用于区分医院所在区域 增加人：周鉴斌 -->
+		<result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+		<result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+		<result column="CONTACT_TEL" property="contactTel" jdbcType="VARCHAR" />
+		<result column="GUIDE_URL" property="guideURL" jdbcType="VARCHAR" />
+		<result column="CLOUD_HOSP_URL" property="cloudURL" jdbcType="VARCHAR" />
+		<result column="TRAFFIC_URL" property="trafficURL" jdbcType="VARCHAR" />
+		<result column="LOGO" property="logo" jdbcType="VARCHAR" />
+		<result column="SVC_TYPE" property="svcType" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="INTEGER" />
+		<result column="CP" property="cp" jdbcType="INTEGER" />
+		<result column="CT" property="ct" jdbcType="TIMESTAMP" />
+		<result column="EP" property="ep" jdbcType="INTEGER" />
+		<result column="ET" property="et" jdbcType="TIMESTAMP" />
+        <result column="RULE_LAST_EDIT_TIME" property="ruleLastEditTime" jdbcType="TIMESTAMP" />
+        <result column="RULE_PUBLISH_TIME" property="rulePublishTime" jdbcType="TIMESTAMP" />
+        <result column="RULE_LAST_HANDLER_ID" property="lastHandlerId" jdbcType="INTEGER" />
+        <result column="IS_PUBLISH_RULE" property="isPublishRule" jdbcType="INTEGER" />
+		<collection column="ID" property="branchHospitals" javaType="ArrayList" select="com.yy.platform.hospital.entity.BranchHospital.selectBranchHospitalsByHospitalId" />
+	</resultMap>
+	<!-- 分页查询医院列表 -->
+	<select id="findListByPage" resultMap="hospitalResultMap">
+		select ID,NAME,CODE,AREA_CODE,CONTACT_NAME,CONTACT_TEL,STATUS,CP,CT,EP,ET,RULE_LAST_EDIT_TIME,RULE_PUBLISH_TIME,IS_PUBLISH_RULE,RULE_LAST_HANDLER_ID,
+		GUIDE_URL,CLOUD_HOSP_URL,TRAFFIC_URL,LOGO,SVC_TYPE
+		   from SYS_HOSPITAL h
+		<where>
+			1=1
+			<if test="search!=null">
+				and (h.NAME like concat(concat('%',#{search}),'%') or CONTACT_NAME like concat(concat('%',#{search}),'%') or CODE like concat(concat('%',#{search}),'%'))
+			</if>
+			<if test="hospitalIds != null" >
+				and h.ID in
+				<foreach item="item" index="index" collection="hospitalIds" open="(" separator="," close=")">  
+		  			#{item}
+		  		</foreach> 
+			</if>
+			
+			<if test="svctype!=null">
+				and SVC_TYPE=#{svctype}
+			</if>
+			
+		</where>
+		order by h.CT desc
+	</select>
+	<select id="findHadBranchByPage" resultMap="hospitalResultMap">
+       select ID,NAME,CODE,AREA_CODE,CONTACT_NAME,CONTACT_TEL,STATUS,CP,CT,EP,
+        ET,RULE_LAST_EDIT_TIME,RULE_PUBLISH_TIME,IS_PUBLISH_RULE,RULE_LAST_HANDLER_ID
+        from SYS_HOSPITAL h 
+        where  h.ID in ( select b.HOSPITAL_ID from SYS_BRANCH_HOSPITAL b )
+        <if test="search!=null and search!=''">
+            AND  (h.NAME like concat(concat('%',#{search}),'%') or h.CONTACT_NAME like concat(concat('%',#{search}),'%'))
+        </if>
+        <if test="hospitalIds != null" >
+			and h.ID in
+			<foreach item="item" index="index" collection="hospitalIds" open="(" separator="," close=")">  
+	  			#{item}
+	  		</foreach> 
+		</if>
+        order by h.CT desc
+    </select>
+	
+	
+	<!-- 根据id查询医院 -->
+    <select id="findAll" resultMap="hospitalResultMap">
+        SELECT * 
+        FROM SYS_HOSPITAL
+        order by CT desc
+    </select>
+    
+	<!-- 根据地区代码获取医院列表 -->
+    <select id="findHospsByAreaCode" resultMap="hospitalResultMap" parameterType="string">
+        SELECT * 
+        FROM SYS_HOSPITAL T
+        WHERE  T.AREA_CODE=#{code}
+    </select>
+    
+	<!-- 根据地区代码获取启用的医院列表 -->
+    <select id="findAvailableHospsByAreaCode" resultMap="hospitalResultMap" parameterType="string">
+        SELECT * 
+        FROM SYS_HOSPITAL T 
+        WHERE  T.AREA_CODE=#{code} and T.STATUS=1
+    </select>
+
+	<!-- 根据id查询医院 -->
+	<select id="findById" resultMap="hospitalResultMap">
+		select ID,NAME,CODE,AREA_CODE,CONTACT_NAME,CONTACT_TEL,STATUS,CP,CT,EP,ET ,
+		      RULE_LAST_EDIT_TIME,RULE_PUBLISH_TIME, RULE_LAST_HANDLER_ID ,IS_PUBLISH_RULE,GUIDE_URL,CLOUD_HOSP_URL,TRAFFIC_URL,LOGO,SVC_TYPE
+		from SYS_HOSPITAL h where h.ID = #{id}
+	</select>
+	
+	<!-- 根据id集合查询医院 -->
+	<select id="findByHospitalIds" resultMap="hospitalResultMap" parameterType="map">
+		select ID,NAME,CODE,AREA_CODE,CONTACT_NAME,CONTACT_TEL,STATUS,CP,CT,EP,ET ,
+		      RULE_LAST_EDIT_TIME,RULE_PUBLISH_TIME, RULE_LAST_HANDLER_ID ,IS_PUBLISH_RULE 
+		from SYS_HOSPITAL h where h.ID in
+		<foreach item="item" index="index" collection="hospitalIds" open="(" separator="," close=")">  
+  			#{item}
+  		</foreach> 
+	</select>
+	
+	<!-- 根据appid查询医院 -->
+	<select id="findByAppId" resultMap="hospitalResultMap" parameterType="string">
+		select h.ID,h.NAME,h.CODE,h.AREA_CODE,h.CONTACT_NAME,h.CONTACT_TEL,h.STATUS,h.CP,h.CT,h.EP,h.ET ,
+		      h.RULE_LAST_EDIT_TIME,h.RULE_PUBLISH_TIME, h.RULE_LAST_HANDLER_ID ,h.IS_PUBLISH_RULE 
+		from SYS_HOSPITAL h,SYS_APP_HOSPITAL a where h.ID=a.HOSPITAL_ID and a.PARENTAPPID=#{appId}
+		order by a.SORT
+	</select>
+
+	<!-- 根据code查询医院 -->
+	<select id="findHospitalByCode" resultMap="hospitalResultMap">
+		select ID,NAME,CODE,AREA_CODE,CONTACT_NAME,CONTACT_TEL,STATUS,CP,CT,EP,ET ,
+		      RULE_LAST_EDIT_TIME,RULE_PUBLISH_TIME, RULE_LAST_HANDLER_ID ,IS_PUBLISH_RULE 
+		from SYS_HOSPITAL h where h.CODE = #{code}
+	</select>
+	
+	<select id="findHospitalByCodes" resultMap="hospitalResultMap">
+		select ID,NAME,CODE,CONTACT_NAME,CONTACT_TEL,STATUS,CP,CT,EP,ET ,
+		      RULE_LAST_EDIT_TIME,RULE_PUBLISH_TIME, RULE_LAST_HANDLER_ID ,IS_PUBLISH_RULE
+		from SYS_HOSPITAL h 
+		where h.CODE in
+		<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
+		
+	<!-- 根据code查询医院  保证医院及分院code唯一的前置条件查询,查询条件来源于分院code-->
+	<select id="findHospitalByBranchHospitalCode" resultMap="hospitalResultMap" parameterType="String">
+		select ID,NAME,CODE,CONTACT_NAME,CONTACT_TEL,STATUS,CP,CT,EP,ET ,
+		      RULE_LAST_EDIT_TIME,RULE_PUBLISH_TIME, RULE_LAST_HANDLER_ID ,IS_PUBLISH_RULE 
+		from SYS_HOSPITAL h where h.CODE = #{code}
+	</select>
+	
+	<!-- 根据name查询医院 -->
+	<select id="findHospitalByName" resultMap="hospitalResultMap">
+		select ID,NAME,CODE,CONTACT_NAME,CONTACT_TEL,STATUS,CP,CT,EP,ET ,
+		      RULE_LAST_EDIT_TIME,RULE_PUBLISH_TIME, RULE_LAST_HANDLER_ID ,IS_PUBLISH_RULE 
+		from SYS_HOSPITAL h where h.NAME = #{name}
+	</select>
+	
+	<!-- 根据code及ID查询医院 -->
+	<select id="findHospitalByCodeAndID" parameterType="Hospital" resultMap="hospitalResultMap">
+		select ID,NAME,CODE,CONTACT_NAME,CONTACT_TEL,STATUS,CP,CT,EP,ET ,
+		      RULE_LAST_EDIT_TIME,RULE_PUBLISH_TIME, RULE_LAST_HANDLER_ID ,IS_PUBLISH_RULE 
+		from SYS_HOSPITAL h where h.ID != #{id} and h.CODE = #{code}
+	</select>
+	
+	<!-- 根据name及ID查询医院 -->
+	<select id="findHospitalByNameAndID" parameterType="Hospital" resultMap="hospitalResultMap">
+		select ID,NAME,CODE,CONTACT_NAME,CONTACT_TEL,STATUS,CP,CT,EP,ET ,
+		      RULE_LAST_EDIT_TIME,RULE_PUBLISH_TIME, RULE_LAST_HANDLER_ID ,IS_PUBLISH_RULE 
+		from SYS_HOSPITAL h where h.ID != #{id} and h.NAME = #{name}
+	</select>
+	
+	
+
+	<!-- 查询所有医院 
+	<select id="findAll" resultMap="hospitalResultMap">
+		select ID,NAME,CODE,CONTACT_NAME,CONTACT_TEL,STATUS,CP,CT,EP,ET from SYS_HOSPITAL
+	</select>
+	-->
+	<update id="updateForRuleEditTime" parameterType="Hospital">
+	    update SYS_HOSPITAL 
+          set NAME = #{name}, CODE = #{code}, CONTACT_NAME = #{contactName}, CONTACT_TEL = #{contactTel} ,
+              RULE_LAST_EDIT_TIME = #{ruleLastEditTime} , RULE_PUBLISH_TIME = #{rulePublishTime} ,
+              RULE_LAST_HANDLER_ID = #{lastHandlerId},
+              IS_PUBLISH_RULE = #{isPublishRule},EP = #{ep},ET = now()
+        where ID = #{id}
+	</update>
+	
+	<!-- 更新医院 -->
+	<update id="update" parameterType="Hospital" >
+	    update SYS_HOSPITAL 
+	      <set >
+		      <if test="name != null" >
+		        NAME = #{name},
+		      </if>
+		      <if test="code != null" >
+		        CODE = #{code},
+		      </if>
+		      <if test="areaCode != null" >
+		        AREA_CODE = #{areaCode},
+		      </if>
+		      <if test="contactName != null" >
+		        CONTACT_NAME = #{contactName},
+		      </if>
+		      <if test="contactTel != null" >
+		        CONTACT_TEL = #{contactTel},
+		      </if>
+		      <if test="status != null" >
+		        STATUS = #{status},
+		      </if>
+		      <if test="cp != null" >
+		        CP = #{cp},
+		      </if>
+		      <if test="ct != null" >
+		        CT = #{ct},
+		      </if>
+		      <if test="ep != null" >
+		        EP = #{ep},
+		      </if>
+		      <if test="et != null" >
+		        ET = #{et},
+		      </if>
+		      <if test="ruleLastEditTime != null" >
+		        RULE_LAST_EDIT_TIME = #{ruleLastEditTime},
+		      </if>
+		      <if test="rulePublishTime != null" >
+		        RULE_PUBLISH_TIME = #{rulePublishTime},
+		      </if>
+		      <if test="lastHandlerId != null" >
+		        RULE_LAST_HANDLER_ID = #{lastHandlerId},
+		      </if>
+		      <if test="isPublishRule != null" >
+	            IS_PUBLISH_RULE = #{isPublishRule},
+	          </if>
+		      <if test="guideURL != null" >
+	            GUIDE_URL = #{guideURL},
+	          </if>
+		      <if test="cloudURL != null" >
+	            CLOUD_HOSP_URL = #{cloudURL},
+	          </if>
+		      <if test="trafficURL != null" >
+	            TRAFFIC_URL = #{trafficURL},
+	          </if>
+		      <if test="logo != null" >
+	            LOGO = #{logo},
+	          </if>
+	          <if test="svcType != null" >
+	            SVC_TYPE = #{svcType},
+	          </if>
+	      </set>
+	    where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 启用/禁用 医院 -->
+	<update id="updateStatus" parameterType="Hospital">
+		update SYS_HOSPITAL set STATUS = #{status},EP = #{ep},ET = now() where ID = #{id}
+	</update>
+	
+	<update id="updatePublishRuleInfo" parameterType="Hospital">
+	     update SYS_HOSPITAL 
+	           set RULE_PUBLISH_TIME = #{rulePublishTime} ,
+	               RULE_LAST_HANDLER_ID = #{lastHandlerId},
+	               IS_PUBLISH_RULE = #{isPublishRule},
+	               EP = #{ep},
+	               ET = now()
+	     where ID = #{id}
+	</update>
+
+	<insert id="add" parameterType="Hospital">
+		insert into 
+		SYS_HOSPITAL(ID,NAME,CODE,AREA_CODE,CONTACT_NAME,CONTACT_TEL,STATUS,GUIDE_URL,CLOUD_HOSP_URL,TRAFFIC_URL,LOGO,CP,CT,EP,ET,SVC_TYPE)
+		values 
+		(#{id},#{name},#{code},#{areaCode},#{contactName},#{contactTel},0,#{guideURL},#{cloudURL},#{trafficURL},#{logo},#{cp},now(),#{ep},#{et},#{svcType})
+	</insert>
+	<resultMap id="CodeAndInterfaceResultMap" type="com.yy.platform.datas.cache.vo.CodeAndInterfaceVo">
+        <result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR" />
+        <result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+        <result column="HOSPITAL_NAME" property="hospitalName" jdbcType="VARCHAR" />
+        <result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR"/>
+        <result column="BRANCH_HOSPITAL_CODE" property="branchHospitalCode" jdbcType="VARCHAR" />
+        <result column="BRANCH_HOSPITAL_ID" property="branchHospitalId" jdbcType="VARCHAR" />
+        <result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR" />
+        <result column="BRANCH_ADDRESS" property="branchAddress" jdbcType="VARCHAR" />
+        <result column="INTERFACE_ID" property="interfaceId" jdbcType="VARCHAR" />
+        <result column="STATUS" property="status" jdbcType="INTEGER" />
+        <result column="LATITUDE" property="latitude" jdbcType="VARCHAR" />
+        <result column="LONGITUDE" property="longitude" jdbcType="VARCHAR" />
+    </resultMap>
+	<select id="queryCodeAndInterfaceById" resultMap="CodeAndInterfaceResultMap" parameterType="java.lang.String">
+	     select h.id as HOSPITAL_ID , h.name as HOSPITAL_NAME , h.CODE AS HOSPITAL_CODE , h.AREA_CODE AS AREA_CODE,
+             b.id as BRANCH_HOSPITAL_ID , b.code as BRANCH_HOSPITAL_CODE , b.name as BRANCH_NAME,
+             b.ADDRESS as BRANCH_ADDRESS , b.INTERFACE_ID as INTERFACE_ID , h.STATUS as STATUS,b.LATITUDE as LATITUDE,
+             b.LONGITUDE as LONGITUDE
+         from SYS_HOSPITAL h , SYS_BRANCH_HOSPITAL b
+         where b.HOSPITAL_ID = h.ID and h.ID = #{hospitalId}
+	</select>
+	<select id="queryAllCodeAndInterfaceIds" resultMap="CodeAndInterfaceResultMap">
+	     select h.id as HOSPITAL_ID , h.name as HOSPITAL_NAME , h.CODE AS HOSPITAL_CODE , h.AREA_CODE AS AREA_CODE,
+             b.id as BRANCH_HOSPITAL_ID , b.code as BRANCH_HOSPITAL_CODE , b.name as BRANCH_NAME,
+             b.ADDRESS as BRANCH_ADDRESS , b.INTERFACE_ID as INTERFACE_ID , h.STATUS as STATUS,b.LATITUDE as LATITUDE,
+             b.LONGITUDE as LONGITUDE
+         from SYS_HOSPITAL h , SYS_BRANCH_HOSPITAL b
+         where b.HOSPITAL_ID = h.ID
+	</select>
+	
+	<resultMap id="AppAndCodeResultMap" type="com.yy.platform.hospital.vo.HospitalCodeAndAppVo">
+        <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+        <result column="APP_NAME" property="appName" jdbcType="VARCHAR" />
+        <result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
+        <result column="PRIVATE_KEY" property="privateKey" jdbcType="VARCHAR"/>
+        <!-- 2015年7月2日 12:53:56 删除此查询参数 使用ALI_PUBLIC_KEY代替 -->
+        <!-- <result column="PUBLIC_KEY" property="publicKey" jdbcType="VARCHAR"/> -->
+        <result column="H_ID" property="hospitalId" jdbcType="VARCHAR" />
+        <result column="H_NAME" property="hospitalName" jdbcType="VARCHAR" />
+        <result column="H_CODE" property="hospitalCode" jdbcType="VARCHAR" />
+        <result column="MCH_ID" property="mchId" jdbcType="VARCHAR" />
+        <result column="SUB_MCH_ID" property="subMchId" jdbcType="VARCHAR" />
+        <result column="IS_SUB_PAY" property="isSubPay" jdbcType="INTEGER" />
+        <result column="PAY_KEY" property="paykey" jdbcType="VARCHAR" />
+        <result column="PAY_SETTING_ID" property="paySettingId" jdbcType="VARCHAR" />
+        <result column="MCH_ACCOUNT" property="mchAccount" jdbcType="VARCHAR"/>
+        <result column="ALI_PRIVATE_KEY" property="aliPrivateKey" jdbcType="VARCHAR"/>
+        <!-- 2015年7月2日 12:54:36 周鉴斌 增加此查询参数 代替 publicKey -->
+        <result column="ALI_PUBLIC_KEY" property="aliPublicKey" jdbcType="VARCHAR"/>
+        <result column="REFUND_FILE_PATH" property="refundFilePath" jdbcType="VARCHAR"/>
+        <!-- 2015年7月28日 20:03:30 周鉴斌 增加父商户appId -->
+        <result column="PARENT_APP_ID" property="parentAppId" jdbcType="VARCHAR"/>
+        <!-- 2015年7月28日 20:03:30 周鉴斌 增加父商户Secret -->
+        <result column="PARENT_SECRET" property="parentSecret" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="queryCodeAndApp" resultMap="AppAndCodeResultMap">
+		 SELECT temp.* , attach.ABSOLUTE_PATH  REFUND_FILE_PATH from
+		 (    
+		      SELECT DISTINCT
+		            h.ID AS H_ID,
+		            h.CODE AS H_CODE,
+		            h.NAME AS H_NAME,
+		            ps.APP_ID AS APP_ID,
+		            ps.PRIVATE_KEY,
+		            p.CODE AS APP_CODE,
+		            p.NAME AS APP_NAME,
+		            payset.MCH_ID AS MCH_ID,
+		            payset.SUB_MCH_ID,
+		            payset.IS_SUB_PAY AS IS_SUB_PAY,
+		            payset.PAY_KEY AS PAY_KEY,
+		            payset.ID AS PAY_SETTING_ID,
+		            payset.MCH_ACCOUNT AS MCH_ACCOUNT,
+		            payset.PAY_PRIVATE_KEY AS ALI_PRIVATE_KEY,
+		            payset.PAY_PUBLIC_KEY AS ALI_PUBLIC_KEY,
+		            payset.PARENT_APP_ID as PARENT_APP_ID,
+		            payset.PARENT_SECRET as PARENT_SECRET
+		        FROM
+		            SYS_HOSPITAL h,
+		            SYS_HOSPITAL_PLATFORM_SETTINGS hps,
+		            SYS_PLATFORM_SETTINGS ps,
+		            SYS_PLATFORM p,
+		            SYS_HOSPITAL_PAY_SETTINGS hpayset,
+		            SYS_PAY_SETTINGS payset,
+		            SYS_PAY_MODE pm
+		        WHERE
+		            h.ID = hps.HOSPITAL_ID
+		            AND hps.PLATFORM_SETTINGS_ID = ps.ID
+		            AND p.id = ps.PLATFORM_ID
+		            AND hpayset.HOSPITAL_ID = h.id
+		            AND hpayset.PAY_SETTINGS_ID = payset.ID
+		            AND payset.PAY_MODE_ID = pm.ID
+		            AND p.CODE = pm.CODE
+		)temp
+		LEFT JOIN SYS_ATTACH attach
+		on  temp.PAY_SETTING_ID = attach.ATTACH_ID
+    </select>
+    
+    <select id="queryCodeAndAppByHospitalId" resultMap="AppAndCodeResultMap" parameterType="java.lang.String">
+         SELECT temp.* , attach.ABSOLUTE_PATH  REFUND_FILE_PATH from
+         (    
+               SELECT DISTINCT
+                    h.ID AS H_ID,
+                    h.CODE AS H_CODE,
+                    h.NAME AS H_NAME,
+                    ps.APP_ID AS APP_ID,
+                    ps.PRIVATE_KEY,
+                    p.CODE AS APP_CODE,
+                    p.NAME AS APP_NAME,
+                    payset.MCH_ID AS MCH_ID,
+                    payset.SUB_MCH_ID,
+                    payset.IS_SUB_PAY AS IS_SUB_PAY,
+                    payset.PAY_KEY AS PAY_KEY,
+                    payset.ID AS PAY_SETTING_ID,
+                    payset.MCH_ACCOUNT AS MCH_ACCOUNT,
+                    payset.PAY_PRIVATE_KEY AS ALI_PRIVATE_KEY,
+                    payset.PAY_PUBLIC_KEY AS ALI_PUBLIC_KEY,
+                    payset.PARENT_APP_ID as PARENT_APP_ID,
+		            payset.PARENT_SECRET as PARENT_SECRET
+                FROM
+                    SYS_HOSPITAL h,
+                    SYS_HOSPITAL_PLATFORM_SETTINGS hps,
+                    SYS_PLATFORM_SETTINGS ps,
+                    SYS_PLATFORM p,
+                    SYS_HOSPITAL_PAY_SETTINGS hpayset,
+                    SYS_PAY_SETTINGS payset,
+                    SYS_PAY_MODE pm
+                WHERE
+                    h.ID = hps.HOSPITAL_ID
+                    AND hps.PLATFORM_SETTINGS_ID = ps.ID
+                    AND p.id = ps.PLATFORM_ID
+                    AND hpayset.HOSPITAL_ID = h.id
+                    AND hpayset.PAY_SETTINGS_ID = payset.ID
+                    AND payset.PAY_MODE_ID = pm.ID
+                    AND p.CODE = pm.CODE
+        )temp
+        LEFT JOIN SYS_ATTACH attach
+        on  temp.PAY_SETTING_ID = attach.ATTACH_ID
+        WHERE temp.H_ID = #{hospitalId}
+    </select>
+    
+    <select id="findAppSecretByHospitalId" resultMap="HospIdAndAppSecretMap" parameterType="java.lang.String">
+        SELECT
+            t2.HOSPITAL_ID as hospId,
+            t1.PRIVATE_KEY as appSecret,
+            t1.TOKEN as token,
+            t1.PUBLIC_KEY as publicKey,
+            t1.APP_ID as appId,
+            t3.CODE as appCode,
+            h.code as hospCode,
+            h.name as hospName,
+            h.AREA_CODE as areaCode
+        FROM 
+            SYS_PLATFORM_SETTINGS t1
+	        LEFT JOIN SYS_HOSPITAL_PLATFORM_SETTINGS t2 ON t1.ID = t2.PLATFORM_SETTINGS_ID
+	        LEFT JOIN SYS_PLATFORM t3 ON t3.ID = t1.PLATFORM_ID 
+	        LEFT JOIN SYS_HOSPITAL h on h.id = t2.HOSPITAL_ID 
+        where t2.HOSPITAL_ID = #{hospitalId}
+    </select>
+    
+    <select id="findAllAppSecret" resultMap="HospIdAndAppSecretMap">
+        SELECT
+            t2.HOSPITAL_ID as hospId,
+            t1.PRIVATE_KEY as appSecret,
+            t1.TOKEN as token,
+            t1.PUBLIC_KEY as publicKey,
+            t1.APP_ID as appId,
+            t3.CODE as appCode,
+            h.CODE as hospCode,
+            h.NAME as hospName,
+            h.AREA_CODE as areaCode
+        FROM 
+            SYS_PLATFORM_SETTINGS t1
+        LEFT JOIN SYS_HOSPITAL_PLATFORM_SETTINGS t2 ON t1.ID = t2.PLATFORM_SETTINGS_ID
+        LEFT JOIN SYS_PLATFORM t3 ON t3.ID = t1.PLATFORM_ID 
+        LEFT JOIN SYS_HOSPITAL h on h.id = t2.HOSPITAL_ID 
+        <!-- 弃掉hospId为空的垃圾数据 -->
+        WHERE t2.HOSPITAL_ID  > '0'
+    </select>
+    
+    <select id="findAppSecretByAppId" parameterType="map"  resultMap="HospIdAndAppSecretMap">
+	    SELECT
+			t2.HOSPITAL_ID as hospId,
+			t1.PRIVATE_KEY as appSecret,
+			t1.TOKEN as token,
+	    	t1.PUBLIC_KEY as publicKey,
+	    	t1.APP_ID as appId,
+	    	t3.CODE as appCode,
+	    	h.CODE as hospCode,
+	        h.NAME as hospName,
+	        h.AREA_CODE as areaCode
+		FROM 
+			SYS_PLATFORM_SETTINGS t1
+			LEFT JOIN SYS_HOSPITAL_PLATFORM_SETTINGS t2 ON t1.ID = t2.PLATFORM_SETTINGS_ID
+	        LEFT JOIN SYS_PLATFORM t3 ON t3.ID = t1.PLATFORM_ID 
+	        LEFT JOIN SYS_HOSPITAL h on h.id = t2.HOSPITAL_ID 
+		WHERE
+		    t1.APP_ID =#{appId} and t3.CODE =#{platformType}
+    </select>
+    <resultMap type="com.yy.platform.hospital.vo.HospIdAndAppSecretVo" id="HospIdAndAppSecretMap">
+		<result column="hospId" property="hospId"/>
+		<result column="hospCode" property="hospCode"/>
+		<result column="hospName" property="hospName"/>
+		<result column="appSecret" property="appSecret"/>
+		<result column="token" property="token"/>
+		<result column="publicKey" property="publicKey"/>
+		<result column="appId" property="appId"/>
+		<result column="appCode" property="appCode"/>
+		<result column="areaCode" property="areaCode"/>
+    </resultMap>
+    
+    <select id="findAppIdByHospitalId" parameterType="map"  resultType="string">
+	    SELECT
+		t1.APP_ID
+		FROM
+		SYS_PLATFORM_SETTINGS t1
+		LEFT JOIN SYS_HOSPITAL_PLATFORM_SETTINGS t2 ON t1.ID = t2.PLATFORM_SETTINGS_ID
+		LEFT JOIN SYS_PLATFORM t3 ON t3.ID = t1.PLATFORM_ID 
+		where t3.CODE=#{thirdType} and t2.HOSPITAL_ID=#{hospitalId}
+    </select>
+    
+    <select id="queryHadConfigRule" resultType="int" parameterType="map" statementType="STATEMENT"> 
+        select count(t.id) from  ${tableName}  t where t.HOSPITAL_ID =  ${hospitalId}
+    </select>
+    
+    <resultMap id="AppAndInterfaceIdAndCodeResultMap" type="com.yy.platform.hospital.vo.HospitalCodeInterfaceAndAppVo">
+        <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+        <result column="APP_NAME" property="appName" jdbcType="VARCHAR" />
+        <result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
+        <result column="PRIVATE_KEY" property="privateKey" jdbcType="VARCHAR"/>
+        <result column="H_ID" property="hospitalId" jdbcType="VARCHAR" />
+        <result column="H_NAME" property="hospitalName" jdbcType="VARCHAR" />
+        <result column="H_CODE" property="hospitalCode" jdbcType="VARCHAR" />
+        <result column="INTERFACE_ID" property="interfaceId" jdbcType="VARCHAR"/>
+        <result column="B_NAME" property="branchHospitalName" jdbcType="VARCHAR"/>
+        <result column="B_CODE" property="branchHospitalCode" jdbcType="VARCHAR"/>
+        <result column="MCH_ID" property="mchId" jdbcType="VARCHAR" />
+        <result column="SUB_MCH_ID" property="subMchId" jdbcType="VARCHAR" />
+        <result column="IS_SUB_PAY" property="isSubPay" jdbcType="INTEGER" />
+        <result column="PAY_KEY" property="paykey" jdbcType="VARCHAR" />
+        <result column="PAY_SETTING_ID" property="paySettingId" jdbcType="VARCHAR" />
+        <result column="MCH_ACCOUNT" property="mchAccount" jdbcType="VARCHAR"/>
+        <result column="ALI_PRIVATE_KEY" property="aliPrivateKey" jdbcType="VARCHAR"/>
+        <result column="ALI_PUBLIC_KEY" property="aliPublicKey" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <select id="queryCodeAndInterfaceIdAndApp" resultMap="AppAndInterfaceIdAndCodeResultMap">
+         SELECT DISTINCT
+		    h.ID AS H_ID,
+		    h.CODE AS H_CODE,
+		    h.NAME AS H_NAME,
+			b.INTERFACE_ID AS INTERFACE_ID,
+			b.CODE AS B_CODE,
+			b.NAME AS B_NAME,
+		    ps.APP_ID AS APP_ID,
+		    ps.PRIVATE_KEY,
+		    p.CODE AS APP_CODE,
+		    p.NAME AS APP_NAME,
+		    payset.MCH_ID AS MCH_ID,
+		    payset.SUB_MCH_ID,
+		    payset.IS_SUB_PAY AS IS_SUB_PAY,
+		    payset.PAY_KEY AS PAY_KEY,
+		    payset.ID AS PAY_SETTING_ID,
+		    payset.MCH_ACCOUNT AS MCH_ACCOUNT,
+		    payset.PAY_PRIVATE_KEY AS ALI_PRIVATE_KEY,
+		    payset.PAY_PUBLIC_KEY AS ALI_PUBLIC_KEY,
+		    payset.PARENT_APP_ID as PARENT_APP_ID,
+		    payset.PARENT_SECRET as PARENT_SECRET
+		FROM
+		    SYS_HOSPITAL h,
+			SYS_BRANCH_HOSPITAL b,
+		    SYS_HOSPITAL_PLATFORM_SETTINGS hps,
+		    SYS_PLATFORM_SETTINGS ps,
+		    SYS_PLATFORM p,
+		    SYS_HOSPITAL_PAY_SETTINGS hpayset,
+		    SYS_PAY_SETTINGS payset,
+		    SYS_PAY_MODE pm
+		WHERE
+		    h.ID = hps.HOSPITAL_ID
+      		AND b.HOSPITAL_ID = h.ID
+			AND hps.PLATFORM_SETTINGS_ID = ps.ID
+			AND p.id = ps.PLATFORM_ID
+			AND hpayset.HOSPITAL_ID = h.id
+			AND hpayset.PAY_SETTINGS_ID = payset.ID
+			AND payset.PAY_MODE_ID = pm.ID
+			AND p. CODE = pm. CODE
+		  	AND h.STATUS = 1
+    </select>
+    
+    <select id="queryCodeAndInterfaceIdAndAppByAppId" resultMap="AppAndInterfaceIdAndCodeResultMap" parameterType="map">
+         SELECT DISTINCT
+		    h.ID AS H_ID,
+		    h.CODE AS H_CODE,
+		    h.NAME AS H_NAME,
+			b.INTERFACE_ID AS INTERFACE_ID,
+			b.CODE AS B_CODE,
+			b.NAME AS B_NAME,
+		    ps.APP_ID AS APP_ID,
+		    ps.PRIVATE_KEY,
+		    p.CODE AS APP_CODE,
+		    p.NAME AS APP_NAME,
+		    payset.MCH_ID AS MCH_ID,
+		    payset.SUB_MCH_ID,
+		    payset.IS_SUB_PAY AS IS_SUB_PAY,
+		    payset.PAY_KEY AS PAY_KEY,
+		    payset.ID AS PAY_SETTING_ID,
+		    payset.MCH_ACCOUNT AS MCH_ACCOUNT,
+		    payset.PAY_PRIVATE_KEY AS ALI_PRIVATE_KEY,
+		    payset.PAY_PUBLIC_KEY AS ALI_PUBLIC_KEY,
+		    payset.PARENT_APP_ID as PARENT_APP_ID,
+		    payset.PARENT_SECRET as PARENT_SECRET
+		FROM
+		    SYS_HOSPITAL h,
+			SYS_BRANCH_HOSPITAL b,
+		    SYS_HOSPITAL_PLATFORM_SETTINGS hps,
+		    SYS_PLATFORM_SETTINGS ps,
+		    SYS_PLATFORM p,
+		    SYS_HOSPITAL_PAY_SETTINGS hpayset,
+		    SYS_PAY_SETTINGS payset,
+		    SYS_PAY_MODE pm
+		WHERE
+		    h.ID = hps.HOSPITAL_ID
+      		AND b.HOSPITAL_ID = h.ID
+			AND hps.PLATFORM_SETTINGS_ID = ps.ID
+			AND p.id = ps.PLATFORM_ID
+			AND hpayset.HOSPITAL_ID = h.id
+			AND hpayset.PAY_SETTINGS_ID = payset.ID
+			AND payset.PAY_MODE_ID = pm.ID
+			AND p. CODE = pm. CODE
+		  	AND h.STATUS = 1
+		  	AND ps.APP_ID = #{appId}
+    </select>
+    
+    
+    <resultMap type="com.yy.platform.datas.cache.vo.HospitalInfoByEasyHealthVo" id="HospitalInfoByEasyHealthVoResultMap">
+		<result column="ID" property="hospitalId"/>
+		<result column="CODE" property="hospitalCode"/>
+		<result column="NAME" property="hospitalName"/>
+		<result column="AREA_CODE" property="areaCode"/>
+		<result column="APP_ID" property="appId"/>
+		<result column="APP_CODE" property="appCode"/>
+		<result column="BIZ_CODE" property="bizCode"/>
+		<result column="PRIVATE_KEY" property="privateKey"/>
+    </resultMap>
+    
+    <select id="queryHospitalAndOptionByAppCodeAndBizCode" resultMap="HospitalInfoByEasyHealthVoResultMap" parameterType="map">
+        SELECT
+			h.ID AS ID,
+			h.CODE AS CODE,
+			h.NAME AS NAME,
+			h.AREA_CODE AS AREA_CODE,
+			ps.APP_ID AS APP_ID,
+			p.CODE AS APP_CODE,
+		  	o.BIZ_CODE AS BIZ_CODE
+		FROM
+			SYS_HOSPITAL AS h 
+		INNER JOIN SYS_HOSPITAL_PLATFORM_SETTINGS AS hps ON h.ID = hps.HOSPITAL_ID 
+		INNER JOIN SYS_PLATFORM_SETTINGS AS ps ON hps.PLATFORM_SETTINGS_ID = ps.ID 
+		INNER JOIN SYS_PLATFORM_SETTINGS_MENU AS psm ON psm.PLATFORM_SETTINGS_ID = ps.ID 
+		INNER JOIN SYS_MENU AS m ON psm.MENU_ID = m.ID 
+		INNER JOIN SYS_PLATFORM p ON ps.PLATFORM_ID = p.ID 
+		LEFT JOIN SYS_OPTIONAL AS o ON o.ID = m.OPTIONAL_ID
+		WHERE p.CODE = #{appCode} AND ps.APP_ID IS NOT NULL 
+			<if test="bizCode != null" >
+		    	AND o.BIZ_CODE = #{bizCode}
+		    </if>
+    </select>
+    
+    <select id="queryAllHospitalAndOption" resultMap="HospitalInfoByEasyHealthVoResultMap">
+        SELECT
+            h.ID AS ID,
+            h.CODE AS CODE,
+            h.NAME AS NAME,
+            h.AREA_CODE AS AREA_CODE,
+            ps.APP_ID AS APP_ID,
+            p.CODE AS APP_CODE,
+            o.BIZ_CODE AS BIZ_CODE,
+            ps.PRIVATE_KEY AS PRIVATE_KEY
+        FROM
+            SYS_HOSPITAL AS h 
+        INNER JOIN SYS_HOSPITAL_PLATFORM_SETTINGS AS hps ON h.ID = hps.HOSPITAL_ID 
+        INNER JOIN SYS_PLATFORM_SETTINGS AS ps ON hps.PLATFORM_SETTINGS_ID = ps.ID 
+        INNER JOIN SYS_PLATFORM_SETTINGS_MENU AS psm ON psm.PLATFORM_SETTINGS_ID = ps.ID 
+        INNER JOIN SYS_MENU AS m ON psm.MENU_ID = m.ID 
+        INNER JOIN SYS_PLATFORM p ON ps.PLATFORM_ID = p.ID 
+        LEFT JOIN SYS_OPTIONAL AS o ON o.ID = m.OPTIONAL_ID
+        WHERE ps.APP_ID IS NOT NULL 
+    </select>
+    
+    <select id="queryHospitalByAppCodeAndBizCode" resultMap="HospitalInfoByEasyHealthVoResultMap" parameterType="map">
+        SELECT
+            h.ID AS ID,
+            h.CODE AS CODE,
+            h.NAME AS NAME,
+            h.AREA_CODE AS AREA_CODE,
+            ps.APP_ID AS APP_ID,
+            p.CODE AS APP_CODE,
+            o.BIZ_CODE AS BIZ_CODE
+        FROM
+            SYS_HOSPITAL AS h 
+        INNER JOIN SYS_HOSPITAL_PLATFORM_SETTINGS AS hps ON h.ID = hps.HOSPITAL_ID 
+        INNER JOIN SYS_PLATFORM_SETTINGS AS ps ON hps.PLATFORM_SETTINGS_ID = ps.ID 
+        INNER JOIN SYS_PLATFORM_SETTINGS_MENU AS psm ON psm.PLATFORM_SETTINGS_ID = ps.ID 
+        INNER JOIN SYS_MENU AS m ON psm.MENU_ID = m.ID 
+        INNER JOIN SYS_PLATFORM p ON ps.PLATFORM_ID = p.ID 
+        LEFT JOIN SYS_OPTIONAL AS o ON o.ID = m.OPTIONAL_ID
+        WHERE p.CODE = #{appCode} AND ps.APP_ID IS NOT NULL 
+            <if test="bizCode != null" >
+                AND o.BIZ_CODE = #{bizCode}
+            </if>
+    </select>
+    
+    <select id="findRevervationAppHospitals" resultMap="HospitalInfoByEasyHealthVoResultMap" parameterType="java.lang.String">
+        select sh.ID AS ID,
+            sh.CODE AS CODE,
+            sh.NAME AS NAME,
+            sh.AREA_CODE AS AREA_CODE,
+            so.BIZ_CODE AS BIZ_CODE from SYS_APP_HOSPITAL syh
+        INNER JOIN SYS_HOSPITAL sh ON syh.HOSPITAL_ID=sh.ID
+         INNER JOIN SYS_HOSPITAL_OPTIONAL ho on ho.HOSPITAL_ID=sh.ID
+         INNER JOIN SYS_OPTIONAL so on ho.OPTIONAL_ID=so.ID 
+        where syh.PARENTAPPID=#{appId} AND so.BIZ_CODE=#{bizCode}
+        order by syh.SORT
+    </select>
+    <select id="findLastHospitalByUserId" resultMap="hospitalResultMap">
+        SELECT * FROM SYS_HOSPITAL h,
+        <choose>
+            <when test="userTable == 'EH_USER_1'">
+                EH_USER_1
+            </when>
+            <when test="userTable == 'EH_USER_2'">
+                EH_USER_2
+            </when>
+            <when test="userTable == 'EH_USER_3'">
+                EH_USER_3
+            </when>
+            <when test="userTable == 'EH_USER_4'">
+                EH_USER_4
+            </when>
+            <when test="userTable == 'EH_USER_5'">
+                EH_USER_5
+            </when>
+            <when test="userTable == 'EH_USER_6'">
+                EH_USER_6
+            </when>
+            <when test="userTable == 'EH_USER_7'">
+                EH_USER_7
+            </when>
+            <when test="userTable == 'EH_USER_8'">
+                EH_USER_8
+            </when>
+            <when test="userTable == 'EH_USER_9'">
+                EH_USER_9
+            </when>
+            <when test="userTable == 'EH_USER_10'">
+                EH_USER_10
+            </when>
+        </choose>
+         u,
+        <choose>
+            <when test="registerTable == 'BIZ_REGISTER_RECORD_1'">
+                BIZ_REGISTER_RECORD_1
+            </when>
+            <when test="registerTable == 'BIZ_REGISTER_RECORD_2'">
+                BIZ_REGISTER_RECORD_2
+            </when>
+            <when test="registerTable == 'BIZ_REGISTER_RECORD_3'">
+                BIZ_REGISTER_RECORD_3
+            </when>
+            <when test="registerTable == 'BIZ_REGISTER_RECORD_4'">
+                BIZ_REGISTER_RECORD_4
+            </when>
+            <when test="registerTable == 'BIZ_REGISTER_RECORD_5'">
+                BIZ_REGISTER_RECORD_5
+            </when>
+            <when test="registerTable == 'BIZ_REGISTER_RECORD_6'">
+                BIZ_REGISTER_RECORD_6
+            </when>
+            <when test="registerTable == 'BIZ_REGISTER_RECORD_7'">
+                BIZ_REGISTER_RECORD_7
+            </when>
+            <when test="registerTable == 'BIZ_REGISTER_RECORD_8'">
+                BIZ_REGISTER_RECORD_8
+            </when>
+            <when test="registerTable == 'BIZ_REGISTER_RECORD_9'">
+                BIZ_REGISTER_RECORD_9
+            </when>
+            <when test="registerTable == 'BIZ_REGISTER_RECORD_10'">
+                BIZ_REGISTER_RECORD_10
+            </when>
+        </choose>
+         r 
+        where r.USER_ID=u.ID and r.HOSPITAL_ID=h.ID and u.ID=#{userId} and r.REGISTER_TIME>(UNIX_TIMESTAMP(DATE(NOW()))*1000) 
+         order by r.REGISTER_TIME desc limit 0,1
+    </select>
+</mapper>

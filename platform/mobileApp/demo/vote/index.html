@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width ,maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <title>满意度评价</title>
+    <style type="text/css">
+        body{
+            font-family: "Courier New";
+        }
+        td{
+           background: #FFFFFF;
+           height: 23px;
+           line-height: 23px;
+        }
+        input{
+           height: 23px;
+           line-height: 23px;
+           font-family: "Courier New";
+           width:99%;
+        }
+    </style>
+    <script type="text/javascript">
+        function submitVote(){
+            document.forms['voteForm'].submit();
+        }
+    </script>
+</head>
+
+<body>
+<div id="body">
+<div id="vote-wrap">
+   <form id="voteForm" method="post" action="http://127.0.0.1/mobileApp/vote/add">
+   <table id="voteAdd" style="background: #CCCCCC;" align="center" >
+   <tr><td colspan="2" align="center">评价测试</td></tr>
+   <tr>
+       <td width="300px">(业务编号 )bizCode:</td>
+       <td width="450px"><input type="text" id="bizCode" name="bizCode" value="02"/></td>
+   </tr>
+   <tr>
+	   <td>appId:</td>
+	   <td><input type="text" id="appId" name="appId" value="wx5d6f8852079043b5"/></td>
+   </tr>
+   <tr>
+       <td>appCode:</td>
+	   <td>
+	       <input type="text"   id="appCode" name="appCode" value="wechat"/>
+	   </td>
+   </tr>
+   <tr>
+	   <td>openId:</td>
+	   <td>
+	       <input type="text" id="openId" name="openId" value="20880013406205894890701880217602"/>
+	   </td>
+   </tr>
+   <tr>
+        <td>(订单编号)orderNo:</td>
+        <td><input type="text"  id="orderNo" name="orderNo" value="20150728021310112"/></td>
+   </tr>
+   <tr>
+        <td>(就诊卡/住院号等)cardNo:</td>
+        <td><input type="text"  id="cardNo" name="cardNo" value="3000014336"/></td>
+   </tr>
+   <tr>
+        <td>(被评价事物的编码)raterCode:</td>
+        <td><input type="text" id="raterCode" name="raterCode" value="12069"/></td>
+   </tr>
+   <tr>
+        <td>(评价完后的跳转地址)fowardUrl:</td>
+        <td><input type="text"  id="fowardUrl" name="fowardUrl" value="http://pt.www.yunyichina.cn/mobileApp/demo/vote/index.html"/></td>
+   </tr>
+   <tr>
+        <td colspan="2">
+                          业务编号传参:挂号:01,门诊:02,住院:03<br>
+          post提交地址:http://pt.www.yunyichina.cn/mobileApp/vote/add
+        </td>
+   <tr>
+   <tr><td colspan="2"> <button onclick="submitVote()">提交</button></td></tr>
+   </table>
+   </form>
+  
+</div>
+</div>
+</body>
+</html>
+

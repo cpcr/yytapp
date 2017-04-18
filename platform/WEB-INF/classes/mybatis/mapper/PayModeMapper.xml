@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.platform.hospital.entity.PayMode">
+
+	<resultMap id="payModeResultMap" type="PayMode">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="VERSION" property="version" jdbcType="VARCHAR" />
+		<result column="PLATFORM_ID" property="platformId" jdbcType="VARCHAR" />
+		<result column="CODE" property="code" jdbcType="VARCHAR" />
+		<result column="CP" property="cp" jdbcType="VARCHAR" />
+		<result column="CT" property="ct" jdbcType="TIMESTAMP" />
+		<result column="EP" property="ep" jdbcType="VARCHAR" />
+		<result column="ET" property="et" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="findAll" resultMap="payModeResultMap">
+		select ID,NAME,VERSION,PLATFORM_ID,CODE,CP,CT,EP,ET from SYS_PAY_MODE
+	</select>
+	
+	<select id="findById" resultMap="payModeResultMap">
+		select ID,NAME,VERSION,PLATFORM_ID,CODE,CP,CT,EP,ET from SYS_PAY_MODE p where p.ID = #{id}
+	</select>
+	
+	<insert id="add" parameterType="PayMode" useGeneratedKeys="true" keyProperty="id">
+		insert into
+		SYS_PAY_MODE(ID,NAME,VERSION,PLATFORM_ID,CODE,CP,CT,EP,ET)
+		values
+		(#{id},#{name},#{version},#{platformId},${code},#{cp},now(),#{ep},#{et})
+	</insert>
+
+	<update id="update" parameterType="PayMode">
+		update SYS_PAY_MODE set NAME = #{NAME}, VERSION = #{version}, PLATFORM_ID = #{platformId}, CODE=#{code} where ID = #{id}
+	</update>
+	
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.platform.message.entity.Keyword">
+	
+	<!-- 新增 -->
+	<insert id="add" parameterType="Keyword" >
+		INSERT INTO SYS_MSG_KEYWORD(ID,CONTENT,RULE_ID,TYPE,STATE)
+		VALUES(#{id},#{content},#{ruleId},#{type},#{state})
+	</insert>
+	<!-- end -->
+	
+	<!-- 批量插入 -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		 INSERT INTO SYS_MSG_KEYWORD(ID,CONTENT,RULE_ID,TYPE,STATE)
+		 VALUES
+	    <foreach collection="list" item="item" index="index" separator="," >  
+	        ('${item.id}','${item.content}','${item.ruleId}',${item.type},${item.state})  
+	    </foreach>  
+	</insert>
+	<!-- end -->
+	
+	
+	<!-- 更新 -->
+	<update id="update" parameterType="com.yy.platform.message.entity.Keyword">
+		UPDATE SYS_MSG_KEYWORD t 
+		<set>
+			<if test="content!=null">
+				t.CONTENT=#{content},
+			</if>
+			<if test="type!=null">
+				t.TYPE=#{type},
+			</if>
+		</set>
+		WHERE t.ID=#{id}
+	</update>
+	<!-- end -->
+	
+	
+	<!-- 根据ID查询 -->
+	<select id="findById" parameterType="string" resultMap="keywordMap"> 
+		select * from SYS_MSG_KEYWORD r where r.ID=#{id}
+	</select>
+	<!-- end -->
+	
+	
+	<!-- 根据规则ID查询 -->
+	<select id="findListByRuleId" parameterType="string" resultMap="keywordMap">
+		SELECT 	* FROM SYS_MSG_KEYWORD t where t.RULE_ID=#{id}	
+	</select>
+	<resultMap type="Keyword" id="keywordMap">
+		<id property="id" column="ID"/>
+		<result property="content" column="CONTENT"/>
+		<result property="ruleId" column="RULE_ID"/>
+		<result property="type" column="TYPE"/>
+		<result property="state" column="STATE"/>
+	</resultMap>
+	<!-- end -->
+	
+	<delete id="deleteById">
+		DELETE FROM SYS_MSG_KEYWORD WHERE ID=#{id}
+	</delete>
+	
+</mapper>

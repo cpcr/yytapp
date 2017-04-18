@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd 
+    http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.1.xsd 
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd 
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd"
+	default-lazy-init="false">
+
+    <bean id="whiteListCache" class="com.yy.platform.datas.cache.component.WhiteListCache" />
+    
+    <bean id="platformCommonService" class="com.yy.platform.common.service.impl.CommonServiceImpl" />
+
+	<!-- 科室缓存 -->
+	<bean id="deptCache" class="com.yy.platform.datas.cache.component.DeptCache" />
+
+	<!-- 医生缓存 -->
+	<bean id="doctorCache" class="com.yy.platform.datas.cache.component.DoctorCache" />
+
+	<!-- 医院缓存 -->
+	<bean id="hospitalCache" class="com.yy.platform.datas.cache.component.HospitalCache" />
+
+	<!-- (正常)挂号记录缓存 -->
+	<bean id="regsiterInfoCache" class="com.yy.platform.datas.cache.component.RegsiterInfoCache" />
+
+	<!-- 医院规则缓存 -->
+	<bean id="hospitalRuleCache"
+		class="com.yy.platform.datas.cache.component.HospitalRuleCache" />
+
+	<!-- (支付超时,待解锁,异常处理轮询队列)挂号记录缓存 -->
+	<bean id="registerRecordCache"
+		class="com.yy.platform.datas.cache.component.RegisterRecordCache" />
+		
+	<!-- 门诊记录缓存 -->
+	<bean id="clinicRecordCache"
+		class="com.yy.platform.datas.cache.component.ClinicRecordCache" />
+		
+	<!-- 押金记录缓存 -->
+	<!-- <bean id="depositRecordCache"
+		class="com.yy.platform.datas.cache.component.DepositRecordCache" /> -->
+		
+	<!-- 号源缓存 -->
+	<bean id="registerSourceCache"
+		class="com.yy.platform.datas.cache.component.RegisterSourceCache" />
+
+    <bean id="medicalCardCache"
+        class="com.yy.platform.datas.cache.component.MedicalCardCache" />
+        
+    <bean id="commonCache"
+        class="com.yy.platform.datas.cache.component.CommonCache" />
+        
+    <bean id="hadRegDoctorCache"
+        class="com.yy.platform.datas.cache.component.HadRegDoctorCache"></bean>
+
+	<!-- 挂号记录异常缓存队列 -->
+	<bean id="registerExceptionCache"
+		class="com.yy.platform.datas.cache.component.RegisterExceptionCache" />
+	<!-- 门诊异常缓存队列 -->
+	<bean id="clinicExceptionCache"
+		class="com.yy.platform.datas.cache.component.ClinicExceptionCache" />
+	<!-- <bean id="depositExceptionCache"
+		class="com.yy.platform.datas.cache.component.DepositExceptionCache" /> -->
+	<!-- 停诊异常缓存队列 -->
+	<bean id="stopRegisterExceptionCache"
+		class="com.yy.platform.datas.cache.component.StopRegisterExceptionCache" />
+		
+	<!-- 消息推送缓存 -->
+	<bean id="msgTempCache" class="com.yy.platform.datas.cache.component.MsgTempCache" />
+
+	<!-- 基础数据缓存管理 -->
+	<bean id="baseDatasManager" class="com.yy.platform.datas.manager.BaseDatasManager" />
+
+	<!-- 业务数据缓存管理 -->
+	<bean id="registerBizManager" class="com.yy.platform.datas.manager.RegisterBizManager" />
+
+	<!-- 医院规则缓存管理 -->
+	<bean id="ruleConfigManager" class="com.yy.platform.datas.manager.RuleConfigManager" />
+	
+	<!-- 报表数据管理 -->
+	<bean id="reportsBizManager" class="com.yy.platform.datas.manager.ReportsBizManager" />
+	
+	<!-- 绑卡数据管理 -->
+	<bean id="medicalcardBizManager" class="com.yy.platform.datas.manager.MedicalcardBizManager" />
+	
+	<!-- 门诊数据管理 -->
+	<bean id="clinicBizManager" class="com.yy.platform.datas.manager.ClinicBizManager" />
+	
+	<!-- 候诊排队数据管理 -->
+	<bean id="queuesBizManager" class="com.yy.platform.datas.manager.QueuesBizManager" />
+	
+	<!-- 住院业务数据管理 -->
+	<!-- <bean id="inpatientBizManager" class="com.yy.platform.datas.manager.InpatientBizManager" /> -->
+
+	<!-- 挂号业务异常处理管理 -->
+	<bean id="bizExceptionHandleManager"
+		class="com.yy.platform.datas.manager.BizExceptionHandleManager" />
+		
+	<!-- 门诊业务异常处理管理 -->
+	<bean id="bizClinicExceptionHandleManager"
+		class="com.yy.platform.datas.manager.BizClinicExceptionHandleManager" />
+		
+	<!-- 押金补缴业务异常处理管理 -->
+	<!-- <bean id="bizDepositExceptionHandleManager"
+		class="com.yy.platform.datas.manager.BizDepositExceptionHandleManager" /> -->
+		
+	<!--  -->
+	<bean id="visitWarnHandleManager"
+		class="com.yy.platform.datas.manager.VisitWarnHandleManager" />	
+		
+	<!-- 消息推送缓存管理 -->
+	<bean id="msgTempManager" class="com.yy.platform.datas.manager.MsgTempManager" />
+	
+	<bean id="userRoleCache" class="com.yy.platform.datas.cache.component.UserRoleCache" />
+	<bean id="roleResourceCache" class="com.yy.platform.datas.cache.component.RoleResourceCache" />
+	<!--<bean id="accessTokenCache" class="com.yy.platform.datas.cache.component.AccessTokenCache" />
+	<bean id="accessTokenManager" class="com.yy.platform.datas.manager.AccessTokenManager" />  -->
+	<!-- 医院与功能关系缓存  暂时为健康易服务 2015年10月29日 12:33:21 z周鉴斌 -->
+	<bean id="hospitalAndOptionCache" class="com.yy.platform.datas.cache.component.HospitalAndOptionCache" /> 
+</beans>	

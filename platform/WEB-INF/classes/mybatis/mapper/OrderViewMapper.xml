@@ -1,0 +1,936 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yy.platform.order.entity.OrderView" >
+  	<resultMap id="orderViewResultMap" type="com.yy.platform.order.entity.OrderView">
+  		<id column="ID" property="id" jdbcType="VARCHAR" /> 
+    	<result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+	    <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+	    <result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+	    <result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR" />
+	    <result column="PAY_STATUS" property="payStatus" jdbcType="VARCHAR" />
+	    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+	    <result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+	    <result column="PATIENT_NAME" property="patientName" jdbcType="VARCHAR" />
+	    <result column="PATIENT_MOBILE" property="patientMobile" jdbcType="VARCHAR" />
+	    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+	    <result column="ORDER_NO_HASH_VAL" property="orderNoHashVal" jdbcType="INTEGER" />
+	    <result column="HIS_ORD_NO" property="hisOrdNo" jdbcType="VARCHAR" />
+	    <result column="AGT_ORD_NUM" property="agtOrdNum" jdbcType="VARCHAR" />
+	    <result column="PAY_TIME" property="payTime" jdbcType="VARCHAR" /> 
+	    <result column="REFUND_ORDER_NO" property="refundOrderNo" jdbcType="VARCHAR" />
+	    <result column="REFUND_HISORD_NO" property="refundHisOrdNo" jdbcType="VARCHAR" />
+	    <result column="AGT_REFUND_ORD_NUM" property="agtRefundOrdNum" jdbcType="VARCHAR" />
+	    <result column="REFUND_TIME" property="refundTime" jdbcType="VARCHAR" />
+	    <result column="BIZ_MODE" property="bizMode" jdbcType="VARCHAR" />
+	    <result column="RECEIPT_NUM" property="receiptNum" jdbcType="VARCHAR" />
+	    <result column="PAY_FEE" property="payFee" jdbcType="VARCHAR" />
+	    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+	    <result column="BIZ_STATUS" property="bizStatus" jdbcType="VARCHAR" />
+	    <result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+		<result column="IS_INSURANCE" property="isInsurance" jdbcType="VARCHAR" />
+		<result column="TOTAL_FEE" property="totalFee" jdbcType="VARCHAR" />
+		<!-- 退款流水号和退款单据号 -->
+        <result column="CANCEL_SERIAL_NO" property="cancelSerialNo" jdbcType="VARCHAR"/>
+        <result column="CANCEL_BILL_NO" property="cancelBillNo" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="orderViewResultMapEx" type="com.yy.platform.order.entity.OrderViewEx">
+  		<id column="ID" property="id" jdbcType="VARCHAR" /> 
+    	<result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+	    <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+	    <result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+	    <result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR" />
+	    <result column="PAY_STATUS" property="payStatus" jdbcType="VARCHAR" />
+	    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+	    <result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+	    <result column="PATIENT_NAME" property="patientName" jdbcType="VARCHAR" />
+	    <result column="PATIENT_MOBILE" property="patientMobile" jdbcType="VARCHAR" />
+	    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+	    <result column="ORDER_NO_HASH_VAL" property="orderNoHashVal" jdbcType="INTEGER" />
+	    <result column="HIS_ORD_NO" property="hisOrdNo" jdbcType="VARCHAR" />
+	    <result column="AGT_ORD_NUM" property="agtOrdNum" jdbcType="VARCHAR" />
+	    <result column="PAY_TIME" property="payTime" jdbcType="VARCHAR" /> 
+	    <result column="REFUND_ORDER_NO" property="refundOrderNo" jdbcType="VARCHAR" />
+	    <result column="REFUND_HISORD_NO" property="refundHisOrdNo" jdbcType="VARCHAR" />
+	    <result column="AGT_REFUND_ORD_NUM" property="agtRefundOrdNum" jdbcType="VARCHAR" />
+	    <result column="REFUND_TIME" property="refundTime" jdbcType="VARCHAR" />
+	    <result column="BIZ_MODE" property="bizMode" jdbcType="VARCHAR" />
+	    <result column="RECEIPT_NUM" property="receiptNum" jdbcType="VARCHAR" />
+	    <result column="PAY_FEE" property="payFee" jdbcType="VARCHAR" />
+	    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+	    <result column="BIZ_STATUS" property="bizStatus" jdbcType="VARCHAR" />
+	    <result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+		<result column="IS_INSURANCE" property="isInsurance" jdbcType="VARCHAR" />
+		<result column="TOTAL_FEE" property="totalFee" jdbcType="VARCHAR" />
+		<!-- 退款流水号和退款单据号 -->
+        <result column="CANCEL_SERIAL_NO" property="cancelSerialNo" jdbcType="VARCHAR"/>
+        <result column="CANCEL_BILL_NO" property="cancelBillNo" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<resultMap id="orderQuerByParamsyMap" type="com.yy.platform.order.entity.OrderByParamsView">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+		<result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR" />
+		<result column="PAY_STATUS" property="payStatus" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+		<result column="CARD_TYPE" property="cardType" jdbcType="VARCHAR" />
+		<result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+		<result column="PATIENT_NAME" property="patientName" jdbcType="VARCHAR" />
+		<result column="PATIENT_MOBILE" property="patientMobile" jdbcType="VARCHAR" />
+		<result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+		<result column="ORDER_NO_HASH_VAL" property="orderNoHashVal" jdbcType="INTEGER" />
+		<result column="HIS_ORD_NO" property="hisOrdNo" jdbcType="VARCHAR" />
+		<result column="AGT_ORD_NUM" property="agtOrdNum" jdbcType="VARCHAR" />
+		<result column="PAY_TIME" property="payTime" jdbcType="VARCHAR" />
+		<result column="REFUND_ORDER_NO" property="refundOrderNo" jdbcType="VARCHAR" />
+		<result column="REFUND_HISORD_NO" property="refundHisOrdNo" jdbcType="VARCHAR" />
+		<result column="AGT_REFUND_ORD_NUM" property="agtRefundOrdNum" jdbcType="VARCHAR" />
+		<result column="REFUND_TIME" property="refundTime" jdbcType="VARCHAR" />
+		<result column="BIZ_MODE" property="bizMode" jdbcType="VARCHAR" />
+		<result column="RECEIPT_NUM" property="receiptNum" jdbcType="VARCHAR" />
+		<result column="PAY_FEE" property="payFee" jdbcType="VARCHAR" />
+		<result column="TITLE" property="title" jdbcType="VARCHAR" />
+		<result column="BIZ_STATUS" property="bizStatus" jdbcType="VARCHAR" />
+		<result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+		<result column="IS_INSURANCE" property="isInsurance" jdbcType="VARCHAR" />
+		<result column="TOTAL_FEE" property="totalFee" jdbcType="VARCHAR" />
+		<!-- 退款流水号和退款单据号 -->
+		<result column="CANCEL_SERIAL_NO" property="cancelSerialNo" jdbcType="VARCHAR"/>
+		<result column="CANCEL_BILL_NO" property="cancelBillNo" jdbcType="VARCHAR"/>
+		<result column="SEX" property="sex" jdbcType="VARCHAR"/>
+		<result column="DOCTOR_CODE" property="doctorCode" jdbcType="VARCHAR"/>
+		<result column="DOCTOR_NAME" property="doctorName" jdbcType="VARCHAR"/>
+		<result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR"/>
+		<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR"/>
+		<result column="AGT_CODE" property="agtCode" jdbcType="VARCHAR"/>
+		<result column="AGE" property="age" jdbcType="VARCHAR"/>
+		<result column="ID_TYPE" property="idType" jdbcType="VARCHAR"/>
+		<result column="ID_NO" property="idNo" jdbcType="VARCHAR"/>
+		<result column="BIRTH" property="birth" jdbcType="VARCHAR"/>
+		<result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR"/>
+		<result column="MEDICARE_NO" property="medicareNo" jdbcType="VARCHAR"/>
+		<result column="MEDICAL_REGISTER_SERIAL_NUM" property="medicalRegisterSerialNum" jdbcType="VARCHAR"/>
+		<result column="SCHEDULE_DATE" property="scheduleDate" jdbcType="VARCHAR"/>
+		<result column="BEGIN_TIME" property="beginTime" jdbcType="VARCHAR"/>
+		<result column="END_TIME" property="endTime" jdbcType="VARCHAR"/>
+		<result column="WORK_ID" property="workId" jdbcType="VARCHAR"/>
+		<result column="REAL_REG_FEE" property="realRegFee" jdbcType="VARCHAR"/>
+		<result column="REAL_TREAT_FEE" property="realTreatFee" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+  	<sql id="Order_Query_Column_List" >
+	    ID, ORDER_TYPE, TABLE_NAME, HOSPITAL_ID, HOSPITAL_CODE, PAY_STATUS, CREATE_TIME, CARD_NO, PATIENT_NAME, PATIENT_MOBILE, ORDER_NO, ORDER_NO_HASH_VAL,HIS_ORD_NO, 
+	    AGT_ORD_NUM, PAY_FEE, PAY_TIME, REFUND_ORDER_NO, REFUND_HISORD_NO, AGT_REFUND_ORD_NUM, REFUND_TIME, RECEIPT_NUM, BIZ_MODE, TITLE, BIZ_STATUS,OPEN_ID,
+	    IS_INSURANCE, TOTAL_FEE,CANCEL_SERIAL_NO,CANCEL_BILL_NO
+	</sql>
+
+	<sql id="Order_Query_By_Params_Column_List" >
+		ID, ORDER_TYPE, TABLE_NAME, HOSPITAL_ID, HOSPITAL_CODE, PAY_STATUS, CREATE_TIME, CARD_TYPE, CARD_NO2 AS CARD_NO, PATIENT_NAME2 AS PATIENT_NAME, PATIENT_MOBILE2 AS PATIENT_MOBILE, ORDER_NO, ORDER_NO_HASH_VAL,HIS_ORD_NO,
+		AGT_ORD_NUM, PAY_FEE, PAY_TIME, REFUND_ORDER_NO, REFUND_HISORD_NO, AGT_REFUND_ORD_NUM, REFUND_TIME, RECEIPT_NUM, BIZ_MODE, TITLE, BIZ_STATUS,OPEN_ID,
+		IS_INSURANCE, TOTAL_FEE,CANCEL_SERIAL_NO,CANCEL_BILL_NO,SEX,DOCTOR_CODE,DOCTOR_NAME,DEPT_CODE,DEPT_NAME,AGT_CODE,AGE,ID_TYPE,ID_NO,BIRTH,PATIENT_ID,MEDICARE_NO,MEDICAL_REGISTER_SERIAL_NUM,
+		SCHEDULE_DATE,BEGIN_TIME,END_TIME,WORK_ID,REAL_REG_FEE,REAL_TREAT_FEE
+	</sql>
+  	
+  	<select id="findListByPage" resultMap="orderViewResultMap" parameterType="map"> 
+	    SELECT 
+	    	<include refid="Order_Query_Column_List" />  
+	    FROM 
+	    REFUND_ORDER_QUERY WHERE HOSPITAL_ID = #{hospitalId}
+ 			<if test="orderType != null and orderType != ''" >
+        		 AND ORDER_TYPE = #{orderType}
+      		</if>
+      		<if test="orderNo != null and orderNo != ''" >
+      			AND ORDER_NO = #{orderNo} AND ORDER_NO_HASH_VAL = #{orderNoHashVal} 
+      		</if>
+      		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''" >
+      			AND CREATE_TIME BETWEEN #{startTime} AND #{endTime} 
+      		</if>
+      		<if test="payStatus != null and payStatus != ''" >
+      			AND PAY_STATUS = #{payStatus} 
+      		</if>
+      		<if test="payMode != null and payMode != ''" >
+      			AND BIZ_MODE = #{payMode} 
+      		</if>
+      		<if test="cardNo != null and cardNo != ''" >
+      			AND CARD_NO = #{cardNo} 
+      		</if>
+      		<if test="patientName != null and patientName != ''" >
+      			AND PATIENT_NAME like #{patientName} 
+      		</if>
+      		<if test="patientMobile != null and patientMobile != ''" >
+      			AND PATIENT_MOBILE like #{patientMobile} 
+      		</if>
+      		<if test="hisOrdNo != null and hisOrdNo != ''" >
+      			AND HIS_ORD_NO = #{hisOrdNo} 
+      		</if>
+      		<if test="agtOrdNum != null and agtOrdNum != ''" >
+      			AND AGT_ORD_NUM = #{agtOrdNum} 
+      		</if>
+      		<if test="bizStatus != null and bizStatus != ''" >
+      			AND BIZ_STATUS = #{bizStatus} 
+      		</if>
+      		<if test="openId != null and openId != ''" >
+      			AND OPEN_ID = #{openId} 
+      		</if>
+ 			ORDER BY CREATE_TIME DESC
+  	</select>
+  	
+  	<select id="findListByPageEx_old" resultMap="orderViewResultMapEx" parameterType="map">
+	    SELECT 
+	    	<include refid="Order_Query_Column_List" />  
+	    FROM 
+	    REFUND_ORDER_QUERY WHERE HOSPITAL_ID = #{hospitalId}
+ 			<if test="orderType != null and orderType != ''" >
+        		 AND ORDER_TYPE = #{orderType}
+      		</if>
+      		<if test="orderNo != null and orderNo != ''" >
+      			AND ORDER_NO = #{orderNo} AND ORDER_NO_HASH_VAL = #{orderNoHashVal} 
+      		</if>
+      		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''" >
+      			AND CREATE_TIME BETWEEN #{startTime} AND #{endTime} 
+      		</if>
+      		<if test="payStatus != null and payStatus != ''" >
+      			AND PAY_STATUS = #{payStatus} 
+      		</if>
+      		<if test="payMode != null and payMode != ''" >
+      			AND BIZ_MODE = #{payMode} 
+      		</if>
+      		<if test="cardNo != null and cardNo != ''" >
+      			AND CARD_NO = #{cardNo} 
+      		</if>
+      		<if test="patientName != null and patientName != ''" >
+      			AND PATIENT_NAME like #{patientName} 
+      		</if>
+      		<if test="patientMobile != null and patientMobile != ''" >
+      			AND PATIENT_MOBILE like #{patientMobile} 
+      		</if>
+      		<if test="hisOrdNo != null and hisOrdNo != ''" >
+      			AND HIS_ORD_NO = #{hisOrdNo} 
+      		</if>
+      		<if test="agtOrdNum != null and agtOrdNum != ''" >
+      			AND AGT_ORD_NUM = #{agtOrdNum} 
+      		</if>
+      		<if test="bizStatus != null and bizStatus != ''" >
+      			AND BIZ_STATUS = #{bizStatus} 
+      		</if>
+      		<if test="openId != null and openId != ''" >
+      			AND OPEN_ID = #{openId} 
+      		</if>
+ 			ORDER BY CREATE_TIME DESC
+  	</select>
+
+	<select id="findOrderByParams" resultMap="orderQuerByParamsyMap" parameterType="map">
+		SELECT DISTINCT
+		<include refid="Order_Query_By_Params_Column_List" />
+		FROM (
+		SELECT T1.*,T2.SEX,T2.AGE,T2.ID_TYPE,T2.ID_NO,T2.BIRTH,T2.PATIENT_ID,T2.MEDICARE_NO,T2.CARD_NO AS CARD_NO2,T2.NAME AS PATIENT_NAME2,T2.MOBILE AS PATIENT_MOBILE2 FROM
+		ORDER_QUERY_BY_PARAMS T1 LEFT JOIN V_ALL_MEDICAL_CARD T2 ON T1.CARD_NO=T2.CARD_NO
+		union
+		SELECT T1.*,T2.SEX,T2.AGE,T2.ID_TYPE,T2.ID_NO,T2.BIRTH,T2.PATIENT_ID,T2.MEDICARE_NO,T2.CARD_NO AS CARD_NO2,T2.NAME AS PATIENT_NAME2,T2.MOBILE AS PATIENT_MOBILE2 FROM
+		ORDER_QUERY_BY_PARAMS T1 RIGHT JOIN V_ALL_MEDICAL_CARD T2 ON T1.CARD_NO=T2.CARD_NO
+		) T WHERE 1=1
+		<if test="orderNo != null and orderNo != ''" >
+			AND ORDER_NO = #{orderNo}
+		</if>
+		<if test="hisOrdNo != null and hisOrdNo != ''" >
+			AND HIS_ORD_NO = #{hisOrdNo}
+		</if>
+		<if test="agtOrdNum != null and agtOrdNum != ''" >
+			AND AGT_ORD_NUM = #{agtOrdNum}
+		</if>
+		<if test="refundOrderNo != null and refundOrderNo != ''" >
+			AND REFUND_ORDER_NO = #{refundOrderNo}
+		</if>
+		<if test="refundHisOrdNo != null and refundHisOrdNo != ''" >
+			AND REFUND_HISORD_NO = #{refundHisOrdNo}
+		</if>
+		<if test="agtRefundOrdNum != null and agtRefundOrdNum != ''" >
+			AND AGT_REFUND_ORD_NUM = #{agtRefundOrdNum}
+		</if>
+		<if test="cardNo != null and cardNo != ''" >
+			AND CARD_NO2 = #{cardNo}
+		</if>
+		ORDER BY CREATE_TIME DESC
+	</select>
+
+
+	<select id="findListByPageEx" resultMap="orderViewResultMapEx" parameterType="map"> 
+	<trim prefixOverrides="union all">  
+  	<foreach collection="tableCountArray" index="index" item="item" open="" separator=" union all " close="">
+  		<trim prefixOverrides="union all">  
+<if test="orderType == null or orderType=='' or orderType=='1'.toString()" >
+	    SELECT 
+	    
+ID AS ID
+,'1' AS ORDER_TYPE 
+,'BIZ_REGISTER_RECORD_${index+1}' AS TABLE_NAME
+,HOSPITAL_ID AS HOSPITAL_ID
+,HOSPITAL_CODE AS HOSPITAL_CODE
+,PAY_STATUS AS PAY_STATUS
+,date_format(from_unixtime((REGISTER_TIME / 1000)),'%Y-%m-%d %H:%i:%S') AS CREATE_TIME
+,CARD_NO AS CARD_NO
+,ORDER_NO_HASH_VAL AS ORDER_NO_HASH_VAL
+,PATIENT_NAME AS PATIENT_NAME
+,PATIENT_MOBILE AS PATIENT_MOBILE
+,ORDER_NO AS ORDER_NO
+,HIS_ORD_NO AS HIS_ORD_NO
+,AGT_ORD_NUM AS AGT_ORD_NUM
+,(ifnull(REAL_TREAT_FEE,0) + ifnull(REAL_REG_FEE,0)) AS PAY_FEE
+,date_format(from_unixtime((PAY_TIME / 1000)),'%Y-%m-%d %H:%i:%S') AS PAY_TIME
+,REFUND_ORDER_NO AS REFUND_ORDER_NO
+,REFUND_HISORD_NO AS REFUND_HISORD_NO
+,AGT_REFUND_ORD_NUM AS AGT_REFUND_ORD_NUM
+,date_format(from_unixtime((REFUND_TIME / 1000)),'%Y-%m-%d %H:%i:%S') AS REFUND_TIME
+,RECEIPT_NUM AS RECEIPT_NUM
+,REG_MODE AS BIZ_MODE
+,RECORD_TITLE AS TITLE
+,REG_STATUS AS BIZ_STATUS
+,OPEN_ID AS OPEN_ID
+,TRADE_MODE AS TRADE_MODE
+,IS_INSURANCE AS IS_INSURANCE
+,TOTAL_FEE AS TOTAL_FEE
+,CANCEL_SERIAL_NO AS CANCEL_SERIAL_NO
+,CANCEL_BILL_NO AS CANCEL_BILL_NO
+,SCHEDULE_DATE AS SCHEDULE_DATE
+
+	    FROM 
+	    BIZ_REGISTER_RECORD_${index+1} WHERE HOSPITAL_ID = #{hospitalId}
+      		<if test="orderNo != null and orderNo != ''" >
+      			AND ORDER_NO = #{orderNo} AND ORDER_NO_HASH_VAL = #{orderNoHashVal} 
+      		</if>
+      		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''" >
+      			AND REGISTER_TIME BETWEEN UNIX_TIMESTAMP(#{startTime})*1000 AND UNIX_TIMESTAMP(#{endTime})*1000
+      		</if>
+      		<if test="payStatus != null and payStatus != ''" >
+      			AND PAY_STATUS = #{payStatus} 
+      		</if>
+      		<if test="payMode != null and payMode != ''" >
+      			AND REG_MODE = #{payMode} 
+      		</if>
+      		<if test="cardNo != null and cardNo != ''" >
+      			AND CARD_NO = #{cardNo} 
+      		</if>
+      		<if test="patientName != null and patientName != ''" >
+      			AND PATIENT_NAME like #{patientName} 
+      		</if>
+      		<if test="patientMobile != null and patientMobile != ''" >
+      			AND PATIENT_MOBILE like #{patientMobile} 
+      		</if>
+      		<if test="hisOrdNo != null and hisOrdNo != ''" >
+      			AND HIS_ORD_NO = #{hisOrdNo} 
+      		</if>
+      		<if test="agtOrdNum != null and agtOrdNum != ''" >
+      			AND AGT_ORD_NUM = #{agtOrdNum} 
+      		</if>
+      		<if test="bizStatus != null and bizStatus != ''" >
+      			AND REG_STATUS = #{bizStatus} 
+      		</if>
+      		<if test="openId != null and openId != ''" >
+      			AND OPEN_ID = #{openId} 
+      		</if>
+      		
+	
+ </if>
+ <if test="orderType == null or orderType=='' or  orderType=='2'.toString()" >
+  union all     	
+ select ID AS ID
+,'2' AS ORDER_TYPE
+,'BIZ_CLINIC_RECORD_${index+1}' AS TABLE_NAME
+,HOSPITAL_ID AS HOSPITAL_ID
+,HOSPITAL_CODE AS HOSPITAL_CODE
+,PAY_STATUS AS PAY_STATUS
+,date_format(from_unixtime((CREATE_TIME / 1000)),'%Y-%m-%d %H:%i:%S') AS CREATE_TIME
+,CARD_NO AS CARD_NO
+,ORDER_NO_HASH_VAL AS ORDER_NO_HASH_VAL
+,patient_name AS PATIENT_NAME
+,PATIENT_MOBILE AS PATIENT_MOBILE
+,ORDER_NO AS ORDER_NO
+,HIS_ORD_NO AS HIS_ORD_NO
+,AGT_ORD_NUM AS AGT_ORD_NUM
+,PAY_FEE AS PAY_FEE
+,date_format(from_unixtime((PAY_TIME / 1000)),'%Y-%m-%d %H:%i:%S') AS PAY_TIME
+,REFUND_ORDER_NO AS REFUND_ORDER_NO
+,REFUND_HISORD_NO AS REFUND_HISORD_NO
+,AGT_REFUND_ORD_NUM AS AGT_REFUND_ORD_NUM
+,date_format(from_unixtime((REFUND_TIME / 1000)),'%Y-%m-%d %H:%i:%S') AS REFUND_TIME
+,RECEIPT_NUM AS RECEIPT_NUM
+,PAY_MODE AS BIZ_MODE
+,HIS_MESSAGE AS TITLE
+,CLINIC_STATUS AS BIZ_STATUS
+,OPEN_ID AS OPEN_ID
+,TRADE_MODE AS TRADE_MODE
+,IS_INSURANCE AS IS_INSURANCE
+,TOTAL_FEE AS TOTAL_FEE
+,CANCEL_SERIAL_NO AS CANCEL_SERIAL_NO
+,CANCEL_BILL_NO AS CANCEL_BILL_NO
+,'' AS SCHEDULE_DATE from BIZ_CLINIC_RECORD_${index+1} WHERE HOSPITAL_ID = #{hospitalId}    		
+      		
+      		
+      		<if test="orderNo != null and orderNo != ''" >
+      			AND ORDER_NO = #{orderNo} AND ORDER_NO_HASH_VAL = #{orderNoHashVal} 
+      		</if>
+      		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''" >
+      			AND CREATE_TIME BETWEEN UNIX_TIMESTAMP(#{startTime})*1000 AND UNIX_TIMESTAMP(#{endTime})*1000
+      		</if>
+      		<if test="payStatus != null and payStatus != ''" >
+      			AND PAY_STATUS = #{payStatus} 
+      		</if>
+      		<if test="payMode != null and payMode != ''" >
+      			AND PAY_MODE = #{payMode} 
+      		</if>
+      		<if test="cardNo != null and cardNo != ''" >
+      			AND CARD_NO = #{cardNo} 
+      		</if>
+      		<if test="patientName != null and patientName != ''" >
+      			AND PATIENT_NAME like #{patientName} 
+      		</if>
+      		<if test="patientMobile != null and patientMobile != ''" >
+      			AND PATIENT_MOBILE like #{patientMobile} 
+      		</if>
+      		<if test="hisOrdNo != null and hisOrdNo != ''" >
+      			AND HIS_ORD_NO = #{hisOrdNo} 
+      		</if>
+      		<if test="agtOrdNum != null and agtOrdNum != ''" >
+      			AND AGT_ORD_NUM = #{agtOrdNum} 
+      		</if>
+      		<if test="bizStatus != null and bizStatus != ''" >
+      			AND CLINIC_STATUS = #{bizStatus} 
+      		</if>
+      		<if test="openId != null and openId != ''" >
+      			AND OPEN_ID = #{openId} 
+      		</if>
+      		
+
+</if>
+<if test="orderType == null or orderType=='' or orderType=='3'.toString()" >
+
+ union all   		
+      	select ID AS ID
+,'3' AS ORDER_TYPE
+,'BIZ_DEPOSIT_RECORD_${index+1}' AS TABLE_NAME
+,HOSPITAL_ID AS HOSPITAL_ID
+,HOSPITAL_CODE AS HOSPITAL_CODE
+,PAY_STATUS AS PAY_STATUS
+,date_format(from_unixtime((CREATE_TIME / 1000)),'%Y-%m-%d %H:%i:%S') AS CREATE_TIME
+,CARD_NO AS CARD_NO
+,ORDER_NO_HASH_VAL AS ORDER_NO_HASH_VAL
+,PATIENT_NAME AS PATIENT_NAME
+,PATIENT_MOBILE AS PATIENT_MOBILE
+,ORDER_NO AS ORDER_NO
+,HIS_ORD_NO AS HIS_ORD_NO
+,AGT_ORD_NUM AS AGT_ORD_NUM
+,PAY_FEE AS PAY_FEE
+,date_format(from_unixtime((PAY_TIME / 1000)),'%Y-%m-%d %H:%i:%S') AS PAY_TIME
+,REFUND_ORDER_NO AS REFUND_ORDER_NO
+,REFUND_HISORD_NO AS REFUND_HISORD_NO
+,AGT_REFUND_ORD_NUM AS AGT_REFUND_ORD_NUM
+,date_format(from_unixtime((REFUND_TIME / 1000)),'%Y-%m-%d %H:%i:%S') AS REFUND_TIME
+,RECEIPT_NUM AS RECEIPT_NUM
+,'5' AS BIZ_MODE
+,RECORD_TITLE AS TITLE
+,DEPOSIT_STATUS AS BIZ_STATUS
+,OPEN_ID AS OPEN_ID
+,'5' AS TRADE_MODE
+,'0' AS IS_INSURANCE
+,TOTAL_FEE AS TOTAL_FEE
+,'' AS CANCEL_SERIAL_NO
+,'' AS CANCEL_BILL_NO
+,'' AS SCHEDULE_DATE from BIZ_DEPOSIT_RECORD_${index+1} WHERE HOSPITAL_ID = #{hospitalId}    		
+      		
+      		
+<if test="payMode != null and payMode != '' and payMode != '5'.toString()" >
+and 1=2
+</if>
+      		<if test="orderNo != null and orderNo != ''" >
+      			AND ORDER_NO = #{orderNo} AND ORDER_NO_HASH_VAL = #{orderNoHashVal} 
+      		</if>
+      		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''" >
+      			AND CREATE_TIME BETWEEN UNIX_TIMESTAMP(#{startTime})*1000 AND UNIX_TIMESTAMP(#{endTime})*1000
+      		</if>
+      		<if test="payStatus != null and payStatus != ''" >
+      			AND PAY_STATUS = #{payStatus} 
+      		</if>
+      		<if test="cardNo != null and cardNo != ''" >
+      			AND CARD_NO = #{cardNo} 
+      		</if>
+      		<if test="patientName != null and patientName != ''" >
+      			AND PATIENT_NAME like #{patientName} 
+      		</if>
+      		<if test="patientMobile != null and patientMobile != ''" >
+      			AND PATIENT_MOBILE like #{patientMobile} 
+      		</if>
+      		<if test="hisOrdNo != null and hisOrdNo != ''" >
+      			AND HIS_ORD_NO = #{hisOrdNo} 
+      		</if>
+      		<if test="agtOrdNum != null and agtOrdNum != ''" >
+      			AND AGT_ORD_NUM = #{agtOrdNum} 
+      		</if>
+      		<if test="bizStatus != null and bizStatus != ''" >
+      			AND DEPOSIT_STATUS = #{bizStatus} 
+      		</if>
+      		<if test="openId != null and openId != ''" >
+      			AND OPEN_ID = #{openId} 
+      		</if>
+
+</if>
+      		
+   </trim>
+      	</foreach>
+      	
+      	<!-- 
+<if test="orderType == null or orderType=='' or orderType=='2'.toString()" >      	
+
+
+      	union all
+
+select ID AS ID 
+,'2' AS ORDER_TYPE
+,'BIZ_CLINIC_PART_REFUND_RECORD' AS TABLE_NAME
+,HOSPITAL_ID AS HOSPITAL_ID
+,HOSPITAL_CODE AS HOSPITAL_CODE
+,'3' AS PAY_STATUS
+,date_format(from_unixtime((CREATE_TIME / 1000)),'%Y-%m-%d %H:%i:%S') AS CREATE_TIME
+,CARD_NO AS CARD_NO  
+,ORDER_NO_HASH_VAL AS ORDER_NO_HASH_VAL
+,PATIENT_NAME AS PATIENT_NAME
+,PATIENT_MOBILE AS PATIENT_MOBILE
+,ORDER_NO AS ORDER_NO
+,HIS_ORD_NO AS HIS_ORD_NO
+,AGT_ORD_NUM AS AGT_ORD_NUM
+,REFUND_FEE AS PAY_FEE
+,date_format(from_unixtime((PAY_TIME / 1000)),'%Y-%m-%d %H:%i:%S') AS PAY_TIME
+,REFUND_ORDER_NO AS REFUND_ORDER_NO
+,REFUND_HIS_ORD_NO AS REFUND_HISORD_NO
+,AGT_REFUND_ORD_NUM AS AGT_REFUND_ORD_NUM
+,date_format(from_unixtime((REFUND_TIME / 1000)),'%Y-%m-%d %H:%i:%S') AS REFUND_TIME
+,'' AS RECEIPT_NUM
+,REFUND_MODE AS BIZ_MODE
+,'' AS TITLE
+,REFUND_STATUS AS BIZ_STATUS
+,OPEN_ID AS OPEN_ID
+,TRADE_MODE AS TRADE_MODE
+,IS_INSURANCE AS IS_INSURANCE
+,TOTAL_FEE AS TOTAL_FEE
+,'' AS CANCEL_SERIAL_NO
+,'' AS CANCEL_BILL_NO
+,'' AS SCHEDULE_DATE from biz_clinic_part_refund_record	
+
+WHERE  HOSPITAL_ID = #{hospitalId}    	
+
+ <if test="payStatus != null and payStatus != '' and  payStatus != '3'.toString()" >
+ and 1=2
+ </if>
+      		<if test="orderNo != null and orderNo != ''" >
+      			AND ORDER_NO = #{orderNo} AND ORDER_NO_HASH_VAL = #{orderNoHashVal} 
+      		</if>
+      		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''" >
+      			AND CREATE_TIME BETWEEN UNIX_TIMESTAMP(#{startTime})*1000 AND UNIX_TIMESTAMP(#{endTime})*1000
+      		</if>
+
+      		<if test="payMode != null and payMode != ''" >
+      			AND REFUND_MODE = #{payMode} 
+      		</if>
+      		<if test="cardNo != null and cardNo != ''" >
+      			AND CARD_NO = #{cardNo} 
+      		</if>
+      		<if test="patientName != null and patientName != ''" >
+      			AND PATIENT_NAME like #{patientName} 
+      		</if>
+      		<if test="patientMobile != null and patientMobile != ''" >
+      			AND PATIENT_MOBILE like #{patientMobile} 
+      		</if>
+      		<if test="hisOrdNo != null and hisOrdNo != ''" >
+      			AND HIS_ORD_NO = #{hisOrdNo} 
+      		</if>
+      		<if test="agtOrdNum != null and agtOrdNum != ''" >
+      			AND AGT_ORD_NUM = #{agtOrdNum} 
+      		</if>
+      		<if test="bizStatus != null and bizStatus != ''" >
+      			AND REFUND_STATUS = #{bizStatus} 
+      		</if>
+      		<if test="openId != null and openId != ''" >
+      			AND OPEN_ID = #{openId} 
+      		</if>
+
+</if>
+ -->
+</trim>
+		ORDER BY CREATE_TIME DESC
+
+  	</select>
+
+
+    <select id="findOrderByQueryParams" resultMap="orderQuerByParamsyMap" parameterType="map">
+        <foreach collection="tableCountArray" index="index" item="item" open="" separator=" union all" close="">
+            SELECT
+            `BIZ_REGISTER_RECORD_${index+1}`.`ID` AS  `ID`,
+            '1' AS `ORDER_TYPE`,
+            concat('BIZ_REGISTER_RECORD_',${index+1}) AS `TABLE_NAME`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`HOSPITAL_ID` AS `HOSPITAL_ID`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`HOSPITAL_CODE` AS `HOSPITAL_CODE`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`PAY_STATUS` AS `PAY_STATUS`,
+            date_format(
+            from_unixtime(
+            (
+            `BIZ_REGISTER_RECORD_${index+1}`.`REGISTER_TIME` / 1000
+            )
+            ),
+            '%Y-%m-%d %H:%i:%S'
+            ) AS `CREATE_TIME`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`CARD_TYPE` AS `CARD_TYPE`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`CARD_NO` AS `CARD_NO`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`ORDER_NO_HASH_VAL` AS `ORDER_NO_HASH_VAL`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`PATIENT_NAME` AS `PATIENT_NAME`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`PATIENT_MOBILE` AS `PATIENT_MOBILE`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`ORDER_NO` AS `ORDER_NO`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`HIS_ORD_NO` AS `HIS_ORD_NO`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`AGT_ORD_NUM` AS `AGT_ORD_NUM`,
+            (
+            ifnull(
+            `BIZ_REGISTER_RECORD_${index+1}`.`REAL_TREAT_FEE`,
+            0
+            ) + ifnull(
+            `BIZ_REGISTER_RECORD_${index+1}`.`REAL_REG_FEE`,
+            0
+            )
+            ) AS `PAY_FEE`,
+            date_format(
+            from_unixtime(
+            (
+            `BIZ_REGISTER_RECORD_${index+1}`.`PAY_TIME` / 1000
+            )
+            ),
+            '%Y-%m-%d %H:%i:%S'
+            ) AS `PAY_TIME`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`REFUND_ORDER_NO` AS `REFUND_ORDER_NO`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`REFUND_HISORD_NO` AS `REFUND_HISORD_NO`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`AGT_REFUND_ORD_NUM` AS `AGT_REFUND_ORD_NUM`,
+            date_format(
+            from_unixtime(
+            (
+            `BIZ_REGISTER_RECORD_${index+1}`.`REFUND_TIME` / 1000
+            )
+            ),
+            '%Y-%m-%d %H:%i:%S'
+            ) AS `REFUND_TIME`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`RECEIPT_NUM` AS `RECEIPT_NUM`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`REG_MODE` AS `BIZ_MODE`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`RECORD_TITLE` AS `TITLE`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`REG_STATUS` AS `BIZ_STATUS`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`OPEN_ID` AS `OPEN_ID`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`TRADE_MODE` AS `TRADE_MODE`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`IS_INSURANCE` AS `IS_INSURANCE`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`TOTAL_FEE` AS `TOTAL_FEE`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`CANCEL_SERIAL_NO` AS `CANCEL_SERIAL_NO`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`CANCEL_BILL_NO` AS `CANCEL_BILL_NO`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`DOCTOR_CODE` AS `DOCTOR_CODE`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`DOCTOR_NAME` AS `DOCTOR_NAME`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`DEPT_CODE` AS `DEPT_CODE`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`DEPT_NAME` AS `DEPT_NAME`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`MEDICAL_REGISTER_SERIAL_NUM` AS `MEDICAL_REGISTER_SERIAL_NUM`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`SCHEDULE_DATE` AS `SCHEDULE_DATE`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`BEGIN_TIME` AS `BEGIN_TIME`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`END_TIME` AS `END_TIME`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`WORK_ID` AS `WORK_ID`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`REAL_REG_FEE` AS `REAL_REG_FEE`,
+            `BIZ_REGISTER_RECORD_${index+1}`.`REAL_TREAT_FEE` AS `REAL_TREAT_FEE`,
+            '' AS `AGT_CODE`
+            FROM
+            `BIZ_REGISTER_RECORD_${index+1}` WHERE 1=1
+            <if test="orderNo != null and orderNo != ''" >
+                AND ORDER_NO = #{orderNo}
+            </if>
+            <if test="hisOrdNo != null and hisOrdNo != ''" >
+                AND HIS_ORD_NO = #{hisOrdNo}
+            </if>
+            <if test="agtOrdNum != null and agtOrdNum != ''" >
+                AND AGT_ORD_NUM = #{agtOrdNum}
+            </if>
+            <if test="refundOrderNo != null and refundOrderNo != ''" >
+                AND REFUND_ORDER_NO = #{refundOrderNo}
+            </if>
+            <if test="refundHisOrdNo != null and refundHisOrdNo != ''" >
+                AND REFUND_HISORD_NO = #{refundHisOrdNo}
+            </if>
+            <if test="agtRefundOrdNum != null and agtRefundOrdNum != ''" >
+                AND AGT_REFUND_ORD_NUM = #{agtRefundOrdNum}
+            </if>
+        </foreach>
+        UNION ALL
+        <foreach collection="tableCountArray" index="index" item="item" open="" separator=" union all" close="">
+            SELECT
+            `BIZ_CLINIC_RECORD_${index+1}`.`ID` AS `ID`,
+            '2' AS `ORDER_TYPE`,
+            concat('BIZ_CLINIC_RECORD_',${index+1}) AS `TABLE_NAME`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`HOSPITAL_ID` AS `HOSPITAL_ID`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`HOSPITAL_CODE` AS `HOSPITAL_CODE`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`PAY_STATUS` AS `PAY_STATUS`,
+            date_format(
+            from_unixtime(
+            (
+            `BIZ_CLINIC_RECORD_${index+1}`.`CREATE_TIME` / 1000
+            )
+            ),
+            '%Y-%m-%d %H:%i:%S'
+            ) AS `CREATE_TIME`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`CARD_TYPE` AS `CARD_TYPE`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`CARD_NO` AS `CARD_NO`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`ORDER_NO_HASH_VAL` AS `ORDER_NO_HASH_VAL`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`patient_name` AS `PATIENT_NAME`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`PATIENT_MOBILE` AS `PATIENT_MOBILE`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`ORDER_NO` AS `ORDER_NO`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`HIS_ORD_NO` AS `HIS_ORD_NO`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`AGT_ORD_NUM` AS `AGT_ORD_NUM`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`PAY_FEE` AS `PAY_FEE`,
+            date_format(
+            from_unixtime(
+            (
+            `BIZ_CLINIC_RECORD_${index+1}`.`PAY_TIME` / 1000
+            )
+            ),
+            '%Y-%m-%d %H:%i:%S'
+            ) AS `PAY_TIME`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`REFUND_ORDER_NO` AS `REFUND_ORDER_NO`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`REFUND_HISORD_NO` AS `REFUND_HISORD_NO`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`AGT_REFUND_ORD_NUM` AS `AGT_REFUND_ORD_NUM`,
+            date_format(
+            from_unixtime(
+            (
+            `BIZ_CLINIC_RECORD_${index+1}`.`REFUND_TIME` / 1000
+            )
+            ),
+            '%Y-%m-%d %H:%i:%S'
+            ) AS `REFUND_TIME`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`RECEIPT_NUM` AS `RECEIPT_NUM`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`PAY_MODE` AS `BIZ_MODE`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`HIS_MESSAGE` AS `TITLE`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`CLINIC_STATUS` AS `BIZ_STATUS`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`OPEN_ID` AS `OPEN_ID`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`TRADE_MODE` AS `TRADE_MODE`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`IS_INSURANCE` AS `IS_INSURANCE`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`TOTAL_FEE` AS `TOTAL_FEE`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`CANCEL_SERIAL_NO` AS `CANCEL_SERIAL_NO`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`CANCEL_BILL_NO` AS `CANCEL_BILL_NO`,
+            '' AS `DOCTOR_CODE`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`DOCTOR_NAME` AS `DOCTOR_NAME`,
+            '' AS `DEPT_CODE`,
+            `BIZ_CLINIC_RECORD_${index+1}`.`DEPT_NAME` AS `DEPT_NAME`,
+            '' AS `MEDICAL_REGISTER_SERIAL_NUM`,
+            '' AS `SCHEDULE_DATE`,
+            '' AS `BEGIN_TIME`,
+            '' AS `END_TIME`,
+            '' AS `WORK_ID`,
+            '' AS `REAL_REG_FEE`,
+            '' AS `REAL_TREAT_FEE`,
+            '' AS `AGT_CODE`
+            FROM
+            `BIZ_CLINIC_RECORD_${index+1}` WHERE 1=1
+            <if test="orderNo != null and orderNo != ''" >
+                AND ORDER_NO = #{orderNo}
+            </if>
+            <if test="hisOrdNo != null and hisOrdNo != ''" >
+                AND HIS_ORD_NO = #{hisOrdNo}
+            </if>
+            <if test="agtOrdNum != null and agtOrdNum != ''" >
+                AND AGT_ORD_NUM = #{agtOrdNum}
+            </if>
+            <if test="refundOrderNo != null and refundOrderNo != ''" >
+                AND REFUND_ORDER_NO = #{refundOrderNo}
+            </if>
+            <if test="refundHisOrdNo != null and refundHisOrdNo != ''" >
+                AND REFUND_HISORD_NO = #{refundHisOrdNo}
+            </if>
+            <if test="agtRefundOrdNum != null and agtRefundOrdNum != ''" >
+                AND AGT_REFUND_ORD_NUM = #{agtRefundOrdNum}
+            </if>
+        </foreach>
+        UNION ALL
+        SELECT
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`ID` AS `ID`,
+        '2' AS `ORDER_TYPE`,
+        'BIZ_CLINIC_PART_REFUND_RECORD' AS `TABLE_NAME`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`HOSPITAL_ID` AS `HOSPITAL_ID`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`HOSPITAL_CODE` AS `HOSPITAL_CODE`,
+        '3' AS `PAY_STATUS`,
+        date_format(
+        from_unixtime(
+        (
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`CREATE_TIME` / 1000
+        )
+        ),
+        '%Y-%m-%d %H:%i:%S'
+        ) AS `CREATE_TIME`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`CARD_TYPE` AS `CARD_TYPE`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`CARD_NO` AS `CARD_NO`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`ORDER_NO_HASH_VAL` AS `ORDER_NO_HASH_VAL`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`PATIENT_NAME` AS `PATIENT_NAME`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`PATIENT_MOBILE` AS `PATIENT_MOBILE`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`ORDER_NO` AS `ORDER_NO`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`HIS_ORD_NO` AS `HIS_ORD_NO`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`AGT_ORD_NUM` AS `AGT_ORD_NUM`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`REFUND_FEE` AS `PAY_FEE`,
+        date_format(
+        from_unixtime(
+        (
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`PAY_TIME` / 1000
+        )
+        ),
+        '%Y-%m-%d %H:%i:%S'
+        ) AS `PAY_TIME`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`REFUND_ORDER_NO` AS `REFUND_ORDER_NO`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`REFUND_HIS_ORD_NO` AS `REFUND_HISORD_NO`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`AGT_REFUND_ORD_NUM` AS `AGT_REFUND_ORD_NUM`,
+        date_format(
+        from_unixtime(
+        (
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`REFUND_TIME` / 1000
+        )
+        ),
+        '%Y-%m-%d %H:%i:%S'
+        ) AS `REFUND_TIME`,
+        '' AS `RECEIPT_NUM`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`REFUND_MODE` AS `BIZ_MODE`,
+        '' AS `TITLE`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`REFUND_STATUS` AS `BIZ_STATUS`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`OPEN_ID` AS `OPEN_ID`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`TRADE_MODE` AS `TRADE_MODE`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`IS_INSURANCE` AS `IS_INSURANCE`,
+        `BIZ_CLINIC_PART_REFUND_RECORD`.`TOTAL_FEE` AS `TOTAL_FEE`,
+        '' AS `CANCEL_SERIAL_NO`,
+        '' AS `CANCEL_BILL_NO`,
+        '' AS `DOCTOR_CODE`,
+        '' AS `DOCTOR_NAME`,
+        '' AS `DEPT_CODE`,
+        '' AS `DEPT_NAME`,
+        '' AS `MEDICAL_REGISTER_SERIAL_NUM`,
+        '' AS `SCHEDULE_DATE`,
+        '' AS `BEGIN_TIME`,
+        '' AS `END_TIME`,
+        '' AS `WORK_ID`,
+        '' AS `REAL_REG_FEE`,
+        '' AS `REAL_TREAT_FEE`,
+        '' AS `AGT_CODE`
+        FROM
+        `BIZ_CLINIC_PART_REFUND_RECORD` WHERE 1=1
+        <if test="orderNo != null and orderNo != ''" >
+            AND ORDER_NO = #{orderNo}
+        </if>
+        <if test="hisOrdNo != null and hisOrdNo != ''" >
+            AND HIS_ORD_NO = #{hisOrdNo}
+        </if>
+        <if test="agtOrdNum != null and agtOrdNum != ''" >
+            AND AGT_ORD_NUM = #{agtOrdNum}
+        </if>
+        <if test="refundOrderNo != null and refundOrderNo != ''" >
+            AND REFUND_ORDER_NO = #{refundOrderNo}
+        </if>
+        <if test="refundHisOrdNo != null and refundHisOrdNo != ''" >
+            AND REFUND_HIS_ORD_NO = #{refundHisOrdNo}
+        </if>
+        <if test="agtRefundOrdNum != null and agtRefundOrdNum != ''" >
+            AND AGT_REFUND_ORD_NUM = #{agtRefundOrdNum}
+        </if>
+        UNION ALL
+        <foreach collection="tableCountArray" index="index" item="item" open="" separator=" union all" close="">
+            SELECT
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`ID` AS `ID`,
+            '2' AS `ORDER_TYPE`,
+            concat('BIZ_DEPOSIT_RECORD_',${index+1}) AS `TABLE_NAME`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`HOSPITAL_ID` AS `HOSPITAL_ID`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`HOSPITAL_CODE` AS `HOSPITAL_CODE`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`PAY_STATUS` AS `PAY_STATUS`,
+            date_format(
+            from_unixtime(
+            (
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`CREATE_TIME` / 1000
+            )
+            ),
+            '%Y-%m-%d %H:%i:%S'
+            ) AS `CREATE_TIME`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`CARD_TYPE` AS `CARD_TYPE`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`CARD_NO` AS `CARD_NO`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`ORDER_NO_HASH_VAL` AS `ORDER_NO_HASH_VAL`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`PATIENT_NAME` AS `PATIENT_NAME`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`PATIENT_MOBILE` AS `PATIENT_MOBILE`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`ORDER_NO` AS `ORDER_NO`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`HIS_ORD_NO` AS `HIS_ORD_NO`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`AGT_ORD_NUM` AS `AGT_ORD_NUM`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`PAY_FEE` AS `PAY_FEE`,
+            date_format(
+            from_unixtime(
+            (
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`PAY_TIME` / 1000
+            )
+            ),
+            '%Y-%m-%d %H:%i:%S'
+            ) AS `PAY_TIME`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`REFUND_ORDER_NO` AS `REFUND_ORDER_NO`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`REFUND_HISORD_NO` AS `REFUND_HISORD_NO`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`AGT_REFUND_ORD_NUM` AS `AGT_REFUND_ORD_NUM`,
+            date_format(
+            from_unixtime(
+            (
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`REFUND_TIME` / 1000
+            )
+            ),
+            '%Y-%m-%d %H:%i:%S'
+            ) AS `REFUND_TIME`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`RECEIPT_NUM` AS `RECEIPT_NUM`,
+            '5' AS `BIZ_MODE`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`RECORD_TITLE` AS `TITLE`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`DEPOSIT_STATUS` AS `BIZ_STATUS`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`OPEN_ID` AS `OPEN_ID`,
+            '5' AS `TRADE_MODE`,
+            '0' AS `IS_INSURANCE`,
+            `BIZ_DEPOSIT_RECORD_${index+1}`.`TOTAL_FEE` AS `TOTAL_FEE`,
+            '' AS `CANCEL_SERIAL_NO`,
+            '' AS `CANCEL_BILL_NO`,
+            '' AS `DOCTOR_CODE`,
+            '' AS `DOCTOR_NAME`,
+            '' AS `DEPT_CODE`,
+            '' AS `DEPT_NAME`,
+            '' AS `MEDICAL_REGISTER_SERIAL_NUM`,
+            '' AS `SCHEDULE_DATE`,
+            '' AS `BEGIN_TIME`,
+            '' AS `END_TIME`,
+            '' AS `WORK_ID`,
+            '' AS `REAL_REG_FEE`,
+            '' AS `REAL_TREAT_FEE`,
+            '' AS `AGT_CODE`
+            FROM
+            `BIZ_DEPOSIT_RECORD_${index+1}` WHERE 1=1
+            <if test="orderNo != null and orderNo != ''" >
+                AND ORDER_NO = #{orderNo}
+            </if>
+            <if test="hisOrdNo != null and hisOrdNo != ''" >
+                AND HIS_ORD_NO = #{hisOrdNo}
+            </if>
+            <if test="agtOrdNum != null and agtOrdNum != ''" >
+                AND AGT_ORD_NUM = #{agtOrdNum}
+            </if>
+            <if test="refundOrderNo != null and refundOrderNo != ''" >
+                AND REFUND_ORDER_NO = #{refundOrderNo}
+            </if>
+            <if test="refundHisOrdNo != null and refundHisOrdNo != ''" >
+                AND REFUND_HISORD_NO = #{refundHisOrdNo}
+            </if>
+            <if test="agtRefundOrdNum != null and agtRefundOrdNum != ''" >
+                AND AGT_REFUND_ORD_NUM = #{agtRefundOrdNum}
+            </if>
+        </foreach>
+    </select>
+
+    <select id="findCardInfoByQueryParams" resultMap="orderQuerByParamsyMap" parameterType="map">
+        <foreach collection="tableCountArray" index="index" item="item" open="" separator=" union all" close="">
+            SELECT SEX,AGE,ID_TYPE,ID_NO,BIRTH,PATIENT_ID,MEDICARE_NO,CARD_NO,
+            NAME AS PATIENT_NAME,MOBILE AS PATIENT_MOBILE FROM
+            BIZ_MEDICAL_CARD_${index+1} WHERE 1=1
+            <if test="cardNo != null and cardNo != ''" >
+                AND CARD_NO = #{cardNo}
+            </if>
+        </foreach>
+        LIMIT 1
+    </select>
+</mapper>

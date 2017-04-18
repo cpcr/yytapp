@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="InterfacesMapper">
+	
+	<resultMap id="interfacesStatus" type="com.yy.monitor.interfaces.entity.InterfacesStatus">		
+		<id column="ID" property="id" jdbcType="VARCHAR" />		
+		<result column="BRANCH_CODE" property="branchCode" jdbcType="VARCHAR" />
+		<result column="INTERFACES_ID" property="interfacesId" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_NAME" property="hospitalName" jdbcType="VARCHAR" />
+		<result column="RESULT_CODE" property="resultCode" jdbcType="VARCHAR" />
+		<result column="RESULT_MESSAGE" property="resultMessage" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="INTEGER" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<!-- 添加 -->
+	<insert id="saveInterfacesStatus" parameterType="com.yy.monitor.interfaces.entity.InterfacesStatus">
+		insert into 
+		SYS_INTERFACES_STATUS(ID,BRANCH_CODE,INTERFACES_ID,HOSPITAL_NAME,RESULT_CODE,RESULT_MESSAGE,STATUS,CREATE_TIME)
+		values 
+		(#{id},#{branchCode},#{interfacesId},#{hospitalName},#{resultCode},#{resultMessage},#{status},#{createTime})
+	</insert>
+	
+	<!-- 分页查询医院列表 -->
+	<select id="getInterfacesStatus" resultMap="interfacesStatus" parameterType="java.util.Map">
+		SELECT
+		ID,
+		BRANCH_CODE,
+		INTERFACES_ID,
+		HOSPITAL_NAME,
+		RESULT_CODE,
+		RESULT_MESSAGE,
+		STATUS,
+		CREATE_TIME
+		FROM SYS_INTERFACES_STATUS
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="interfacesId != null and interfacesId != ''.toString()">
+				<![CDATA[ INTERFACES_ID = #{interfacesId} ]]>
+			</if>
+			<if test="startTime != null and startTime != ''.toString() and endTime != null and endTime != ''.toString()">
+				<![CDATA[ AND CREATE_TIME BETWEEN #{startTime} AND #{endTime} ]]>
+			</if>
+		</trim>
+		ORDER BY CREATE_TIME DESC
+		LIMIT #{start}, #{pageSize};
+	</select>
+
+</mapper>

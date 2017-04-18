@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.platform.statistics.entity.DepositOrderCount">
+	
+	<resultMap id="depositOrderCountResultMap" type="com.yy.platform.statistics.entity.DepositOrderCount">
+		<id column="ID" property="id" jdbcType="VARCHAR"/>
+		<result column="DATE" property="date" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+		<result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+		<result column="COUNT" property="count" jdbcType="INTEGER" />
+		<result column="NO_PAYMENT" property="noPayment" jdbcType="INTEGER" />
+		<result column="PAYMENT" property="payment" jdbcType="INTEGER" />
+		<result column="REFUND" property="refund" jdbcType="INTEGER" />
+		<result column="DEPOSIT_PAY_FEE" property="depositPayFee" jdbcType="DOUBLE" />
+		<result column="DEPOSIT_REFUND_FEE" property="depositRefundFee" jdbcType="DOUBLE" />
+	</resultMap>
+	
+	<!-- 分页查询统计订单 -->
+	<select id="findListByPage" resultMap="depositOrderCountResultMap">
+		SELECT 
+			DATE,
+			HOSPITAL_ID,
+			BRANCH_ID,
+			SUM(PAYMENT + REFUND+NO_PAYMENT) AS COUNT,
+			NO_PAYMENT,
+			PAYMENT,
+			REFUND,
+			DEPOSIT_PAY_FEE,
+			DEPOSIT_REFUND_FEE
+		FROM  SYS_DEPOSIT_STATISTICAL WHERE 
+			HOSPITAL_ID = #{hospitalId}
+		<if test="branchId != null" >
+			AND BRANCH_ID = #{branchId}
+		</if>
+		<if test="startDate != null and endDate != null" >
+			AND DATE BETWEEN #{startDate} AND #{endDate}
+		</if>
+		GROUP BY DATE ORDER BY DATE DESC
+	</select>
+	
+	
+	<resultMap id="depositOrderCountSumResultMap" type="com.yy.platform.statistics.entity.DepositOrderCount">
+		<result column="COUNT" property="count" jdbcType="INTEGER" />
+		<result column="PAY_COUNT" property="payCount" jdbcType="INTEGER" />
+		<result column="REFUND_COUNT" property="refundCount" jdbcType="INTEGER" />
+		<result column="DEPOSIT_PAY_TOTAL_FEE" property="depositPayTotalFee" jdbcType="INTEGER" />
+		<result column="DEPOSIT_REFUND_TOTAL_FEE" property="depositRefundTotalFee" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<!-- 查询订单总和 -->
+	<select id="getDepositOrderCountSum" resultMap="depositOrderCountSumResultMap">
+		SELECT SUM(r.COUNT) AS COUNT,
+				SUM(r.PAY_COUNT) AS PAY_COUNT,
+				SUM(r.REFUND_COUNT) AS REFUND_COUNT,
+				SUM(r.DEPOSIT_PAY_TOTAL_FEE) AS DEPOSIT_PAY_TOTAL_FEE,
+				SUM(r.DEPOSIT_REFUND_TOTAL_FEE) AS DEPOSIT_REFUND_TOTAL_FEE
+				FROM(
+			SELECT 
+				SUM(PAYMENT + REFUND+NO_PAYMENT) AS COUNT,
+				SUM(PAYMENT) AS PAY_COUNT,
+				SUM(REFUND) AS REFUND_COUNT,
+				SUM(DEPOSIT_PAY_FEE) AS DEPOSIT_PAY_TOTAL_FEE,
+				SUM(DEPOSIT_REFUND_FEE) AS DEPOSIT_REFUND_TOTAL_FEE
+			FROM 
+				SYS_DEPOSIT_STATISTICAL 
+			WHERE  
+				HOSPITAL_ID = #{hospitalId}
+			<if test="branchId != null" >
+				AND BRANCH_ID = #{branchId}
+			</if>
+			<if test="startDate != null and endDate != null" >
+				AND DATE BETWEEN #{startDate} AND #{endDate}
+			</if>
+			GROUP BY DATE ORDER BY DATE DESC) AS r
+	</select>
+	
+	<!-- 统计每日订单 -->
+	<select id="findDepositOrderCountByDate" resultMap="depositOrderCountResultMap" parameterType="map">
+		SELECT 
+			from_UNIXTIME(#{startDate} / 1000,'%Y-%m-%d') as DATE,
+			r1.HOSPITAL_ID AS HOSPITAL_ID,
+			r1.BRANCH_ID AS BRANCH_ID,
+			sum(CASE r1.PAY_STATUS when 1 then r1.count else 0 END) as NO_PAYMENT,
+			sum(CASE r1.PAY_STATUS when 2 then r1.count else 0 END) as PAYMENT,
+			sum(CASE r1.PAY_STATUS when 3 then r1.count else 0 END) as REFUND,
+			sum(CASE r1.PAY_STATUS when 2 then r1.PAY_FEE else 0 END) as DEPOSIT_PAY_FEE,
+			sum(CASE r1.PAY_STATUS when 3 then r1.PAY_FEE else 0 END) as DEPOSIT_REFUND_FEE
+		FROM (
+			SELECT 
+				COUNT(1) as count, 
+				a.PAY_STATUS as PAY_STATUS, 
+				a.HOSPITAL_ID AS HOSPITAL_ID, 
+				a.BRANCH_ID AS BRANCH_ID,
+				SUM(a.PAY_FEE) AS PAY_FEE
+			FROM 
+				<choose>
+				    <when test="hashTableName == 'BIZ_DEPOSIT_RECORD_1'">
+                		BIZ_DEPOSIT_RECORD_1 
+		            </when>
+		            <when test="hashTableName == 'BIZ_DEPOSIT_RECORD_2'">
+		                BIZ_DEPOSIT_RECORD_2 
+		            </when>
+		            <when test="hashTableName == 'BIZ_DEPOSIT_RECORD_3'">
+		                BIZ_DEPOSIT_RECORD_3 
+		            </when>
+		            <when test="hashTableName == 'BIZ_DEPOSIT_RECORD_4'">
+		                BIZ_DEPOSIT_RECORD_4 
+		            </when>
+		            <when test="hashTableName == 'BIZ_DEPOSIT_RECORD_5'">
+		                BIZ_DEPOSIT_RECORD_5 
+		            </when>
+		            <when test="hashTableName == 'BIZ_DEPOSIT_RECORD_6'">
+		                BIZ_DEPOSIT_RECORD_6 
+		            </when>
+		            <when test="hashTableName == 'BIZ_DEPOSIT_RECORD_7'">
+		                BIZ_DEPOSIT_RECORD_7 
+		            </when>
+		            <when test="hashTableName == 'BIZ_DEPOSIT_RECORD_8'">
+		                BIZ_DEPOSIT_RECORD_8 
+		            </when>
+		            <when test="hashTableName == 'BIZ_DEPOSIT_RECORD_9'">
+		                BIZ_DEPOSIT_RECORD_9 
+		            </when>
+		            <when test="hashTableName == 'BIZ_DEPOSIT_RECORD_10'">
+		                BIZ_DEPOSIT_RECORD_10 
+		            </when> 
+			    </choose>
+			    as a
+			WHERE 
+				a.CREATE_TIME BETWEEN #{startDate} AND  #{endDate} OR 
+				a.PAY_TIME BETWEEN #{startDate} AND  #{endDate} OR 
+				a.REFUND_TIME BETWEEN #{startDate} AND  #{endDate}
+			GROUP BY a.BRANCH_ID,a.PAY_STATUS
+			) AS r1 GROUP BY BRANCH_ID,PAY_STATUS
+	</select>
+	
+	<!-- 批量插入 -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		 INSERT INTO 
+		 SYS_DEPOSIT_STATISTICAL(ID,DATE,HOSPITAL_ID,BRANCH_ID,NO_PAYMENT,PAYMENT,REFUND,DEPOSIT_PAY_FEE,DEPOSIT_REFUND_FEE)
+		 VALUES
+	    <foreach collection="list" item="item" index="index" separator="," >  
+	        (#{item.id},#{item.date},#{item.hospitalId},#{item.branchId},#{item.noPayment},#{item.payment},#{item.refund},#{item.depositPayFee},#{item.depositRefundFee})
+	    </foreach>  
+	</insert>
+	
+</mapper>

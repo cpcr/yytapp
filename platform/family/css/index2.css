@@ -1,0 +1,142 @@
+
+
+input, select, textarea {
+  height: 3.3rem;
+  padding: 0.8rem 0;
+  font-size:16px;
+}
+
+
+.inputList {
+  margin-top: 0.44444rem;
+}
+
+.inputList:after {
+  display: block;
+  clear: both;
+  content: "";
+  visibility: hidden;
+  height: 0;
+}
+
+.inputList > li {
+  list-style-type: none;
+  height: 3.5rem;
+  padding: 0 0.38889rem;
+  text-align: center;
+  font-size: 0.41667rem;
+  line-height: 3.5rem;
+  color: #333;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.inputList > li:last-child {
+  border: 0;
+}
+
+.inputList > li > label {
+  float: left;
+  font-size:16px;
+}
+
+.inputList > li > span {
+  float: right;
+}
+
+.inputList > li > span * {
+  text-align: right;
+  border: 0;
+  outline: none;
+}
+
+.btnSubmit {
+  display: block;
+  width: 7.22222rem;
+  height: 2.33333rem;
+  margin: 0.55556rem auto;
+  font-size: 16px;
+  color: #fff;
+  background-color: #2297f7;
+  border: 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.addCard {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f5f5f5;
+  z-index:99;
+}
+
+.none{display:none}
+.blackWrapper {
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index:100;
+}
+
+.selectList {
+  position: absolute;
+  left: 4%;
+  bottom: 4rem;
+  width: 92%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  max-height: 80%;
+  overflow: scroll;
+}
+
+.selectList > li {
+  list-style-type: none;
+  height: 2.5rem;
+  text-align: center;
+  font-size: 16px;
+  line-height: 2.5rem;
+  color: #333;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.selectList > li:last-child {
+  border: 0;
+}
+
+.selectCancle {
+  position: absolute;
+  left: 4%;
+  bottom: 0.74074rem;
+  width: 92%;
+  height: 2.5rem;
+  font-size: 16px;
+  line-height: 2.5rem;
+  background: #fff;
+  border: 0;
+  outline: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.isSelect {
+  padding-right: 1.2rem;
+  background: url("../img/img_down_arrow.png") no-repeat right center;
+  background-size: 0.7rem 0.4rem;
+}
+
+.isEnter {
+  background: url("../img/img_right_arrow.png") no-repeat 95% center;
+  background-size: 0.6rem 1.2rem;
+}
+

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yy.platform.rule.entity.RuleQuery" >
+ <resultMap id="RuleQueryResultMap" type="com.yy.platform.rule.entity.RuleQuery" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+    <result column="REPORT_COULD_QUERY_TYPE" property="reportCouldQueryType" jdbcType="VARCHAR" />
+    <result column="REPORT_VIEW_CSS_TYPE" property="reportViewCssType" jdbcType="INTEGER" />
+    <result column="BESPEAK_RECORD_QUERY_TYPE" property="bespeakRecordQueryType" jdbcType="VARCHAR" />
+    <result column="PAYMENT_RECORD_QUERY_TYPE" property="paymentRecordQueryType" jdbcType="VARCHAR" />
+    <result column="REPORT_RECORD_QUERY_MAX_MONTHS" property="reportRecordQueryMaxMonths" jdbcType="INTEGER" />
+    <result column="BESPEAK_RECORD_QUERY_MAX_MONTHS" property="bespeakRecordQueryMaxMonths" jdbcType="INTEGER" />
+    <result column="PAYMENT_RECORD_QUERY_MAX_MONTHS" property="paymentRecordQueryMaxMonths" jdbcType="INTEGER" />
+    <result column="ONE_DAY_RECORD_MAX_MONTHS" property="oneDayRecordMaxMonths" jdbcType="INTEGER" />
+    <result column="QUEUE_TYPE" property="queueType" jdbcType="VARCHAR" />
+    <result column="IS_SHOW_BARCODE" property="isShowBarcode" jdbcType="SMALLINT" />
+    <result column="BARCODE_DATA" property="barcodeData" jdbcType="SMALLINT" />
+    <result column="BARCODE_STYLE" property="barcodeStyle" jdbcType="SMALLINT" />
+    <result column="CP" property="cp" jdbcType="VARCHAR" />
+    <result column="CT" property="ct" jdbcType="TIMESTAMP" />
+    <result column="EP" property="ep" jdbcType="VARCHAR" />
+    <result column="ET" property="et" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, HOSPITAL_ID, REPORT_COULD_QUERY_TYPE, REPORT_VIEW_CSS_TYPE, BESPEAK_RECORD_QUERY_TYPE, 
+    PAYMENT_RECORD_QUERY_TYPE, REPORT_RECORD_QUERY_MAX_MONTHS, BESPEAK_RECORD_QUERY_MAX_MONTHS, 
+    PAYMENT_RECORD_QUERY_MAX_MONTHS, ONE_DAY_RECORD_MAX_MONTHS, QUEUE_TYPE, IS_SHOW_BARCODE, 
+    BARCODE_DATA, BARCODE_STYLE, CP, CT, EP, ET
+  </sql>
+  <select id="findById" resultMap="RuleQueryResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_RULE_QUERY
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findAll" resultMap="RuleQueryResultMap">
+  select * from SYS_RULE_QUERY
+  </select>
+  
+  <select id="findByHospitalId" resultMap="RuleQueryResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_RULE_QUERY
+    where HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from SYS_RULE_QUERY
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="add" parameterType="com.yy.platform.rule.entity.RuleQuery" >
+    insert into SYS_RULE_QUERY (ID, HOSPITAL_ID, REPORT_COULD_QUERY_TYPE, 
+      REPORT_VIEW_CSS_TYPE, BESPEAK_RECORD_QUERY_TYPE, 
+      PAYMENT_RECORD_QUERY_TYPE, REPORT_RECORD_QUERY_MAX_MONTHS, 
+      BESPEAK_RECORD_QUERY_MAX_MONTHS, PAYMENT_RECORD_QUERY_MAX_MONTHS, 
+      ONE_DAY_RECORD_MAX_MONTHS, QUEUE_TYPE, IS_SHOW_BARCODE, BARCODE_DATA,
+      BARCODE_STYLE, CP, CT, EP, ET)
+    values (#{id,jdbcType=VARCHAR}, #{hospitalId,jdbcType=VARCHAR}, #{reportCouldQueryType,jdbcType=VARCHAR}, 
+      #{reportViewCssType,jdbcType=INTEGER}, #{bespeakRecordQueryType,jdbcType=VARCHAR}, 
+      #{paymentRecordQueryType,jdbcType=VARCHAR}, #{reportRecordQueryMaxMonths,jdbcType=INTEGER}, 
+      #{bespeakRecordQueryMaxMonths,jdbcType=INTEGER}, #{paymentRecordQueryMaxMonths,jdbcType=INTEGER}, 
+      #{oneDayRecordMaxMonths,jdbcType=INTEGER}, #{queueType,jdbcType=VARCHAR}, #{isShowBarcode,jdbcType=SMALLINT},
+      #{barcodeData,jdbcType=SMALLINT}, #{barcodeStyle,jdbcType=SMALLINT},
+      #{cp,jdbcType=VARCHAR}, #{ct,jdbcType=TIMESTAMP}, 
+      #{ep,jdbcType=VARCHAR}, #{et,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <update id="update" parameterType="com.yy.platform.rule.entity.RuleQuery" >
+    update SYS_RULE_QUERY
+    <set >
+      <if test="hospitalId != null" >
+        HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportCouldQueryType != null" >
+        REPORT_COULD_QUERY_TYPE = #{reportCouldQueryType,jdbcType=VARCHAR},
+      </if>
+      <if test="reportViewCssType != null" >
+        REPORT_VIEW_CSS_TYPE = #{reportViewCssType,jdbcType=INTEGER},
+      </if>
+      <if test="bespeakRecordQueryType != null" >
+        BESPEAK_RECORD_QUERY_TYPE = #{bespeakRecordQueryType,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentRecordQueryType != null" >
+        PAYMENT_RECORD_QUERY_TYPE = #{paymentRecordQueryType,jdbcType=VARCHAR},
+      </if>
+      <if test="reportRecordQueryMaxMonths != null" >
+        REPORT_RECORD_QUERY_MAX_MONTHS = #{reportRecordQueryMaxMonths,jdbcType=INTEGER},
+      </if>
+      <if test="bespeakRecordQueryMaxMonths != null" >
+        BESPEAK_RECORD_QUERY_MAX_MONTHS = #{bespeakRecordQueryMaxMonths,jdbcType=INTEGER},
+      </if>
+      <if test="paymentRecordQueryMaxMonths != null" >
+        PAYMENT_RECORD_QUERY_MAX_MONTHS = #{paymentRecordQueryMaxMonths,jdbcType=INTEGER},
+      </if>
+      <if test="oneDayRecordMaxMonths != null" >
+        ONE_DAY_RECORD_MAX_MONTHS = #{oneDayRecordMaxMonths,jdbcType=INTEGER},
+      </if>
+      <if test="queueType != null" >
+        QUEUE_TYPE = #{queueType,jdbcType=INTEGER},
+      </if>
+      <if test="isShowBarcode != null" >
+        IS_SHOW_BARCODE = #{isShowBarcode,jdbcType=SMALLINT},
+      </if>
+      <if test="barcodeData != null" >
+        BARCODE_DATA = #{barcodeData,jdbcType=SMALLINT},
+      </if>
+      <if test="barcodeStyle != null" >
+        BARCODE_STYLE = #{barcodeStyle,jdbcType=SMALLINT},
+      </if>
+      <if test="cp != null" >
+        CP = #{cp,jdbcType=VARCHAR},
+      </if>
+      <if test="ct != null" >
+        CT = #{ct,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ep != null" >
+        EP = #{ep,jdbcType=VARCHAR},
+      </if>
+      <if test="et != null" >
+        ET = #{et,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateById" parameterType="com.yy.platform.rule.entity.RuleQuery" >
+    update SYS_RULE_QUERY
+    set HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR},
+      REPORT_COULD_QUERY_TYPE = #{reportCouldQueryType,jdbcType=VARCHAR},
+      REPORT_VIEW_CSS_TYPE = #{reportViewCssType,jdbcType=INTEGER},
+      BESPEAK_RECORD_QUERY_TYPE = #{bespeakRecordQueryType,jdbcType=VARCHAR},
+      PAYMENT_RECORD_QUERY_TYPE = #{paymentRecordQueryType,jdbcType=VARCHAR},
+      REPORT_RECORD_QUERY_MAX_MONTHS = #{reportRecordQueryMaxMonths,jdbcType=INTEGER},
+      BESPEAK_RECORD_QUERY_MAX_MONTHS = #{bespeakRecordQueryMaxMonths,jdbcType=INTEGER},
+      PAYMENT_RECORD_QUERY_MAX_MONTHS = #{paymentRecordQueryMaxMonths,jdbcType=INTEGER},
+      ONE_DAY_RECORD_MAX_MONTHS = #{oneDayRecordMaxMonths,jdbcType=INTEGER},
+      QUEUE_TYPE = #{queueType,jdbcType=VARCHAR},
+      IS_SHOW_BARCODE = #{isShowBarcode,jdbcType=SMALLINT},
+      BARCODE_DATA = #{barcodeData,jdbcType=SMALLINT},
+      BARCODE_STYLE = #{barcodeStyle,jdbcType=SMALLINT},
+      CP = #{cp,jdbcType=VARCHAR},
+      CT = #{ct,jdbcType=TIMESTAMP},
+      EP = #{ep,jdbcType=VARCHAR},
+      ET = #{et,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.platform.rule.entity.RuleRegister">
+  <resultMap id="RuleRegisterResultMap" type="com.yy.platform.rule.entity.RuleRegister">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="HOSPITAL_ID" jdbcType="VARCHAR" property="hospitalId" />
+    <result column="IS_HAS_BRANCH" jdbcType="INTEGER" property="isHasBranch" />
+    <result column="IS_HAS_GRADE_TWO_DEPT" jdbcType="INTEGER" property="isHasGradeTwoDept" />
+    <result column="IS_HAS_ONDUTY_REG" jdbcType="INTEGER" property="isHasOnDutyReg" />
+    <result column="CALENDAR_DAYS_TYPE" jdbcType="INTEGER" property="calendarDaysType" />
+    <result column="SOURCE_CACHE_DAYS" jdbcType="INTEGER" property="sourceCacheDays" />
+    <result column="ONLINE_PAYMENT_CONTROL" jdbcType="INTEGER" property="onlinePaymentControl" />
+    <result column="IS_SUPPORT_REFUND_ON_DUTY" jdbcType="INTEGER" property="isSupportRefundOnDuty" />
+    <result column="IS_SUPPORT_REFUND_APPOINTMENT" jdbcType="INTEGER" property="isSupportRefundAppointment" />
+    <result column="ON_DUTY_REG_START_TIME" jdbcType="TIME" property="onDutyRegStartTime" />
+    <result column="ON_DUTY_REG_END_TIME" jdbcType="TIME" property="onDutyRegEndTime" />
+    <result column="APPOINTMENT_TOMORROW_END_TIME" jdbcType="TIME" property="appointmentTomorrowEndTime" />
+    <result column="PAYMENT_TIME_OUT_TIME" jdbcType="INTEGER" property="paymentTimeOutTime" />
+    <result column="REG_MAXIMUM_SAME_DOCTOR" jdbcType="INTEGER" property="regMaximumSameDoctor" />
+    <result column="REG_MAXIMUM_IN_DAY" jdbcType="INTEGER" property="regMaximumInDay" />
+    <result column="REG_MAXIMUM_IN_WEEK" jdbcType="INTEGER" property="regMaximumInWeek" />
+    <result column="REG_MAXIMUM_IN_MONTH" jdbcType="INTEGER" property="regMaximumInMonth" />
+    <result column="REG_CANCEL_MAXNUM_IN_DAY" jdbcType="INTEGER" property="regCancelMaxnumInDay" />
+    <result column="CANCEL_BESPEAK_CLOSE_TYPE" jdbcType="INTEGER" property="cancelBespeakCloseType" />
+    <result column="CANCEL_BESPEAK_END_TIME" jdbcType="INTEGER" property="cancelBespeakEndTime" />
+    <result column="CANCEL_ON_DUTY_CLOSE_TYPE" jdbcType="INTEGER" property="cancelOnDutyCloseType" />
+    <result column="CANCEL_ON_DUTY_END_TIMES" jdbcType="INTEGER" property="cancelOnDutyEndTimes" />
+    <result column="NO_SOURCE_TIP_CONTENT" jdbcType="VARCHAR" property="noSourceTipContent" />
+    <result column="ON_DUTY_REG_TIP_CONTENT" jdbcType="VARCHAR" property="onDutyRegTipContent" />
+    <result column="ON_DUTY_REG_OVER_TIME_TIP" jdbcType="VARCHAR" property="onDutyRegOverTimeTip" />
+    <result column="BESPEAK_REG_OVER_TIME_TIP" jdbcType="VARCHAR" property="bespeakRegOverTimeTip" />
+    <result column="REG_FAILED_TIP" jdbcType="VARCHAR" property="regFailedTip" />
+    <result column="REG_DISCOUNT_TIP" jdbcType="VARCHAR" property="regDiscountTip" />
+    <result column="OVER_MAXIMUM_SAME_DOCTOR_TIP" jdbcType="VARCHAR" property="overMaximumSameDoctorTip" />
+    <result column="OVER_MAXIMUM_IN_DAY_TIP" jdbcType="VARCHAR" property="overMaximumInDayTip" />
+    <result column="OVER_MAXIMUM_IN_WEEK_TIP" jdbcType="VARCHAR" property="overMaximumInWeekTip" />
+    <result column="OVER_MAXIMUM_IN_MONTH_TIP" jdbcType="VARCHAR" property="overMaximumInMonthTip" />
+    <result column="OVER_CANCEL_MAXNUM_IN_DAY_TIP" jdbcType="VARCHAR" property="overCancelMaxnumInDayTip" />
+    <result column="CANCEL_BESPEAK_TIME_OUT_TIP" jdbcType="VARCHAR" property="cancelBespeakTimeOutTip" />
+    <result column="CANCEL_ON_DUTY_TIME_OUT_TIP" jdbcType="VARCHAR" property="cancelOnDutyTimeOutTip" />
+    <result column="BLACKLIST_USER_REG_TIP" jdbcType="VARCHAR" property="blacklistUserRegTip" />
+    <result column="CONFIRM_REG_INFO_TIP" jdbcType="VARCHAR" property="confirmRegInfoTip" />
+    <result column="REG_PAY_TIME_OUT_TIP" jdbcType="VARCHAR" property="regPayTimeOutTip" />
+    <result column="REG_SUCCESS_HAD_PAY_TIP" jdbcType="VARCHAR" property="regSuccessHadPayTip" />
+    <result column="REG_SUCCESS_NO_PAY_TIP" jdbcType="VARCHAR" property="regSuccessNoPayTip" />
+    <result column="REG_SUCCESS_ON_DUTY_TIP" jdbcType="VARCHAR" property="regSuccessOnDutyTip" />
+    <result column="IS_VIEW_DISEASE_DESC"  jdbcType="INTEGER" property="isViewDiseaseDesc"/>
+    
+    <result column="IS_HAS_SEARCH_DOCTOR"  jdbcType="INTEGER" property="isHasSearChDoctor"/>
+    <result column="IS_HAS_APPOINTMENT_REG"  jdbcType="INTEGER" property="isHasAppointmentReg"/>
+    
+    <result column="NOT_PAID_PAYOFF_TYPE"  jdbcType="INTEGER" property="notPaidpayOffType"/>
+    <result column="NOT_PAID_PAYOFF_TIME"  jdbcType="INTEGER" property="notPaidpayOffTime"/>
+     <result column="PRE_REGISTER_WARM_TIP" jdbcType="VARCHAR" property="preRegisterWarmTip" />
+     <result column="RESERVATION_RULE" jdbcType="VARCHAR" property="reservationRule" />
+     <result column="RESERVATION_HOUR_RULE" jdbcType="VARCHAR" property="reservationHourRule" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, HOSPITAL_ID, IS_HAS_BRANCH, IS_HAS_GRADE_TWO_DEPT, CALENDAR_DAYS_TYPE,SOURCE_CACHE_DAYS, ONLINE_PAYMENT_CONTROL, 
+    IS_SUPPORT_REFUND_ON_DUTY, IS_SUPPORT_REFUND_APPOINTMENT, ON_DUTY_REG_END_TIME, APPOINTMENT_TOMORROW_END_TIME, PAYMENT_TIME_OUT_TIME,
+    REG_MAXIMUM_SAME_DOCTOR, REG_MAXIMUM_IN_DAY, REG_MAXIMUM_IN_WEEK, REG_MAXIMUM_IN_MONTH, 
+    REG_CANCEL_MAXNUM_IN_DAY, CANCEL_BESPEAK_CLOSE_TYPE, CANCEL_BESPEAK_END_TIME, CANCEL_ON_DUTY_CLOSE_TYPE, 
+    CANCEL_ON_DUTY_END_TIMES, NO_SOURCE_TIP_CONTENT, ON_DUTY_REG_TIP_CONTENT, ON_DUTY_REG_OVER_TIME_TIP, 
+    BESPEAK_REG_OVER_TIME_TIP, REG_FAILED_TIP, REG_DISCOUNT_TIP, OVER_MAXIMUM_SAME_DOCTOR_TIP, 
+    OVER_MAXIMUM_IN_DAY_TIP, OVER_MAXIMUM_IN_WEEK_TIP, OVER_MAXIMUM_IN_MONTH_TIP, OVER_CANCEL_MAXNUM_IN_DAY_TIP, 
+    CANCEL_BESPEAK_TIME_OUT_TIP, CANCEL_ON_DUTY_TIME_OUT_TIP, BLACKLIST_USER_REG_TIP, 
+    CONFIRM_REG_INFO_TIP, REG_PAY_TIME_OUT_TIP, REG_SUCCESS_HAD_PAY_TIP, REG_SUCCESS_NO_PAY_TIP, 
+    REG_SUCCESS_ON_DUTY_TIP,IS_HAS_ONDUTY_REG,ON_DUTY_REG_START_TIME , IS_VIEW_DISEASE_DESC,IS_HAS_SEARCH_DOCTOR,IS_HAS_APPOINTMENT_REG,
+    NOT_PAID_PAYOFF_TYPE , NOT_PAID_PAYOFF_TIME, PRE_REGISTER_WARM_TIP,RESERVATION_RULE,RESERVATION_HOUR_RULE
+  </sql>
+  <select id="findById" parameterType="java.lang.String" resultMap="RuleRegisterResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_RULE_REGISTER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findAll" resultMap="RuleRegisterResultMap">
+    select * from SYS_RULE_REGISTER
+  </select>
+  
+  <select id="findByHospitalId" resultMap="RuleRegisterResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_RULE_REGISTER
+    where HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteById" parameterType="java.lang.String">
+    delete from SYS_RULE_REGISTER
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="add" parameterType="com.yy.platform.rule.entity.RuleRegister">
+    insert into SYS_RULE_REGISTER (ID,HOSPITAL_ID, IS_HAS_BRANCH, 
+      IS_HAS_GRADE_TWO_DEPT, CALENDAR_DAYS_TYPE,SOURCE_CACHE_DAYS, ONLINE_PAYMENT_CONTROL, 
+      IS_SUPPORT_REFUND_ON_DUTY, ON_DUTY_REG_END_TIME, APPOINTMENT_TOMORROW_END_TIME, 
+      PAYMENT_TIME_OUT_TIME, REG_MAXIMUM_SAME_DOCTOR, REG_MAXIMUM_IN_DAY, 
+      REG_MAXIMUM_IN_WEEK, REG_MAXIMUM_IN_MONTH, REG_CANCEL_MAXNUM_IN_DAY, 
+      CANCEL_BESPEAK_CLOSE_TYPE, CANCEL_BESPEAK_END_TIME, 
+      CANCEL_ON_DUTY_CLOSE_TYPE, CANCEL_ON_DUTY_END_TIMES, 
+      NO_SOURCE_TIP_CONTENT, ON_DUTY_REG_TIP_CONTENT, 
+      ON_DUTY_REG_OVER_TIME_TIP, BESPEAK_REG_OVER_TIME_TIP, 
+      REG_FAILED_TIP, REG_DISCOUNT_TIP, OVER_MAXIMUM_SAME_DOCTOR_TIP, 
+      OVER_MAXIMUM_IN_DAY_TIP, OVER_MAXIMUM_IN_WEEK_TIP, 
+      OVER_MAXIMUM_IN_MONTH_TIP, OVER_CANCEL_MAXNUM_IN_DAY_TIP, 
+      CANCEL_BESPEAK_TIME_OUT_TIP, CANCEL_ON_DUTY_TIME_OUT_TIP, 
+      BLACKLIST_USER_REG_TIP, CONFIRM_REG_INFO_TIP, 
+      REG_PAY_TIME_OUT_TIP, REG_SUCCESS_HAD_PAY_TIP, 
+      REG_SUCCESS_NO_PAY_TIP, REG_SUCCESS_ON_DUTY_TIP,
+      IS_HAS_ONDUTY_REG,ON_DUTY_REG_START_TIME,IS_VIEW_DISEASE_DESC,
+      IS_HAS_SEARCH_DOCTOR,IS_HAS_APPOINTMENT_REG,NOT_PAID_PAYOFF_TYPE , NOT_PAID_PAYOFF_TIME, PRE_REGISTER_WARM_TIP,RESERVATION_RULE,RESERVATION_HOUR_RULE
+      )
+    values (#{id,jdbcType=VARCHAR},#{hospitalId,jdbcType=VARCHAR}, #{isHasBranch,jdbcType=INTEGER}, 
+      #{isHasGradeTwoDept,jdbcType=INTEGER}, #{calendarDaysType,jdbcType=INTEGER},
+      #{sourceCacheDays,jdbcType=INTEGER},#{onlinePaymentControl,jdbcType=INTEGER}, 
+      #{isSupportRefundOnDuty,jdbcType=INTEGER}, #{onDutyRegEndTime,jdbcType=TIME}, #{appointmentTomorrowEndTime,jdbcType=TIME},
+      #{paymentTimeOutTime,jdbcType=INTEGER}, #{regMaximumSameDoctor,jdbcType=INTEGER}, #{regMaximumInDay,jdbcType=INTEGER}, 
+      #{regMaximumInWeek,jdbcType=INTEGER}, #{regMaximumInMonth,jdbcType=INTEGER}, #{regCancelMaxnumInDay,jdbcType=INTEGER}, 
+      #{cancelBespeakCloseType,jdbcType=INTEGER}, #{cancelBespeakEndTime,jdbcType=INTEGER}, 
+      #{cancelOnDutyCloseType,jdbcType=INTEGER}, #{cancelOnDutyEndTimes,jdbcType=INTEGER}, 
+      #{noSourceTipContent,jdbcType=VARCHAR}, #{onDutyRegTipContent,jdbcType=VARCHAR}, 
+      #{onDutyRegOverTimeTip,jdbcType=VARCHAR}, #{bespeakRegOverTimeTip,jdbcType=VARCHAR}, 
+      #{regFailedTip,jdbcType=VARCHAR}, #{regDiscountTip,jdbcType=VARCHAR}, #{overMaximumSameDoctorTip,jdbcType=VARCHAR}, 
+      #{overMaximumInDayTip,jdbcType=VARCHAR}, #{overMaximumInWeekTip,jdbcType=VARCHAR}, 
+      #{overMaximumInMonthTip,jdbcType=VARCHAR}, #{overCancelMaxnumInDayTip,jdbcType=VARCHAR}, 
+      #{cancelBespeakTimeOutTip,jdbcType=VARCHAR}, #{cancelOnDutyTimeOutTip,jdbcType=VARCHAR}, 
+      #{blacklistUserRegTip,jdbcType=VARCHAR}, #{confirmRegInfoTip,jdbcType=VARCHAR}, 
+      #{regPayTimeOutTip,jdbcType=VARCHAR}, #{regSuccessHadPayTip,jdbcType=VARCHAR}, 
+      #{regSuccessNoPayTip,jdbcType=VARCHAR}, #{regSuccessOnDutyTip,jdbcType=VARCHAR},
+      #{isHasOnDutyReg,jdbcType=INTEGER}, #{onDutyRegStartTime,jdbcType=TIME},#{isViewDiseaseDesc,jdbcType=TIME},
+      #{isHasSearChDoctor,jdbcType=INTEGER}, #{isHasAppointmentReg,jdbcType=INTEGER},
+      #{notPaidpayOffType,jdbcType=INTEGER},#{notPaidpayOffTime,jdbcType=INTEGER},#{preRegisterWarmTip,jdbcType=VARCHAR},
+      #{reservationRule,jdbcType=INTEGER},#{reservationHourRule,jdbcType=INTEGER}
+      )
+  </insert>
+  
+  <update id="update" parameterType="com.yy.platform.rule.entity.RuleRegister">
+    update SYS_RULE_REGISTER
+    <set>
+      <if test="hospitalId != null">
+        HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="isHasBranch != null">
+        IS_HAS_BRANCH = #{isHasBranch,jdbcType=INTEGER},
+      </if>
+      <if test="isHasGradeTwoDept != null">
+        IS_HAS_GRADE_TWO_DEPT = #{isHasGradeTwoDept,jdbcType=INTEGER},
+      </if>
+      <if test="isViewDiseaseDesc != null">
+        IS_VIEW_DISEASE_DESC = #{isViewDiseaseDesc,jdbcType=INTEGER},
+      </if>
+      <if test="calendarDaysType != null">
+        CALENDAR_DAYS_TYPE = #{calendarDaysType,jdbcType=INTEGER},
+      </if>
+      <if test="sourceCacheDays != null">
+        SOURCE_CACHE_DAYS = #{sourceCacheDays,jdbcType=INTEGER},
+      </if>
+      <if test="onlinePaymentControl != null">
+        ONLINE_PAYMENT_CONTROL = #{onlinePaymentControl,jdbcType=INTEGER},
+      </if>
+      <if test="isSupportRefundOnDuty != null">
+        IS_SUPPORT_REFUND_ON_DUTY = #{isSupportRefundOnDuty,jdbcType=INTEGER},
+      </if>
+      <if test="isSupportRefundAppointment != null">
+        IS_SUPPORT_REFUND_APPOINTMENT = #{isSupportRefundAppointment,jdbcType=INTEGER},
+      </if>
+      <if test="onDutyRegEndTime != null">
+        ON_DUTY_REG_END_TIME = #{onDutyRegEndTime,jdbcType=TIME},
+      </if>
+      <if test="appointmentTomorrowEndTime != null">
+        APPOINTMENT_TOMORROW_END_TIME = #{appointmentTomorrowEndTime,jdbcType=TIME},
+      </if>
+      <if test="paymentTimeOutTime != null">
+        PAYMENT_TIME_OUT_TIME = #{paymentTimeOutTime,jdbcType=INTEGER},
+      </if>
+      <if test="regMaximumSameDoctor != null">
+        REG_MAXIMUM_SAME_DOCTOR = #{regMaximumSameDoctor,jdbcType=INTEGER},
+      </if>
+      <if test="regMaximumInDay != null">
+        REG_MAXIMUM_IN_DAY = #{regMaximumInDay,jdbcType=INTEGER},
+      </if>
+      <if test="regMaximumInWeek != null">
+        REG_MAXIMUM_IN_WEEK = #{regMaximumInWeek,jdbcType=INTEGER},
+      </if>
+      <if test="regMaximumInMonth != null">
+        REG_MAXIMUM_IN_MONTH = #{regMaximumInMonth,jdbcType=INTEGER},
+      </if>
+      <if test="regCancelMaxnumInDay != null">
+        REG_CANCEL_MAXNUM_IN_DAY = #{regCancelMaxnumInDay,jdbcType=INTEGER},
+      </if>
+      <if test="cancelBespeakCloseType != null">
+        CANCEL_BESPEAK_CLOSE_TYPE = #{cancelBespeakCloseType,jdbcType=INTEGER},
+      </if>
+      <if test="cancelBespeakEndTime != null">
+        CANCEL_BESPEAK_END_TIME = #{cancelBespeakEndTime,jdbcType=INTEGER},
+      </if>
+      <if test="cancelOnDutyCloseType != null">
+        CANCEL_ON_DUTY_CLOSE_TYPE = #{cancelOnDutyCloseType,jdbcType=INTEGER},
+      </if>
+      <if test="cancelOnDutyEndTimes != null">
+        CANCEL_ON_DUTY_END_TIMES = #{cancelOnDutyEndTimes,jdbcType=INTEGER},
+      </if>
+      <if test="noSourceTipContent != null">
+        NO_SOURCE_TIP_CONTENT = #{noSourceTipContent,jdbcType=VARCHAR},
+      </if>
+      <if test="onDutyRegTipContent != null">
+        ON_DUTY_REG_TIP_CONTENT = #{onDutyRegTipContent,jdbcType=VARCHAR},
+      </if>
+      <if test="onDutyRegOverTimeTip != null">
+        ON_DUTY_REG_OVER_TIME_TIP = #{onDutyRegOverTimeTip,jdbcType=VARCHAR},
+      </if>
+      <if test="bespeakRegOverTimeTip != null">
+        BESPEAK_REG_OVER_TIME_TIP = #{bespeakRegOverTimeTip,jdbcType=VARCHAR},
+      </if>
+      <if test="regFailedTip != null">
+        REG_FAILED_TIP = #{regFailedTip,jdbcType=VARCHAR},
+      </if>
+      <if test="regDiscountTip != null">
+        REG_DISCOUNT_TIP = #{regDiscountTip,jdbcType=VARCHAR},
+      </if>
+      <if test="overMaximumSameDoctorTip != null">
+        OVER_MAXIMUM_SAME_DOCTOR_TIP = #{overMaximumSameDoctorTip,jdbcType=VARCHAR},
+      </if>
+      <if test="overMaximumInDayTip != null">
+        OVER_MAXIMUM_IN_DAY_TIP = #{overMaximumInDayTip,jdbcType=VARCHAR},
+      </if>
+      <if test="overMaximumInWeekTip != null">
+        OVER_MAXIMUM_IN_WEEK_TIP = #{overMaximumInWeekTip,jdbcType=VARCHAR},
+      </if>
+      <if test="overMaximumInMonthTip != null">
+        OVER_MAXIMUM_IN_MONTH_TIP = #{overMaximumInMonthTip,jdbcType=VARCHAR},
+      </if>
+      <if test="overCancelMaxnumInDayTip != null">
+        OVER_CANCEL_MAXNUM_IN_DAY_TIP = #{overCancelMaxnumInDayTip,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelBespeakTimeOutTip != null">
+        CANCEL_BESPEAK_TIME_OUT_TIP = #{cancelBespeakTimeOutTip,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelOnDutyTimeOutTip != null">
+        CANCEL_ON_DUTY_TIME_OUT_TIP = #{cancelOnDutyTimeOutTip,jdbcType=VARCHAR},
+      </if>
+      <if test="blacklistUserRegTip != null">
+        BLACKLIST_USER_REG_TIP = #{blacklistUserRegTip,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmRegInfoTip != null">
+        CONFIRM_REG_INFO_TIP = #{confirmRegInfoTip,jdbcType=VARCHAR},
+      </if>
+      <if test="regPayTimeOutTip != null">
+        REG_PAY_TIME_OUT_TIP = #{regPayTimeOutTip,jdbcType=VARCHAR},
+      </if>
+      <if test="regSuccessHadPayTip != null">
+        REG_SUCCESS_HAD_PAY_TIP = #{regSuccessHadPayTip,jdbcType=VARCHAR},
+      </if>
+      <if test="regSuccessNoPayTip != null">
+        REG_SUCCESS_NO_PAY_TIP = #{regSuccessNoPayTip,jdbcType=VARCHAR},
+      </if>
+      <if test="regSuccessOnDutyTip != null">
+        REG_SUCCESS_ON_DUTY_TIP = #{regSuccessOnDutyTip,jdbcType=VARCHAR},
+      </if>
+      <if test="onDutyRegStartTime != null">
+        ON_DUTY_REG_START_TIME = #{onDutyRegStartTime,jdbcType=TIME},
+      </if>
+      <if test="isHasOnDutyReg != null">
+        IS_HAS_ONDUTY_REG = #{isHasOnDutyReg,jdbcType=INTEGER},
+      </if>
+      <if test="isHasSearChDoctor != null">
+        IS_HAS_SEARCH_DOCTOR = #{isHasSearChDoctor,jdbcType=INTEGER},
+      </if>
+      <if test="isHasAppointmentReg != null">
+        IS_HAS_APPOINTMENT_REG = #{isHasAppointmentReg,jdbcType=INTEGER},
+      </if>
+      <if test="notPaidpayOffType != null">
+        NOT_PAID_PAYOFF_TYPE = #{notPaidpayOffType,jdbcType=INTEGER},
+      </if>
+      <if test="notPaidpayOffTime != null">
+        NOT_PAID_PAYOFF_TIME = #{notPaidpayOffTime,jdbcType=INTEGER},
+      </if>
+      <if test="preRegisterWarmTip != null">
+        PRE_REGISTER_WARM_TIP = #{preRegisterWarmTip,jdbcType=VARCHAR},
+      </if>
+      <if test="reservationRule != null">
+        RESERVATION_RULE = #{reservationRule,jdbcType=INTEGER},
+      </if>
+      <if test="reservationHourRule != null">
+        RESERVATION_HOUR_RULE = #{reservationHourRule,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateById" parameterType="com.yy.platform.rule.entity.RuleRegister">
+    update SYS_RULE_REGISTER
+    set HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR},
+      IS_HAS_BRANCH = #{isHasBranch,jdbcType=INTEGER},
+      IS_HAS_GRADE_TWO_DEPT = #{isHasGradeTwoDept,jdbcType=INTEGER},
+      CALENDAR_DAYS_TYPE = #{calendarDaysType,jdbcType=INTEGER},
+      ONLINE_PAYMENT_CONTROL = #{onlinePaymentControl,jdbcType=INTEGER},
+      IS_SUPPORT_REFUND_ON_DUTY = #{isSupportRefundOnDuty,jdbcType=INTEGER},
+      ON_DUTY_REG_END_TIME = #{onDutyRegEndTime,jdbcType=TIME},
+      APPOINTMENT_TOMORROW_END_TIME = #{appointmentTomorrowEndTime,jdbcType=TIME},
+      PAYMENT_TIME_OUT_TIME = #{paymentTimeOutTime,jdbcType=INTEGER},
+      REG_MAXIMUM_SAME_DOCTOR = #{regMaximumSameDoctor,jdbcType=INTEGER},
+      REG_MAXIMUM_IN_DAY = #{regMaximumInDay,jdbcType=INTEGER},
+      REG_MAXIMUM_IN_WEEK = #{regMaximumInWeek,jdbcType=INTEGER},
+      REG_MAXIMUM_IN_MONTH = #{regMaximumInMonth,jdbcType=INTEGER},
+      REG_CANCEL_MAXNUM_IN_DAY = #{regCancelMaxnumInDay,jdbcType=INTEGER},
+      CANCEL_BESPEAK_CLOSE_TYPE = #{cancelBespeakCloseType,jdbcType=INTEGER},
+      CANCEL_BESPEAK_END_TIME = #{cancelBespeakEndTime,jdbcType=INTEGER},
+      CANCEL_ON_DUTY_CLOSE_TYPE = #{cancelOnDutyCloseType,jdbcType=INTEGER},
+      CANCEL_ON_DUTY_END_TIMES = #{cancelOnDutyEndTimes,jdbcType=INTEGER},
+      NO_SOURCE_TIP_CONTENT = #{noSourceTipContent,jdbcType=VARCHAR},
+      ON_DUTY_REG_TIP_CONTENT = #{onDutyRegTipContent,jdbcType=VARCHAR},
+      ON_DUTY_REG_OVER_TIME_TIP = #{onDutyRegOverTimeTip,jdbcType=VARCHAR},
+      BESPEAK_REG_OVER_TIME_TIP = #{bespeakRegOverTimeTip,jdbcType=VARCHAR},
+      REG_FAILED_TIP = #{regFailedTip,jdbcType=VARCHAR},
+      REG_DISCOUNT_TIP = #{regDiscountTip,jdbcType=VARCHAR},
+      OVER_MAXIMUM_SAME_DOCTOR_TIP = #{overMaximumSameDoctorTip,jdbcType=VARCHAR},
+      OVER_MAXIMUM_IN_DAY_TIP = #{overMaximumInDayTip,jdbcType=VARCHAR},
+      OVER_MAXIMUM_IN_WEEK_TIP = #{overMaximumInWeekTip,jdbcType=VARCHAR},
+      OVER_MAXIMUM_IN_MONTH_TIP = #{overMaximumInMonthTip,jdbcType=VARCHAR},
+      OVER_CANCEL_MAXNUM_IN_DAY_TIP = #{overCancelMaxnumInDayTip,jdbcType=VARCHAR},
+      CANCEL_BESPEAK_TIME_OUT_TIP = #{cancelBespeakTimeOutTip,jdbcType=VARCHAR},
+      CANCEL_ON_DUTY_TIME_OUT_TIP = #{cancelOnDutyTimeOutTip,jdbcType=VARCHAR},
+      BLACKLIST_USER_REG_TIP = #{blacklistUserRegTip,jdbcType=VARCHAR},
+      CONFIRM_REG_INFO_TIP = #{confirmRegInfoTip,jdbcType=VARCHAR},
+      REG_PAY_TIME_OUT_TIP = #{regPayTimeOutTip,jdbcType=VARCHAR},
+      REG_SUCCESS_HAD_PAY_TIP = #{regSuccessHadPayTip,jdbcType=VARCHAR},
+      REG_SUCCESS_NO_PAY_TIP = #{regSuccessNoPayTip,jdbcType=VARCHAR},
+      REG_SUCCESS_ON_DUTY_TIP = #{regSuccessOnDutyTip,jdbcType=VARCHAR},
+      IS_HAS_ONDUTY_REG = #{isHasOnDutyReg,jdbcType=INTEGER},
+      ON_DUTY_REG_START_TIME = #{ON_DUTY_REG_START_TIME,jdbcType=TIME}, 
+      IS_VIEW_DISEASE_DESC = #{isViewDiseaseDesc,jdbcType=INTEGER},
+      SOURCE_CACHE_DAYS = #{sourceCacheDays,jdbcType=INTEGER},
+      IS_HAS_SEARCH_DOCTOR = #{isHasSearChDoctor,jdbcType=INTEGER},
+      RESERVATION_RULE = #{reservationRule,jdbcType=INTEGER},
+      RESERVATION_HOUR_RULE = #{reservationHourRule,jdbcType=INTEGER},
+      IS_HAS_APPOINTMENT_REG = #{isHasAppointmentReg,jdbcType=INTEGER},
+      NOT_PAID_PAYOFF_TYPE = #{notPaidpayOffType,jdbcType=INTEGER},
+      NOT_PAID_PAYOFF_TIME = #{notPaidpayOffTime,jdbcType=INTEGER}
+      PRE_REGISTER_WARM_TIP = #{preRegisterWarmTip,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,151 @@
+<html>
+<head>
+	<meta name="mobile-agent" content="format=html5;url=http://m.www.yunyichina.cn/mobile/">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>消息模版</title>
+    <script type="text/javascript" src="../lib/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap_v2/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <link rel="stylesheet" href="../lib/bootstrap_v2/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/yx-style.css"/>
+    <link rel="stylesheet" href="../css/yx-media.css"/>
+</head>
+<body>
+<!--Header str-->
+<div id="header">
+    <h1>
+        <a href="javascript:void(0);">掌上医院全流程管理后台 </a>
+    </h1>
+</div>
+<!--Header end-->
+<!--sidebar-menu str-->
+<div id="sidebar">
+    <ul>
+        <li><a href="#"><i class="icons-siderbar icons-account"></i><i class="caret"></i><span>账户管理</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-behavior"></i><i class="caret"></i><span>行为管理</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-role"></i><i class="caret"></i><span>角色管理</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-access"></i><i class="caret"></i><span>权限管理</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-hopital"></i><i class="caret"></i><span>医院管理</span></a> </li>
+        <li><a href="#"><i class="icons-siderbar icons-nes"></i><i class="caret"></i><span>消息管理</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-journal"></i><i class="caret"></i><span>行为日志</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-function"></i><i class="caret"></i><span>功能管理</span></a></li>
+        <li><a href="#"><i class="icons-siderbar icons-rule"></i><i class="caret"></i><span>规则配置</span></a></li>
+        <li class="active"><a href="#"><i class="icons-siderbar icons-temp"></i><i class="caret"></i><span>消息模版</span></a></li>
+    </ul>
+</div>
+<!--sidebar-menu end-->
+<!--content str-->
+<div id="content">
+    <div id="content-top">
+        <div class="container-fluid">
+            <div class="box">
+                <!--top-Header-menu str -->
+                <div id="user-nav" class="navbar">
+                    <div id="select-msg" class="dropdown"  >
+                        <a class="dropdown-toggle" href="javascript:void(0);" data-toggle="dropdown" >
+                            <span class="text">广东省第二人民医院</span>
+                            <i class="caret"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">中山大学孙逸仙纪念医院</a></li>
+                            <li><a href="#">广州中医药大学第一附属医院</a></li>
+                            <li><a href="#">广东省第二人民医院</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--top-Header-menu end -->
+                <!--settings str-->
+                <div id="settings">
+                    <div class="set-msg dropdown">
+                        <a class="dropdown-toggle" href="javascript:void(0);" data-toggle="dropdown" >
+                            <span class="text">系统设置</span>
+                            <i class="icons_settings icons-set"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><span class="text">修改密码</span><i class="icons_settings icons-password"></i></a></li>
+                            <li><a href="#"><span class="text">退出登录</span><i class="icons_settings icons-loginout"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--settings end-->
+            </div>
+        </div>
+    </div>
+    <div id="content-header">
+        <div class="widget-title"><h3 class="title">消息模版</h3></div>
+    </div>
+    <div class="container-fluid">
+        <div class="space10"></div>
+        <div class="row-fluid">
+            <div class="space40"></div>
+            <div class="row-fluid">
+                <div class="pull-left">
+                    <button type="button" class="btn btn-ok">模版库</button>
+                </div>
+                <div class="pull-right" id="search">
+                    <input type="text" placeholder="请输入医院名称"/>
+                    <button class="tip-bottom" type="submit">
+                        <i class="icon-search icon-white"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="widget-box">
+                <div class="space10"></div>
+                <div class="widget-content">
+                    <div class="row-fluid">
+                        <table class="table table-bordered table-textCenter table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>医院全称</th>
+                                <th>上次修改时间</th>
+                                <th>最后操作者</th>
+                                <th width="200">管理</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>中山大学孙逸仙纪念医院</td>
+                                    <td>2015-03-24  16:38</td>
+                                    <td>admin</td>
+                                    <td>
+                                        <a href="#"><span class="green">微信</span></a>|
+                                        <a href="#">支付宝</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>中山大学孙逸仙纪念医院</td>
+                                    <td>2015-03-24  16:38</td>
+                                    <td>admin</td>
+                                    <td>
+                                        <a href="#">微信</a>|
+                                        <a href="#">支付宝</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination pagination-centered">
+            <ul>
+                <li><a href="#">上一页</a></li>
+                <li> <a href="#">1</a></li>
+                <li class="disabled"><span>2</span></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">下一页</a></li>
+            </ul>
+            <div class="pageGoto">
+                <span>转到第</span> <input type="text" class="goto_input"/> <span>页</span>
+                <a href="javascript:;" class="goto">跳转</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--content end-->
+</body>
+</html>

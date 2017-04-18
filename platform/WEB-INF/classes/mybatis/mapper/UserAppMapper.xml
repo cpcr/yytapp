@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.easyhealth.biz.user.entity.UserApp">
+
+	<resultMap id="userAppResultMap" type="UserApp">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+	<select id="getCountByAppidAndUserid" parameterType="UserApp" resultType="long">
+		select count(*) from REPORT_USER_APP where APP_ID=#{appId} and USER_ID=#{userId}
+	</select>
+
+	<insert id="add" parameterType="UserApp">
+		insert into 
+		 REPORT_USER_APP(ID,APP_ID,USER_ID,OPEN_ID)
+		values 
+		(#{id},#{appId},#{userId},#{openId})
+	</insert>
+	
+	<delete id="deleteByAppidAndUserid" parameterType="UserApp">
+		 delete from REPORT_USER_APP where APP_ID=#{appId} and USER_ID=#{userId}
+	</delete>
+	
+	
+</mapper>         

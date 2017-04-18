@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<business>
+	<!-- 业务名称 -->
+	<name>绑卡</name>
+	<!-- 业务编码 -->
+	<code>2014112600017754</code>
+	<!-- 功能 -->
+	<functions>
+		<Function>
+			<name>添加就诊人功能</name>
+			<code>medicalCard</code>
+			<!--医院接口描述 -->
+			<hisInterfaces>
+				<!-- 查询患者信息接口 -->
+				<HisInterface>
+					<!-- 接口中文描述名称 -->
+					<name>查询患者信息接口</name>
+					<!-- 接口编码,以便于在程序中通过代码来唯一标识并获取接口,而不是通过接口名称来标识获取接口,因为每个医院的接口名称都不一样 -->
+					<code>getUserInfo</code>
+					<!-- 医院接口名称 -->
+					<interfaceName>Pin_getUserInfo</interfaceName>
+					<!-- 是否依赖另一接口 -->
+					<isDependencyInterface>false</isDependencyInterface>
+					<!-- 所依赖的接口编码 -->
+					<dependencyInterfaceName></dependencyInterfaceName>
+					<!-- 全局响应报文前置节点 -->
+					<globalPreDataNode></globalPreDataNode>
+					<!-- 请求参数是否需要加密 -->
+					<isRequestEncryption>false</isRequestEncryption>
+					<!-- 响应报文是否需要解密 -->
+					<isResponseDecryption>false</isResponseDecryption>
+					<!-- 请求参数编码格式 -->
+					<requestEncode></requestEncode>
+					<!-- 响应参数解码格式 -->
+					<responseDecode></responseDecode>
+					<!-- 请求报文 -->
+					<requestParameters>
+						<!-- 证件类型 -->
+						<RequestParameter>
+							<!-- 参数中文名称 -->
+							<name>证件类型</name>
+							<!-- 源名称 -->
+							<sourceName>cardType</sourceName>
+							<!-- 目标名称 -->
+							<targetName>userCardType</targetName>
+							<!-- 是否必填 -->
+							<required>true</required>
+							<!-- 默认值 -->
+							<defaultValue>1</defaultValue>
+							<!-- 数据来源,1:业务传递,2:接口传递 -->
+							<dataSource>1</dataSource>
+							<!-- 是否需要转换 -->
+							<isConvert>false</isConvert>
+							<!-- 是否需要工具辅助转换 -->
+							<isAssist>false</isAssist>
+							<!-- 辅助工具 -->
+							<Assist>
+								<!-- 类路径 -->
+								<className>com.yy.framework.utils.IdCardUtils</className>
+								<!-- 方法名称 -->
+								<methodName>getGenderByIdCard</methodName>
+								<!-- 方法所需参数集合 -->
+								<params>
+									<Parameter>
+										<!-- 参数名称 -->
+										<paramName>idNo</paramName>
+										<!-- 参数数据类型 -->
+										<paramType>java.lang.String</paramType>
+									</Parameter>
+								</params>
+							</Assist>
+							<!-- 数据转换 -->
+							<converts>
+								<convert>
+									<!-- 源数据 -->
+									<sourceData>M</sourceData>
+									<!-- 目标数据 -->
+									<targetData>男</targetData>
+								</convert>
+								<convert>
+									<sourceData>F</sourceData>
+									<targetData>女</targetData>
+								</convert>
+							</converts>
+						</RequestParameter>
+						<!--证件号码 -->
+						<RequestParameter>
+							<name>cardNo</name>
+							<targetName>userCardId</targetName>
+							<required>true</required>
+							<dataSource>1</dataSource>
+						</RequestParameter>
+						<!--患者名称 -->
+						<RequestParameter>
+							<name>name</name>
+							<targetName>userName</targetName>
+							<required>true</required>
+							<dataSource>1</dataSource>
+						</RequestParameter>
+					</requestParameters>
+					<!-- 响应报文 -->
+					<Response>
+						<!-- 数据节点名称,根据医院返回的数据格式 -->
+						<dataNode>
+							<name>Pin_getUserInfoResult</name>
+							<dataNode>
+								<name>res</name>
+								<!-- 用户信息 -->
+								<dataNode>
+									<name>userInfo</name>
+									<parameters>
+										<!-- 用户对应HIS系统患者ID -->
+										<parameter>
+											<name>userHISPatientID</name>
+											<required>true</required>
+										</parameter>
+										<!-- 患者身份证件号码 -->
+										<parameter>
+											<name>userIdCard</name>
+											<required>true</required>
+											<targetName>idNo</targetName>
+										</parameter>
+										<!-- 患者诊疗卡号码 -->
+										<parameter>
+											<name>userJKK</name>
+											<required>true</required>
+											<targetName>cardNo</targetName>
+										</parameter>
+										<!-- 患者市民卡号码 -->
+										<parameter>
+											<name>userSMK</name>
+											<targetName>cardNo</targetName>
+										</parameter>
+										<!-- 患者医保卡号码 -->
+										<parameter>
+											<name>userYBK</name>
+											<targetName>cardNo</targetName>
+										</parameter>
+										<!-- 患者监护人身份证件号码 -->
+										<parameter>
+											<name>userParentIdCard</name>
+										</parameter>
+										<!-- 患者姓名 -->
+										<parameter>
+											<name>userName</name>
+											<required>true</required>
+											<targetName>name</targetName>
+										</parameter>
+										<!-- 患者性别：M-男,F-女 -->
+										<parameter>
+											<name>gender</name>
+											<required>true</required>
+											<targetName>sex</targetName>
+											<converts>
+												<!-- 数据转换,M-男转换为1,M-女转换为2 -->
+												<convert>
+													<sourceData>M-男</sourceData>
+													<targetData>1</targetData>
+												</convert>
+												<convert>
+													<sourceData>M-女</sourceData>
+													<targetData>2</targetData>
+												</convert>
+											</converts>
+										</parameter>
+										<!-- 患者电话 -->
+										<parameter>
+											<name>userMobile</name>
+											<required>true</required>
+											<targetName>mobileNo</targetName>
+										</parameter>
+										<!-- 患者出生日期：YYYY-MM-DD -->
+										<parameter>
+											<name>userBirthday</name>
+											<required>true</required>
+											<targetName>birth</targetName>
+										</parameter>
+										<!-- 用户地址 -->
+										<parameter>
+											<name>userAddress</name>
+											<targetName>address</targetName>
+											<converts>
+												<!-- 0转换为空字符串 -->
+												<convert>
+													<sourceData>0</sourceData>
+													<targetData></targetData>
+												</convert>
+											</converts>
+										</parameter>
+										<!-- 用户的患者类型名称 -->
+										<parameter>
+											<name>userPatienTypeListName</name>
+										</parameter>
+									</parameters>
+								</dataNode>
+							</dataNode>
+						</dataNode>
+					</Response>
+				</HisInterface>
+			</hisInterfaces>
+		</Function>
+	</functions>
+</business>

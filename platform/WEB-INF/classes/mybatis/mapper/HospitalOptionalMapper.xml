@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.platform.hospital.entity.HospitalOptional">
+
+	<resultMap id="hospitalOptionalResultMap" type="HospitalOptional">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<!-- <result column="platform_settings_id" property="platformSettings" jdbcType="BIGINT" /> <result column="hospital_id" property="hospital" jdbcType="BIGINT" /> -->
+
+		<result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+		<!-- <result column="OPTIONAL_ID" property="optionalId" jdbcType="INTEGER" /> -->
+		<association column="OPTIONAL_ID" property="optional" javaType="Optional" select="com.yy.platform.hospital.entity.Optional.findById" />
+	</resultMap>
+
+	<select id="findByHospital" resultMap="hospitalOptionalResultMap">
+		select ID,OPTIONAL_ID,HOSPITAL_ID
+		from SYS_HOSPITAL_OPTIONAL ho
+		where ho.HOSPITAL_ID = #{hospitaliId}
+	</select>
+
+	<insert id="add" parameterType="HospitalOptional">
+		insert into
+		SYS_HOSPITAL_OPTIONAL(ID,OPTIONAL_ID,HOSPITAL_ID)
+		values
+		(#{id},#{optional.id},#{hospitalId})
+	</insert>
+
+	<delete id="deleteByHospital" parameterType="String">
+		delete from SYS_HOSPITAL_OPTIONAL where HOSPITAL_ID = #{hospitalId}
+	</delete>
+
+</mapper>

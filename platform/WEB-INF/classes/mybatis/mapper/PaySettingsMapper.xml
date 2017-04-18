@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.platform.hospital.entity.PaySettings">
+
+	<resultMap id="paySettingsResultMap" type="PaySettings">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="MCH_ID" property="mchId" jdbcType="VARCHAR" />
+		<result column="PAY_KEY" property="payKey" jdbcType="VARCHAR" />
+		<result column="CERTIFICATE_PATH" property="certificatePath" jdbcType="VARCHAR" />
+		<result column="IS_SUB_PAY" property="isSubPay" />
+		<result column="MCH_ACCOUNT" property="mchAccount" jdbcType="VARCHAR" />
+		<result column="PARTNER_ID" property="partnerId" jdbcType="VARCHAR" />
+		<result column="PAY_PRIVATE_KEY" property="payPrivateKey" jdbcType="VARCHAR" />
+		<result column="PAY_PUBLIC_KEY" property="payPublicKey" jdbcType="VARCHAR" />
+		<result column="PAY_MODE_ID" property="payModeId" jdbcType="VARCHAR" />
+		<result column="SUB_MCH_ID" property="subMchId" jdbcType="VARCHAR" />
+		<result column="CP" property="cp" jdbcType="VARCHAR" />
+		<result column="CT" property="ct" jdbcType="TIMESTAMP" />
+		<result column="EP" property="ep" jdbcType="VARCHAR" />
+		<result column="ET" property="et" jdbcType="TIMESTAMP" />
+		<result column="CODE" property="code" jdbcType="VARCHAR" />
+		<result column="HPS_ID" property="hpsId" jdbcType="VARCHAR" />
+		<result column="PM_ID" property="pmId" jdbcType="VARCHAR" />
+		<result column="PARENT_APP_ID" property="parentAppId" jdbcType="VARCHAR" />
+		<result column="PARENT_SECRET" property="parentSecret" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="findAlls" resultMap="paySettingsResultMap">
+		select ID,MCH_ID,PAY_KEY,CERTIFICATE_PATH,IS_SUB_PAY,MCH_ACCOUNT,PARTNER_ID,PAY_PRIVATE_KEY,PAY_PUBLIC_KEY,PAY_MODE_ID,CP,CT,EP,ET,PARENT_APP_ID,PARENT_SECRET from SYS_PAY_SETTINGS
+	</select>
+	
+	<select id="findById" resultMap="paySettingsResultMap">
+		select ID,MCH_ID,PAY_KEY,CERTIFICATE_PATH,IS_SUB_PAY,MCH_ACCOUNT,PARTNER_ID,PAY_PRIVATE_KEY,PAY_PUBLIC_KEY,PAY_MODE_ID,CP,CT,EP,ET,PARENT_APP_ID,PARENT_SECRET from SYS_PAY_SETTINGS p where p.ID = #{id}
+	</select>
+	
+	<select id="findByHospitalIdAndModeIds" resultMap="paySettingsResultMap" parameterType="map">
+		SELECT
+			ps.ID,
+			ps.MCH_ID,
+			ps.PAY_KEY,
+			ps.CERTIFICATE_PATH,
+			ps.IS_SUB_PAY,
+			ps.MCH_ACCOUNT,
+			ps.PARTNER_ID,
+			ps.PAY_PRIVATE_KEY,
+			ps.PAY_PUBLIC_KEY,
+			ps.PAY_MODE_ID,
+			ps.SUB_MCH_ID,
+			ps.CP,
+			ps.CT,
+			ps.EP,
+			ps.ET,
+			pm.id AS PM_ID,
+			pm. CODE AS CODE,
+			hps.ID AS HPS_ID,
+			hps.HOSPITAL_ID AS HOSPITAL_ID,
+			ps.PARENT_APP_ID AS PARENT_APP_ID,
+			ps.PARENT_SECRET AS PARENT_SECRET
+		FROM
+			SYS_PAY_SETTINGS ps
+		LEFT JOIN SYS_HOSPITAL_PAY_SETTINGS hps ON ps.ID = hps.PAY_SETTINGS_ID
+		LEFT JOIN SYS_PAY_MODE pm ON pm.ID = ps.PAY_MODE_ID
+		where hps.HOSPITAL_ID = #{hospitalId}
+		AND ps.PAY_MODE_ID in 
+		<foreach item="item" index="index" collection="payModeIds" open="(" separator="," close=")">  
+  			#{item}
+  		</foreach> 
+  		 order by ps.PAY_MODE_ID asc
+	</select>
+	
+	<select id="findByHospitalIdAndModeCode" resultMap="paySettingsResultMap" parameterType="map">
+		SELECT ps.IS_SUB_PAY FROM SYS_PAY_SETTINGS ps
+		LEFT JOIN SYS_HOSPITAL_PAY_SETTINGS hps ON ps.ID = hps.PAY_SETTINGS_ID
+		LEFT JOIN SYS_PAY_MODE pm ON pm.ID = ps.PAY_MODE_ID
+		WHERE hps.HOSPITAL_ID = #{hospitalId}
+		AND pm.CODE = #{code}
+	</select>
+	
+	<select id="findByAndHospitalId" resultMap="paySettingsResultMap" parameterType="map">
+		SELECT ps.PAY_KEY FROM SYS_PAY_SETTINGS ps
+		inner JOIN SYS_HOSPITAL_PAY_SETTINGS hps ON ps.ID = hps.PAY_SETTINGS_ID
+		WHERE hps.HOSPITAL_ID = #{hospitalId}
+	</select>
+	
+	<insert id="add" parameterType="PaySettings" useGeneratedKeys="true" keyProperty="id">
+		insert into
+		SYS_PAY_SETTINGS(ID,MCH_ID,PAY_KEY,CERTIFICATE_PATH,IS_SUB_PAY,MCH_ACCOUNT,PARTNER_ID,PAY_PRIVATE_KEY,PAY_PUBLIC_KEY,PAY_MODE_ID,SUB_MCH_ID,CP,CT,EP,ET,PARENT_APP_ID,PARENT_SECRET)
+		values
+		(#{id},#{mchId},#{payKey},#{certificatePath},#{isSubPay},#{mchAccount},#{partnerId},#{payPrivateKey},#{payPublicKey},#{payModeId},#{subMchId},#{cp},now(),#{ep},#{et},#{parentAppId},#{parentSecret})
+	</insert>
+
+	<update id="update" parameterType="PaySettings">
+		update SYS_PAY_SETTINGS set MCH_ID = #{mchId}, PAY_KEY = #{payKey}, CERTIFICATE_PATH = #{certificatePath}, IS_SUB_PAY = #{isSubPay}, MCH_ACCOUNT = #{mchAccount}, PARTNER_ID = #{partnerId},
+		PAY_PRIVATE_KEY = #{payPrivateKey},PAY_PUBLIC_KEY = #{payPublicKey}, PAY_MODE_ID = #{payModeId}, SUB_MCH_ID = #{subMchId},EP = #{ep},ET = now(),PARENT_APP_ID = #{parentAppId},PARENT_SECRET = #{parentSecret} where ID = #{id}
+	</update>
+</mapper>

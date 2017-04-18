@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.platform.statistics.entity.OrderCount">
+	
+	<resultMap id="orderCountResultMap" type="com.yy.platform.statistics.entity.OrderCount">
+		<id column="ID" property="id" jdbcType="VARCHAR"/>
+		<result column="DATE" property="date" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+		<result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+		<result column="COUNT" property="count" jdbcType="INTEGER" />
+		<result column="RESERVATION_COUNT" property="reservationCount" jdbcType="INTEGER" />
+		<result column="DUTY_COUNT" property="dutyCount" jdbcType="INTEGER" />
+		<result column="RESERVATION_NO_PAYMENT" property="reservationNoPayment" jdbcType="INTEGER" />
+		<result column="RESERVATION_PAYMENT" property="reservationPayment" jdbcType="INTEGER" />
+		<result column="RESERVATION_REFUND" property="reservationRefund" jdbcType="INTEGER" />
+		<result column="DUTY_NO_PAYMENT" property="dutyNoPayment" jdbcType="INTEGER" />
+		<result column="DUTY_PAYMENT" property="dutyPayment" jdbcType="INTEGER" />
+		<result column="DUTY_REFUND" property="dutyRefund" jdbcType="INTEGER" />
+		<result column="REG_PAY_FEE" property="regPayFee" jdbcType="DOUBLE" />
+		<result column="REG_REFUND_FEE" property="regRefundFee" jdbcType="DOUBLE" />
+		<result column="BIZ_MODE" property="bizMode" jdbcType="INTEGER" />
+	</resultMap>
+	
+	
+	
+	<resultMap id="orderCountQueryResultMap" type="com.yy.platform.statistics.entity.OrderCount">
+		<result column="DATE" property="date" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR" />
+		<result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+		<!-- <result column="COUNT" property="count" jdbcType="INTEGER" /> -->
+		<result column="REG_TYPE" property="regType" jdbcType="INTEGER" />
+		<result column="NO_PAYMENT" property="reservationNoPayment" jdbcType="INTEGER" />
+		<result column="PAYMENT" property="reservationPayment" jdbcType="INTEGER" />
+		<result column="REFUND" property="reservationRefund" jdbcType="INTEGER" />
+		<result column="REG_PAY_FEE" property="regPayFee" jdbcType="DOUBLE" />
+		<result column="REG_REFUND_FEE" property="regRefundFee" jdbcType="DOUBLE" />
+		<result column="BIZ_MODE" property="bizMode" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<!-- 分页查询统计订单 -->
+	<select id="findListByPage" resultMap="orderCountResultMap">
+		SELECT 
+			DATE,
+			HOSPITAL_ID,
+			BRANCH_ID,
+			SUM(RESERVATION_NO_PAYMENT + RESERVATION_PAYMENT + RESERVATION_REFUND + DUTY_NO_PAYMENT + DUTY_PAYMENT + DUTY_REFUND) AS COUNT,
+			SUM(RESERVATION_NO_PAYMENT + RESERVATION_PAYMENT + RESERVATION_REFUND) AS RESERVATION_COUNT,
+			SUM(DUTY_NO_PAYMENT + DUTY_PAYMENT + DUTY_REFUND) AS DUTY_COUNT,
+			RESERVATION_NO_PAYMENT , 
+			RESERVATION_PAYMENT , 
+			RESERVATION_REFUND ,
+			DUTY_NO_PAYMENT ,
+			DUTY_PAYMENT ,
+			DUTY_REFUND,
+			REG_PAY_FEE,
+			REG_REFUND_FEE
+		FROM  SYS_REG_STATISTICAL WHERE 
+			HOSPITAL_ID = #{hospitalId}
+		<if test="branchId != null" >
+			AND BRANCH_ID = #{branchId}
+		</if>
+		<if test="bizMode != null" >
+			AND BIZ_MODE = #{bizMode}
+		</if>
+		<if test="startDate != null and endDate != null" >
+			AND DATE BETWEEN #{startDate} AND #{endDate}
+		</if>
+		GROUP BY DATE ORDER BY DATE DESC
+	</select>
+	
+	
+	<resultMap id="orderCountSumResultMap" type="com.yy.platform.statistics.entity.OrderCount">
+		<result column="COUNT" property="count" jdbcType="INTEGER" />
+		<result column="PAY_COUNT" property="payCount" jdbcType="INTEGER" />
+		<result column="REFUND_COUNT" property="refundCount" jdbcType="INTEGER" />
+		<result column="REG_PAY_TOTAL_FEE" property="regPayTotalFee" jdbcType="DOUBLE" />
+		<result column="REG_REFUND_TOTAL_FEE" property="regRefundTotalFee" jdbcType="DOUBLE" />
+	</resultMap>
+	
+	<!-- 查询订单总和 -->
+	<select id="getRegOrderCountSum" resultMap="orderCountSumResultMap">
+		SELECT SUM(r.COUNT) AS COUNT,SUM(r.PAY_COUNT) AS PAY_COUNT
+		,SUM(r.REFUND_COUNT) AS REFUND_COUNT
+		,SUM(r.REG_PAY_TOTAL_FEE) AS REG_PAY_TOTAL_FEE
+		,SUM(r.REG_REFUND_TOTAL_FEE) AS REG_REFUND_TOTAL_FEE FROM(
+			SELECT 
+				SUM(RESERVATION_PAYMENT +RESERVATION_NO_PAYMENT+DUTY_NO_PAYMENT+ RESERVATION_REFUND + DUTY_PAYMENT + DUTY_REFUND) AS COUNT,
+				SUM(RESERVATION_PAYMENT + DUTY_PAYMENT) AS PAY_COUNT,
+				SUM(RESERVATION_REFUND + DUTY_REFUND) AS REFUND_COUNT,
+				SUM(REG_PAY_FEE) AS REG_PAY_TOTAL_FEE,
+				SUM(REG_REFUND_FEE) AS REG_REFUND_TOTAL_FEE
+			FROM 
+				SYS_REG_STATISTICAL 
+			WHERE  
+				HOSPITAL_ID = #{hospitalId}
+			<if test="branchId != null" >
+				AND BRANCH_ID = #{branchId}
+			</if>
+			<if test="bizMode != null" >
+				AND BIZ_MODE = #{bizMode}
+			</if>
+			<if test="startDate != null and endDate != null" >
+				AND DATE BETWEEN #{startDate} AND #{endDate}
+			</if>
+			GROUP BY DATE ORDER BY DATE DESC) AS r
+	</select>
+	
+	<!-- 统计每日订单 -->
+	<select id="findRegOrderCountByDate" resultMap="orderCountQueryResultMap" parameterType="map">
+		SELECT 
+			from_UNIXTIME(#{startDate} / 1000,'%Y-%m-%d') as DATE,
+			r1.HOSPITAL_ID AS HOSPITAL_ID,
+			r1.BRANCH_ID AS BRANCH_ID,
+			REG_TYPE AS REG_TYPE,
+			<!-- sum(r1.count) AS COUNT, -->
+			sum(CASE r1.PAY_STATUS when 1 then r1.count else 0 END) as NO_PAYMENT,
+			sum(CASE r1.PAY_STATUS when 2 then r1.count else 0 END) as PAYMENT,
+			sum(CASE r1.PAY_STATUS when 3 then r1.count else 0 END) as REFUND,
+			sum(CASE r1.PAY_STATUS when 2 then r1.REG_FEE else 0 END) as REGPAYFEE,
+			sum(CASE r1.PAY_STATUS when 3 then r1.REG_FEE else 0 END) as REGREFUNDFEE,
+			r1.BIZ_MODE AS BIZ_MODE
+		FROM (
+			SELECT 
+				COUNT(1) as count, 
+				PAY_STATUS as PAY_STATUS, 
+				HOSPITAL_ID AS HOSPITAL_ID, 
+				BRANCH_ID AS BRANCH_ID, 
+				REG_TYPE AS REG_TYPE,
+				REG_MODE AS BIZ_MODE,
+				SUM(
+					(
+			ifnull(
+				REAL_TREAT_FEE,
+				0
+			) + ifnull(
+				REAL_REG_FEE,
+				0
+			)
+		) 
+				) AS REG_FEE
+			FROM 
+				<choose>
+				    <when test="hashTableName == 'BIZ_REGISTER_RECORD_1'">
+				         BIZ_REGISTER_RECORD_1 
+				    </when>
+				    <when test="hashTableName == 'BIZ_REGISTER_RECORD_2'">
+				         BIZ_REGISTER_RECORD_2 
+				    </when>
+				    <when test="hashTableName == 'BIZ_REGISTER_RECORD_3'">
+				         BIZ_REGISTER_RECORD_3 
+				    </when>
+				    <when test="hashTableName == 'BIZ_REGISTER_RECORD_4'">
+				         BIZ_REGISTER_RECORD_4 
+				    </when>
+				    <when test="hashTableName == 'BIZ_REGISTER_RECORD_5'">
+				         BIZ_REGISTER_RECORD_5 
+				    </when>
+				    <when test="hashTableName == 'BIZ_REGISTER_RECORD_6'">
+				         BIZ_REGISTER_RECORD_6 
+				    </when>
+				    <when test="hashTableName == 'BIZ_REGISTER_RECORD_7'">
+				         BIZ_REGISTER_RECORD_7 
+				    </when>
+				    <when test="hashTableName == 'BIZ_REGISTER_RECORD_8'">
+				         BIZ_REGISTER_RECORD_8 
+				    </when>
+				    <when test="hashTableName == 'BIZ_REGISTER_RECORD_9'">
+				         BIZ_REGISTER_RECORD_9 
+				    </when>
+				    <when test="hashTableName == 'BIZ_REGISTER_RECORD_10'">
+				         BIZ_REGISTER_RECORD_10 
+				    </when>
+			    </choose>
+			WHERE 
+				REGISTER_TIME BETWEEN #{startDate} AND  #{endDate} OR 
+				PAY_TIME BETWEEN #{startDate} AND  #{endDate} OR 
+				REFUND_TIME BETWEEN #{startDate} AND  #{endDate}
+			GROUP BY BRANCH_ID,PAY_STATUS,REG_TYPE,REG_FEE,BIZ_MODE
+			) AS r1 GROUP BY BRANCH_ID,PAY_STATUS,REG_TYPE,REG_FEE,BIZ_MODE ORDER BY REG_TYPE
+	</select>
+	
+	<!-- 批量插入 -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		 INSERT INTO 
+		 SYS_REG_STATISTICAL(ID,DATE,HOSPITAL_ID,BRANCH_ID,RESERVATION_NO_PAYMENT,RESERVATION_PAYMENT,RESERVATION_REFUND,DUTY_NO_PAYMENT,DUTY_PAYMENT,DUTY_REFUND,REG_PAY_FEE,REG_REFUND_FEE,BIZ_MODE)
+		 VALUES
+	    <foreach collection="list" item="item" index="index" separator="," >  
+	        (#{item.id},#{item.date},#{item.hospitalId},#{item.branchId},#{item.reservationNoPayment},#{item.reservationPayment},#{item.reservationRefund},#{item.dutyNoPayment},#{item.dutyPayment},#{item.dutyRefund},#{item.regPayFee},#{item.regRefundFee},#{item.bizMode})
+	    </foreach>  
+	</insert>
+</mapper>

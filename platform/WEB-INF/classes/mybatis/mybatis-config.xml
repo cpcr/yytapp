@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE configuration    
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="Attach" type="com.yy.framework.common.attach.entity.Attach"/>
+		<typeAlias alias="Hospital" type="com.yy.platform.hospital.entity.Hospital"/>
+		<typeAlias alias="BranchHospital" type="com.yy.platform.hospital.entity.BranchHospital"/>
+		<typeAlias alias="Menu" type="com.yy.platform.hospital.entity.Menu"/>
+		<typeAlias alias="Optional" type="com.yy.platform.hospital.entity.Optional"/>
+		<typeAlias alias="HospitalOptional" type="com.yy.platform.hospital.entity.HospitalOptional"/>
+		<typeAlias alias="PayMode" type="com.yy.platform.hospital.entity.PayMode"/>
+		<typeAlias alias="PaySettings" type="com.yy.platform.hospital.entity.PaySettings"/>
+		<typeAlias alias="HospitalPaySettings" type="com.yy.platform.hospital.entity.HospitalPaySettings"/>
+		<typeAlias alias="Platform" type="com.yy.platform.hospital.entity.Platform"/>
+		<typeAlias alias="PlatformSettings" type="com.yy.platform.hospital.entity.PlatformSettings"/>
+		<typeAlias alias="HospitalPlatformSettings" type="com.yy.platform.hospital.entity.HospitalPlatformSettings"/>
+		<typeAlias alias="Reply" type="com.yy.platform.message.entity.Reply" />
+		<typeAlias alias="Meterial" type="com.yy.platform.message.entity.Meterial" />
+		<typeAlias alias="Keyword" type="com.yy.platform.message.entity.Keyword" />
+		<typeAlias alias="MeterialGroup" type="com.yy.platform.message.entity.MeterialGroup" />
+		<typeAlias alias="MixedMeterial" type="com.yy.platform.message.entity.MixedMeterial" />
+		<typeAlias alias="PlatformSettingsMenu" type="com.yy.platform.hospital.entity.PlatformSettingsMenu"/>
+		<typeAlias alias="MsgTemplateLibrary" type="com.yy.platform.msgpush.entity.MsgTemplateLibrary" />
+		<typeAlias alias="MsgTemplateLibraryFunction" type="com.yy.platform.msgpush.entity.MsgTemplateLibraryFunction" />
+		<typeAlias alias="MsgTemplateFunction" type="com.yy.platform.msgpush.entity.MsgTemplateFunction" />
+		<typeAlias alias="MsgTemplate" type="com.yy.platform.msgpush.entity.MsgTemplate" />
+		<typeAlias alias="MsgTemp" type="com.yy.platform.msgpush.entity.MsgTemp" />
+		<typeAlias alias="MsgTemplateContent" type="com.yy.platform.msgpush.entity.MsgTemplateContent" />
+		<typeAlias alias="eHDeviceInfo" type="com.yy.platform.msgpush.entity.EHDeviceInfo" />
+		<typeAlias alias="msgCenter" type="com.yy.easyhealth.biz.msgcenter.entity.MsgCenter" />
+		<typeAlias alias="MsgRule" type="com.yy.platform.message.entity.Rule"/>
+		<typeAlias alias="PlatformSettingsMenu" type="com.yy.platform.hospital.entity.PlatformSettingsMenu"/>
+		
+		<typeAlias alias="User" type="com.yy.platform.privilege.entity.User"/>
+		<typeAlias alias="Role" type="com.yy.platform.privilege.entity.Role"/>
+		<typeAlias alias="Resource" type="com.yy.platform.privilege.entity.Resource"/>
+		<typeAlias alias="Organization" type="com.yy.platform.privilege.entity.Organization"/>
+		
+		<typeAlias alias="UserRole" type="com.yy.platform.privilege.entity.UserRole"/>
+		<typeAlias alias="RoleResource" type="com.yy.platform.privilege.entity.RoleResource"/>
+		<typeAlias alias="AppHospital" type="com.yy.platform.hospital.entity.AppHospital"/>
+		<typeAlias alias="SmsUser" type="com.yy.easyhealth.biz.sms.entity.SmsUser"/>
+		<typeAlias alias="UserOpeRecord" type="com.yy.easyhealth.biz.user.entity.UserOpeRecord"/>
+		<typeAlias alias="UserApp" type="com.yy.easyhealth.biz.user.entity.UserApp"/>
+	</typeAliases>
+</configuration>
